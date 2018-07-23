@@ -1,0 +1,28 @@
+
+{
+    "prestigeApp": {
+        "wallet" : {
+            "home": {
+                "title": "Wallets",
+                "createLabel": "Create a new Wallet",
+                "createOrEditLabel": "Create or edit a Wallet"
+            },
+            "created": "A new Wallet is created with identifier {{ param }}",
+            "updated": "A Wallet is updated with identifier {{ param }}",
+            "deleted": "A Wallet is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Wallet {{ id }}?"
+            },
+            "detail": {
+                "title": "Wallet"
+            },
+            "address": "Address",
+            "name": "Name",
+            "private_key": "Private Key",
+            "public_key": "Public Key",
+            "public_key_hash": "Public Key Hash",
+            "wif": "Wif",
+            "user": "User"
+        }
+    }
+}

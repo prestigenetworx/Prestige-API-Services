@@ -1,0 +1,47 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "login",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "wallet"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "address",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "private_key",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "public_key",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "public_key_hash",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "wif",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180719211104",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "serviceClass",
+    "entityTableName": "wallet",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

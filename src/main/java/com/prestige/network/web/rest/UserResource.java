@@ -4,6 +4,7 @@ import com.prestige.network.config.Constants;
 import com.codahale.metrics.annotation.Timed;
 import com.prestige.network.domain.User;
 import com.prestige.network.repository.UserRepository;
+import com.prestige.network.repository.WalletRepository;
 import com.prestige.network.security.AuthoritiesConstants;
 import com.prestige.network.service.MailService;
 import com.prestige.network.service.UserService;
@@ -17,6 +18,7 @@ import io.github.jhipster.web.util.ResponseUtil;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
@@ -29,6 +31,11 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.*;
+
+import com.prestige.network.service.MiddlewareRequest;
+import org.json.JSONObject;
+import com.prestige.network.domain.Wallet;
+import com.prestige.network.service.CryptUtils;
 
 /**
  * REST controller for managing users.
@@ -66,6 +73,9 @@ public class UserResource {
 
     private final MailService mailService;
 
+    @Autowired
+    private WalletRepository walletRepository;
+
     public UserResource(UserService userService, UserRepository userRepository, MailService mailService) {
 
         this.userService = userService;
@@ -100,6 +110,28 @@ public class UserResource {
             throw new EmailAlreadyUsedException();
         } else {
             User newUser = userService.createUser(userDTO);
+            //Crear wallet
+            String key = System.getenv("PASSPHRASE_VALUE");
+            JSONObject middlewareRequest = new MiddlewareRequest().post("/wallet/new", new ArrayList<>());
+            log.debug("key : {}", key);
+            log.debug("address : {}", middlewareRequest.getString("address"));
+            log.debug("private_key : {}", CryptUtils.encrypt(middlewareRequest.getString("private_key"), key));
+            log.debug("public_key : {}",  CryptUtils.encrypt(middlewareRequest.getString("public_key"), key));
+            log.debug("public_key_hash : {}", CryptUtils.encrypt(middlewareRequest.getString("public_key_hash"), key));
+            log.debug("wif : {}", CryptUtils.encrypt(middlewareRequest.getString("wif"), key));
+            log.debug("newUser : {}", newUser);
+            Wallet wallet = new Wallet(
+                middlewareRequest.getString("address"),
+                "a",
+                CryptUtils.encrypt(middlewareRequest.getString("private_key"), key),
+                CryptUtils.encrypt(middlewareRequest.getString("public_key"), key),
+                CryptUtils.encrypt(middlewareRequest.getString("public_key_hash"), key),
+                CryptUtils.encrypt(middlewareRequest.getString("wif"), key),
+                newUser
+
+            );
+            log.debug("prueba funciona : {}", "vamos funcionaaaaa");
+            walletRepository.save(wallet);
             mailService.sendCreationEmail(newUser);
             return ResponseEntity.created(new URI("/api/users/" + newUser.getLogin()))
                 .headers(HeaderUtil.createAlert( "userManagement.created", newUser.getLogin()))

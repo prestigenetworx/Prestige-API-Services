@@ -4,7 +4,7 @@
         "wallet" : {
             "home": {
                 "title": "Wallets",
-                "createLabel": "Create a new Wallet",
+                "createLabel": "New Wallet",
                 "createOrEditLabel": "Create or edit a Wallet"
             },
             "created": "A new Wallet is created with identifier {{ param }}",

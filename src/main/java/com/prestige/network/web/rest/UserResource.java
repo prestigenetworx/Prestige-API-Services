@@ -110,28 +110,11 @@ public class UserResource {
             throw new EmailAlreadyUsedException();
         } else {
             User newUser = userService.createUser(userDTO);
-            //Crear wallet
-            String key = System.getenv("PASSPHRASE_VALUE");
-            JSONObject middlewareRequest = new MiddlewareRequest().post("/wallet/new", new ArrayList<>());
-            log.debug("key : {}", key);
-            log.debug("address : {}", middlewareRequest.getString("address"));
-            log.debug("private_key : {}", CryptUtils.encrypt(middlewareRequest.getString("private_key"), key));
-            log.debug("public_key : {}",  CryptUtils.encrypt(middlewareRequest.getString("public_key"), key));
-            log.debug("public_key_hash : {}", CryptUtils.encrypt(middlewareRequest.getString("public_key_hash"), key));
-            log.debug("wif : {}", CryptUtils.encrypt(middlewareRequest.getString("wif"), key));
-            log.debug("newUser : {}", newUser);
-            Wallet wallet = new Wallet(
-                middlewareRequest.getString("address"),
-                "a",
-                CryptUtils.encrypt(middlewareRequest.getString("private_key"), key),
-                CryptUtils.encrypt(middlewareRequest.getString("public_key"), key),
-                CryptUtils.encrypt(middlewareRequest.getString("public_key_hash"), key),
-                CryptUtils.encrypt(middlewareRequest.getString("wif"), key),
-                newUser
 
-            );
-            log.debug("prueba funciona : {}", "vamos funcionaaaaa");
-            walletRepository.save(wallet);
+            //Crear wallet
+            Wallet wallet = new Wallet();
+            walletRepository.save(wallet.createWalletfromApi(newUser));
+
             mailService.sendCreationEmail(newUser);
             return ResponseEntity.created(new URI("/api/users/" + newUser.getLogin()))
                 .headers(HeaderUtil.createAlert( "userManagement.created", newUser.getLogin()))

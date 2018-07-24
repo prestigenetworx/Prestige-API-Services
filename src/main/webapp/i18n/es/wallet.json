@@ -4,7 +4,7 @@
         "wallet" : {
             "home": {
                 "title": "Wallets",
-                "createLabel": "Crear nuevo Wallet",
+                "createLabel": "Nuevo Wallet",
                 "createOrEditLabel": "Crear o editar Wallet"
             },
             "created": "Un nuevo Wallet ha sido creado con el identificador {{ param }}",
@@ -16,7 +16,7 @@
             "detail": {
                 "title": "Wallet"
             },
-            "address": "Address",
+            "address": "Dirección",
             "name": "Name",
             "private_key": "Private Key",
             "public_key": "Public Key",

@@ -9,14 +9,6 @@
                 <dd>
                     <span>{{wallet.address}}</span>
                 </dd>
-                <dt><span jhiTranslate="prestigeApp.wallet.name">Name</span></dt>
-                <dd>
-                    <span>{{wallet.name}}</span>
-                </dd>
-                <dt><span jhiTranslate="prestigeApp.wallet.private_key">Private Key</span></dt>
-                <dd>
-                    <span>{{wallet.private_key}}</span>
-                </dd>
                 <dt><span jhiTranslate="prestigeApp.wallet.public_key">Public Key</span></dt>
                 <dd>
                     <span>{{wallet.public_key}}</span>
@@ -24,10 +16,6 @@
                 <dt><span jhiTranslate="prestigeApp.wallet.public_key_hash">Public Key Hash</span></dt>
                 <dd>
                     <span>{{wallet.public_key_hash}}</span>
-                </dd>
-                <dt><span jhiTranslate="prestigeApp.wallet.wif">Wif</span></dt>
-                <dd>
-                    <span>{{wallet.wif}}</span>
                 </dd>
                 <dt><span jhiTranslate="prestigeApp.wallet.user">User</span></dt>
                 <dd>
@@ -39,12 +27,6 @@
                     (click)="previousState()"
                     class="btn btn-info">
                 <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
-            </button>
-
-            <button type="button"
-                    [routerLink]="['/wallet', wallet.id, 'edit']"
-                    class="btn btn-primary">
-                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
             </button>
         </div>
     </div>

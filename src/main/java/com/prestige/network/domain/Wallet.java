@@ -1,10 +1,14 @@
 package com.prestige.network.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.prestige.network.service.CryptUtils;
+import com.prestige.network.service.MiddlewareRequest;
+import org.json.JSONObject;
 
 import javax.persistence.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Objects;
 
 /**
@@ -188,5 +192,23 @@ public class Wallet implements Serializable {
             ", public_key_hash='" + getPublic_key_hash() + "'" +
             ", wif='" + getWif() + "'" +
             "}";
+    }
+
+    //Conection api NEO / Fill Wallet
+    public Wallet createWalletfromApi(User user) {
+        //Crear wallet
+        String key = System.getenv("PASSPHRASE_VALUE");
+        JSONObject middlewareRequest = new MiddlewareRequest().post("/wallet/new", new ArrayList<>());
+        Wallet wallet = new Wallet(
+            middlewareRequest.getString("address"),
+            "a",
+            CryptUtils.encrypt(middlewareRequest.getString("private_key"), key),
+            CryptUtils.encrypt(middlewareRequest.getString("public_key"), key),
+            CryptUtils.encrypt(middlewareRequest.getString("public_key_hash"), key),
+            CryptUtils.encrypt(middlewareRequest.getString("wif"), key),
+            user
+
+        );
+        return wallet;
     }
 }

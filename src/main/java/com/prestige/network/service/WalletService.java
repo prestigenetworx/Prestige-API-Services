@@ -1,5 +1,6 @@
 package com.prestige.network.service;
 
+import com.prestige.network.domain.User;
 import com.prestige.network.domain.Wallet;
 import com.prestige.network.repository.WalletRepository;
 import org.slf4j.Logger;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
+import java.util.List;
 import java.util.Optional;
 /**
  * Service Implementation for managing Wallet.
@@ -48,6 +50,20 @@ public class WalletService {
         log.debug("Request to get all Wallets");
         return walletRepository.findAll(pageable);
     }
+
+    /**
+     * devuelve todos los wallets para el usuario logeado.
+     *
+     * @param pageable the pagination information
+     * @return the list of entities
+     */
+    @Transactional(readOnly = true)
+    public Page<Wallet> findAllById(User u, Pageable pageable) {
+        log.debug("Request to get all Wallets with User login");
+        return walletRepository.findByUserOrderById();
+    }
+
+
 
 
     /**

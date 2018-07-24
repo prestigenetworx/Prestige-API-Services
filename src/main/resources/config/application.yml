@@ -86,7 +86,7 @@ jhipster:
         #allow-credentials: true
         #max-age: 1800
     mail:
-        from: pruebasbeatmeda@gmail.com
+        from: ${MAIL_USERNAME}
     swagger:
         default-include-pattern: /api/.*
         title: Prestige API

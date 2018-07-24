@@ -12,50 +12,13 @@
                     </span>
                     </a>
                 </li>
-                <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                    <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
-                    <span>
-                        <span>About</span>
-                    </span>
-                    </a>
-                </li>
-                <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                    <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
-                    <span>
-                        <span>Token Sale</span>
-                    </span>
-                    </a>
-                </li>
-                <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                    <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
-                    <span>
-                        <span>Roadmap</span>
-                    </span>
-                    </a>
-                </li>
-                <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                    <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
-                    <span>
-                        <span>Team</span>
-                    </span>
-                    </a>
-                </li>
-                <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                    <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
-                    <span>
-                        <span>News</span>
-                    </span>
-                    </a>
-                </li>
-                <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                    <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
-                    <span>
-                        <span>Contact</span>
-                    </span>
+                <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                    <a class="nav-link" routerLink="wallet" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                        <span jhiTranslate="global.menu.entities.wallet">Wallet</span>
                     </a>
                 </li>
                 <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
-                <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <!--<li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                     <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">
                     <span>
                         <span jhiTranslate="global.menu.entities.main">
@@ -69,9 +32,9 @@
                             <span jhiTranslate="global.menu.entities.wallet">Wallet</span>
                         </a>
                     </li>
-                        <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
+                        <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here
                     </ul>
-                </li>
+                </li>-->
                 <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                     <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="admin-menu">
                     <span>
@@ -186,21 +149,4 @@
 
 </div>
 
-<!-- Banner/Slider -->
-<div id="header" class="banner banner-full d-flex flex-column banner-jasmine">
-    <div class="background-shape"></div>
-    <div class="container zi6">
-        <div class="banner-content">
-            <div class="row justify-content-center">
-                <div class="col-lg-10 text-center">
-                    <div class="header-txt tab-center mobile-center">
-                        <h1 class="animated" data-animate="fadeInUp" data-delay="1.35">Global High Risk Payment Gateway</h1>
-                        <p class="lead animated" data-animate="fadeInUp" data-delay="1.45">People who work in these “High Risk” businesses are often discriminated against not due to their work being illegal, but instead their association with certain industries.</p>
-                        <br>
-                    </div>
-                </div><!-- .col  -->
-            </div><!-- .row  -->
-        </div><!-- .banner-content  -->
-    </div><!-- .container  -->
-</div>
-<!-- End Banner/Slider -->
+

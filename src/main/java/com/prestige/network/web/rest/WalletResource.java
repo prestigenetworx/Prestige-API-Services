@@ -2,7 +2,9 @@ package com.prestige.network.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.prestige.network.domain.Wallet;
+import com.prestige.network.security.SecurityUtils;
 import com.prestige.network.service.WalletService;
+import com.prestige.network.service.dto.UserDTO;
 import com.prestige.network.web.rest.errors.BadRequestAlertException;
 import com.prestige.network.web.rest.util.HeaderUtil;
 import com.prestige.network.web.rest.util.PaginationUtil;
@@ -22,6 +24,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
 
+import com.prestige.network.service.UserService;
 /**
  * REST controller for managing Wallet.
  */
@@ -48,7 +51,11 @@ public class WalletResource {
      */
     @PostMapping("/wallets")
     @Timed
-    public ResponseEntity<Wallet> createWallet(@RequestBody Wallet wallet) throws URISyntaxException {
+    public ResponseEntity<Wallet> createWallet() throws URISyntaxException {
+        Wallet wallet = new Wallet();
+        log.debug("id usuario : {}",SecurityUtils.getCurrentUserLogin());
+        //userService.getUserWithAuthoritiesByLogin().map(UserDTO::new);
+        //wallet.createWalletfromApi(newUser);
         log.debug("REST request to save Wallet : {}", wallet);
         if (wallet.getId() != null) {
             throw new BadRequestAlertException("A new wallet cannot already have an ID", ENTITY_NAME, "idexists");
@@ -89,6 +96,13 @@ public class WalletResource {
      */
     @GetMapping("/wallets")
     @Timed
+    /*public ResponseEntity<List<Wallet>> getAllWallets(Pageable pageable) {
+        log.debug("REST request to get a page of Wallets");
+        Page<Wallet> page = walletService.findAll(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/wallets");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }*/
+
     public ResponseEntity<List<Wallet>> getAllWallets(Pageable pageable) {
         log.debug("REST request to get a page of Wallets");
         Page<Wallet> page = walletService.findAll(pageable);

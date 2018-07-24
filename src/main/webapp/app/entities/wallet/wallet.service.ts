@@ -15,8 +15,8 @@ export class WalletService {
 
     constructor(private http: HttpClient) {}
 
-    create(wallet: IWallet): Observable<EntityResponseType> {
-        return this.http.post<IWallet>(this.resourceUrl, wallet, { observe: 'response' });
+    create(): Observable<EntityResponseType> {
+        return this.http.post<IWallet>(this.resourceUrl, {}, { observe: 'response' });
     }
 
     update(wallet: IWallet): Observable<EntityResponseType> {

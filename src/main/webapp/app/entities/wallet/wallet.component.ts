@@ -130,15 +130,14 @@ export class WalletComponent implements OnInit, OnDestroy {
         this.jhiAlertService.error(errorMessage, null, null);
     }
 
+    //Service for create wallet
     createWallet() {
         this.walletService.create().subscribe(
             wallet => {
-                console.log("1");
-                //falta actualizar el componente de la lista
+                this.loadAll();
             }, error => {
-
+                this.onError("Wallet not created");
             }
         );
-        console.log("2");
     }
 }

@@ -58,9 +58,9 @@ public class WalletService {
      * @return the list of entities
      */
     @Transactional(readOnly = true)
-    public Page<Wallet> findAllById(User u, Pageable pageable) {
+    public Page<Wallet> findAllById(User user, Pageable pageable) {
         log.debug("Request to get all Wallets with User login");
-        return walletRepository.findByUserOrderById();
+        return walletRepository.findByUserOrderById(user,pageable);
     }
 
 

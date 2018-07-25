@@ -1,7 +1,9 @@
 package com.prestige.network.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.prestige.network.domain.User;
 import com.prestige.network.domain.Wallet;
+import com.prestige.network.repository.UserRepository;
 import com.prestige.network.security.SecurityUtils;
 import com.prestige.network.service.WalletService;
 import com.prestige.network.service.dto.UserDTO;
@@ -11,11 +13,16 @@ import com.prestige.network.web.rest.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -38,6 +45,9 @@ public class WalletResource {
 
     private final WalletService walletService;
 
+    @Autowired
+    private UserService userService;
+
     public WalletResource(WalletService walletService) {
         this.walletService = walletService;
     }
@@ -52,15 +62,12 @@ public class WalletResource {
     @PostMapping("/wallets")
     @Timed
     public ResponseEntity<Wallet> createWallet() throws URISyntaxException {
-        Wallet wallet = new Wallet();
-        log.debug("id usuario : {}",SecurityUtils.getCurrentUserLogin());
-        //userService.getUserWithAuthoritiesByLogin().map(UserDTO::new);
-        //wallet.createWalletfromApi(newUser);
-        log.debug("REST request to save Wallet : {}", wallet);
-        if (wallet.getId() != null) {
-            throw new BadRequestAlertException("A new wallet cannot already have an ID", ENTITY_NAME, "idexists");
+        User user = userService.getCurrentUser();
+        if(user == null) {
+            throw new BadRequestAlertException("Current user doesn't exist", "wallet", "noncurrentuser");
         }
-        Wallet result = walletService.save(wallet);
+        Wallet wallet = new Wallet();
+        Wallet result = walletService.save(wallet.createWalletfromApi(user));
         return ResponseEntity.created(new URI("/api/wallets/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -96,16 +103,16 @@ public class WalletResource {
      */
     @GetMapping("/wallets")
     @Timed
-    /*public ResponseEntity<List<Wallet>> getAllWallets(Pageable pageable) {
-        log.debug("REST request to get a page of Wallets");
-        Page<Wallet> page = walletService.findAll(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/wallets");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
-    }*/
-
     public ResponseEntity<List<Wallet>> getAllWallets(Pageable pageable) {
         log.debug("REST request to get a page of Wallets");
-        Page<Wallet> page = walletService.findAll(pageable);
+        //Page<Wallet> page = walletService.findAll(pageable);
+
+        User user = userService.getCurrentUser();
+        if(user == null) {
+            throw new BadRequestAlertException("Current user doesn't exist", "wallet", "noncurrentuser");
+        }
+        Page<Wallet> page = walletService.findAllById(user,pageable);
+
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/wallets");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

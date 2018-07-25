@@ -10,6 +10,7 @@ import com.prestige.network.security.SecurityUtils;
 import com.prestige.network.service.util.RandomUtil;
 import com.prestige.network.service.dto.UserDTO;
 
+import com.prestige.network.web.rest.errors.BadRequestAlertException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.CacheManager;
@@ -269,5 +270,35 @@ public class UserService {
     private void clearUserCaches(User user) {
         Objects.requireNonNull(cacheManager.getCache(UserRepository.USERS_BY_LOGIN_CACHE)).evict(user.getLogin());
         Objects.requireNonNull(cacheManager.getCache(UserRepository.USERS_BY_EMAIL_CACHE)).evict(user.getEmail());
+    }
+
+    /**
+     *
+     * @param login
+     * @return the current user with
+     */
+    @Transactional(readOnly = true)
+    public Optional<User> findOneByLogin(String login) {
+        return userRepository.findOneByLogin(login);
+    }
+
+    //Function that return current user object
+    @Transactional(readOnly = true)
+    public User getCurrentUser() {
+        if (!SecurityUtils.getCurrentUserLogin().isPresent()) {
+            log.debug("No Login");
+            return null;
+        }
+
+        String login = SecurityUtils.getCurrentUserLogin().get();
+        Optional<User> userOptional = userRepository.findOneByLogin(login);
+
+        if (!userOptional.isPresent()) {
+            log.debug("No Login");
+            return null;
+        }
+
+        //userOptional.get() is the User Object
+        return  userOptional.get();
     }
 }

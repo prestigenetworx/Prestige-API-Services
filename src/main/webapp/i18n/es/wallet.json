@@ -5,7 +5,8 @@
             "home": {
                 "title": "Wallets",
                 "createLabel": "Nuevo Wallet",
-                "createOrEditLabel": "Crear o editar Wallet"
+                "createOrEditLabel": "Crear o editar Wallet",
+                "importLabel": "Importar Wallet"
             },
             "created": "Un nuevo Wallet ha sido creado con el identificador {{ param }}",
             "updated": "Un Wallet ha sido actualizado con el identificador {{ param }}",

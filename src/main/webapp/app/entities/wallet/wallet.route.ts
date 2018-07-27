@@ -10,6 +10,7 @@ import { WalletService } from './wallet.service';
 import { WalletComponent } from './wallet.component';
 import { WalletDetailComponent } from './wallet-detail.component';
 import { WalletUpdateComponent } from './wallet-update.component';
+import { WalletImportComponent } from './wallet-import.component';
 import { WalletDeletePopupComponent } from './wallet-delete-dialog.component';
 import { IWallet } from 'app/shared/model/wallet.model';
 
@@ -67,6 +68,18 @@ export const walletRoute: Routes = [
     {
         path: 'wallet/:id/edit',
         component: WalletUpdateComponent,
+        resolve: {
+            wallet: WalletResolve
+        },
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'prestigeApp.wallet.home.title'
+        },
+        canActivate: [UserRouteAccessService]
+    },
+    {
+        path: 'wallet/import',
+        component: WalletImportComponent,
         resolve: {
             wallet: WalletResolve
         },

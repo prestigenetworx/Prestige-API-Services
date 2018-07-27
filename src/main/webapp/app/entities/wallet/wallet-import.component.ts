@@ -9,10 +9,10 @@ import { WalletService } from './wallet.service';
 import { IUser, UserService } from 'app/core';
 
 @Component({
-    selector: 'jhi-wallet-update',
-    templateUrl: './wallet-update.component.html'
+    selector: 'jhi-wallet-import',
+    templateUrl: './wallet-import.component.html'
 })
-export class WalletUpdateComponent implements OnInit {
+export class WalletImportComponent implements OnInit {
     private _wallet: IWallet;
     isSaving: boolean;
 
@@ -47,7 +47,7 @@ export class WalletUpdateComponent implements OnInit {
         if (this.wallet.id !== undefined) {
             this.subscribeToSaveResponse(this.walletService.update(this.wallet));
         } else {
-            //this.subscribeToSaveResponse(this.walletService.create(this.wallet));
+            this.subscribeToSaveResponse(this.walletService.import());
         }
     }
 

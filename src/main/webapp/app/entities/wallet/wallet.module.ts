@@ -10,15 +10,16 @@ import {
     WalletDeletePopupComponent,
     WalletDeleteDialogComponent,
     walletRoute,
-    walletPopupRoute
+    walletPopupRoute,
+    WalletImportComponent
 } from './';
 
 const ENTITY_STATES = [...walletRoute, ...walletPopupRoute];
 
 @NgModule({
     imports: [PrestigeSharedModule, PrestigeAdminModule, RouterModule.forChild(ENTITY_STATES)],
-    declarations: [WalletComponent, WalletDetailComponent, WalletUpdateComponent, WalletDeleteDialogComponent, WalletDeletePopupComponent],
-    entryComponents: [WalletComponent, WalletUpdateComponent, WalletDeleteDialogComponent, WalletDeletePopupComponent],
+    declarations: [WalletComponent, WalletDetailComponent, WalletUpdateComponent, WalletDeleteDialogComponent, WalletDeletePopupComponent,WalletImportComponent ],
+    entryComponents: [WalletComponent, WalletUpdateComponent, WalletDeleteDialogComponent, WalletDeletePopupComponent,WalletImportComponent ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class PrestigeWalletModule {}

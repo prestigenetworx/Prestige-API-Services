@@ -35,4 +35,9 @@ export class WalletService {
     delete(id: number): Observable<HttpResponse<any>> {
         return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
     }
+
+    //Service import wallet
+    import(): Observable<EntityResponseType> {
+        return this.http.post<IWallet>(this.resourceUrl, {}, { observe: 'response' });
+    }
 }

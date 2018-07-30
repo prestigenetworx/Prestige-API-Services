@@ -17,10 +17,6 @@
             "fieldType": "String"
         },
         {
-            "fieldName": "name",
-            "fieldType": "String"
-        },
-        {
             "fieldName": "private_key",
             "fieldType": "String"
         },

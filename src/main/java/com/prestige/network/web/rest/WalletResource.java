@@ -5,6 +5,7 @@ import com.prestige.network.domain.User;
 import com.prestige.network.domain.Wallet;
 import com.prestige.network.repository.UserRepository;
 import com.prestige.network.security.SecurityUtils;
+import com.prestige.network.service.CryptUtils;
 import com.prestige.network.service.WalletService;
 import com.prestige.network.service.dto.UserDTO;
 import com.prestige.network.web.rest.errors.BadRequestAlertException;
@@ -104,12 +105,13 @@ public class WalletResource {
         }
         String wif = wallet.getWif();
         Wallet w = wallet.importWalletfromApi(user,wif);
-        log.debug("List wallet : {}",wallet.validateImport(user,w.getAddress()));
-        //Wallet result = walletService.save(wallet.importWalletfromApi(user,wif));
-        /*return ResponseEntity.created(new URI("/api/wallets/" + result.getId()))
+        if(!validateImport(user,w.getAddress())) {
+            throw new BadRequestAlertException("Address exist for the user", "wallet", "addressexistforuser");
+        }
+        Wallet result = walletService.save(w);
+        return ResponseEntity.created(new URI("/api/wallets/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
-            .body(result);*/
-        return null;
+            .body(result);
     }
 
     /**
@@ -144,7 +146,20 @@ public class WalletResource {
     @Timed
     public ResponseEntity<Wallet> getWallet(@PathVariable Long id) {
         log.debug("REST request to get Wallet : {}", id);
-        Optional<Wallet> wallet = walletService.findOne(id);
+
+        //decrypt public key and public key hash for view wallet
+        String key = System.getenv("PASSPHRASE_VALUE");
+        Optional<Wallet> walletaux = walletService.findOne(id);
+
+        if (!walletaux.isPresent()) {
+            log.debug("No wallet exist");
+            throw new BadRequestAlertException("Wallet doesn't exist", "wallet", "nonwalletexist");
+        }
+        Wallet w = walletaux.get();
+        w.setPublic_key(CryptUtils.decrypt(w.getPublic_key(), key));
+        w.setPublic_key_hash(CryptUtils.decrypt(w.getPublic_key_hash(), key));
+
+        Optional<Wallet> wallet = Optional.of(w);
         return ResponseUtil.wrapOrNotFound(wallet);
     }
 
@@ -160,5 +175,14 @@ public class WalletResource {
         log.debug("REST request to delete Wallet : {}", id);
         walletService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+
+    //Validate that import is unic for user / true: empty
+    public boolean validateImport(User user, String address) {
+        List<Wallet> l = walletService.findOnebyUserAndAdress(user,address);
+        if(l.isEmpty()) {
+            return true;
+        }
+        return false;
     }
 }

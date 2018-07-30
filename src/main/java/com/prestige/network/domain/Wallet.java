@@ -49,8 +49,6 @@ public class Wallet implements Serializable {
     @JsonIgnoreProperties("")
     private User user;
 
-    private WalletService walletService;
-
     public Wallet() {}
 
     public Wallet(String address, String name, String private_key, String public_key, String public_key_hash, String wif, User user) {

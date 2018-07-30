@@ -1,10 +1,16 @@
 package com.prestige.network.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.prestige.network.service.CryptUtils;
+import com.prestige.network.service.MiddlewareRequest;
+import com.prestige.network.service.WalletService;
+import org.json.JSONObject;
 
 import javax.persistence.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -24,6 +30,9 @@ public class Wallet implements Serializable {
     @Column(name = "address")
     private String address;
 
+    @Column(name = "name")
+    private String name;
+
     @Column(name = "private_key")
     private String private_key;
 
@@ -39,6 +48,20 @@ public class Wallet implements Serializable {
     @ManyToOne
     @JsonIgnoreProperties("")
     private User user;
+
+    private WalletService walletService;
+
+    public Wallet() {}
+
+    public Wallet(String address, String name, String private_key, String public_key, String public_key_hash, String wif, User user) {
+        this.address = address;
+        this.name = name;
+        this.private_key = private_key;
+        this.public_key = public_key;
+        this.public_key_hash = public_key_hash;
+        this.wif = wif;
+        this.user = user;
+    }
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -61,6 +84,19 @@ public class Wallet implements Serializable {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public Wallet name(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+     }
 
     public String getPrivate_key() {
         return private_key;
@@ -153,10 +189,45 @@ public class Wallet implements Serializable {
         return "Wallet{" +
             "id=" + getId() +
             ", address='" + getAddress() + "'" +
+            ", name='" + getName() + "'" +
             ", private_key='" + getPrivate_key() + "'" +
             ", public_key='" + getPublic_key() + "'" +
             ", public_key_hash='" + getPublic_key_hash() + "'" +
             ", wif='" + getWif() + "'" +
             "}";
     }
+
+    //Conection api NEO / Fill Wallet
+    public Wallet createWalletfromApi(User user) {
+        //Crear wallet
+        String key = System.getenv("PASSPHRASE_VALUE");
+        JSONObject middlewareRequest = new MiddlewareRequest().post("/wallet/new", new ArrayList<>());
+        Wallet wallet = new Wallet(
+           middlewareRequest.getString("address"),
+           "a",
+           CryptUtils.encrypt(middlewareRequest.getString("private_key"), key),
+           CryptUtils.encrypt(middlewareRequest.getString("public_key"), key),
+           CryptUtils.encrypt(middlewareRequest.getString("public_key_hash"), key),
+           CryptUtils.encrypt(middlewareRequest.getString("wif"), key),
+           user
+         );
+        return wallet;
+    }
+
+    //Conection api NEO / Fill Wallet from Wif
+    public Wallet importWalletfromApi(User user,String wif) {
+        //Import wallet
+        String key = System.getenv("PASSPHRASE_VALUE");
+        JSONObject middlewareRequest = new MiddlewareRequest().get("/get_data_from_wif/" + wif);
+        Wallet wallet = new Wallet(
+            middlewareRequest.getString("address"),
+            "a",
+            CryptUtils.encrypt(middlewareRequest.getString("private_key"), key),
+            CryptUtils.encrypt(middlewareRequest.getString("public_key"), key),
+            CryptUtils.encrypt(middlewareRequest.getString("public_key_hash"), key),
+            CryptUtils.encrypt(middlewareRequest.getString("wif"), key),
+            user
+         );
+        return wallet;
+     }
 }

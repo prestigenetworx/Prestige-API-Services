@@ -43,12 +43,14 @@ export class WalletImportComponent implements OnInit {
     }
 
     save() {
-        this.isSaving = true;
+        this.subscribeToSaveResponse(this.walletService.update(this.wallet));
+        //this.subscribeToSaveResponse(this.walletService.import());
+        /*this.isSaving = true;
         if (this.wallet.id !== undefined) {
             this.subscribeToSaveResponse(this.walletService.update(this.wallet));
         } else {
             this.subscribeToSaveResponse(this.walletService.import());
-        }
+        }*/
     }
 
     private subscribeToSaveResponse(result: Observable<HttpResponse<IWallet>>) {

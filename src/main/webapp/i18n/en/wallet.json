@@ -23,7 +23,8 @@
             "public_key": "Public Key",
             "public_key_hash": "Public Key Hash",
             "wif": "Wif",
-            "user": "User"
+            "user": "User",
+            "import": "Import"
         }
     }
 }

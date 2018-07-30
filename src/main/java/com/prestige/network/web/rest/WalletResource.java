@@ -74,6 +74,19 @@ public class WalletResource {
     }
 
     /**
+     * POST  /wallets : Import a wallet.
+     *
+     * @param wallet the wallet to create
+     * @return the ResponseEntity with status 201 (Created) and with body the new wallet, or with status 400 (Bad Request) if the wallet has already an ID
+     * @throws URISyntaxException if the Location URI syntax is incorrect
+     */
+    @PostMapping("/wallets2")
+    @Timed
+    public ResponseEntity<Wallet> importWallet(@RequestBody Wallet wallet) throws URISyntaxException {
+        return null;
+    }
+
+    /**
      * PUT  /wallets : Updates an existing wallet.
      *
      * @param wallet the wallet to update
@@ -85,14 +98,18 @@ public class WalletResource {
     @PutMapping("/wallets")
     @Timed
     public ResponseEntity<Wallet> updateWallet(@RequestBody Wallet wallet) throws URISyntaxException {
-        log.debug("REST request to update Wallet : {}", wallet);
-        if (wallet.getId() == null) {
-            throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
+        User user = userService.getCurrentUser();
+        if(user == null) {
+            throw new BadRequestAlertException("Current user doesn't exist", "wallet", "noncurrentuser");
         }
-        Wallet result = walletService.save(wallet);
-        return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, wallet.getId().toString()))
-            .body(result);
+        String wif = wallet.getWif();
+        Wallet w = wallet.importWalletfromApi(user,wif);
+        log.debug("List wallet : {}",wallet.validateImport(user,w.getAddress()));
+        //Wallet result = walletService.save(wallet.importWalletfromApi(user,wif));
+        /*return ResponseEntity.created(new URI("/api/wallets/" + result.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+            .body(result);*/
+        return null;
     }
 
     /**

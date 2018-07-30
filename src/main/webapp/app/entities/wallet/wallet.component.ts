@@ -142,7 +142,7 @@ export class WalletComponent implements OnInit, OnDestroy {
     }
 
     //Service for import wallet from wif
-    importWallet() {
+    /*importWallet() {
         this.walletService.import().subscribe(
             wallet => {
                 this.loadAll();
@@ -150,5 +150,5 @@ export class WalletComponent implements OnInit, OnDestroy {
                 this.onError("Wallet not created");
             }
         );
-    }
+    }*/
 }

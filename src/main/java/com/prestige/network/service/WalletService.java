@@ -63,8 +63,17 @@ public class WalletService {
         return walletRepository.findByUserOrderById(user,pageable);
     }
 
-
-
+    /**
+     * return a wallet from user and address(NEO).
+     *
+     * @param user and address
+     * @return the list of entities
+     */
+    @Transactional(readOnly = true)
+    public List<Wallet> findOnebyUserAndAdress(User user, String address) {
+        log.debug("Request to get one Wallet with User and address(NEO)");
+        return walletRepository.findByUserAndAddress(user,address);
+    }
 
     /**
      * Get one wallet by id.

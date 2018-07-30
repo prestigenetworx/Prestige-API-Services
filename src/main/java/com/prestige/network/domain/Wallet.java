@@ -3,12 +3,14 @@ package com.prestige.network.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.prestige.network.service.CryptUtils;
 import com.prestige.network.service.MiddlewareRequest;
+import com.prestige.network.service.WalletService;
 import org.json.JSONObject;
 
 import javax.persistence.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -46,6 +48,8 @@ public class Wallet implements Serializable {
     @ManyToOne
     @JsonIgnoreProperties("")
     private User user;
+
+    private WalletService walletService;
 
     public Wallet() {
     }
@@ -210,5 +214,29 @@ public class Wallet implements Serializable {
 
         );
         return wallet;
+    }
+
+    //Conection api NEO / Fill Wallet from Wif
+    public Wallet importWalletfromApi(User user,String wif) {
+        //Import wallet
+        String key = System.getenv("PASSPHRASE_VALUE");
+        JSONObject middlewareRequest = new MiddlewareRequest().get("/get_data_from_wif/" + wif);
+        Wallet wallet = new Wallet(
+            middlewareRequest.getString("address"),
+            "a",
+            CryptUtils.encrypt(middlewareRequest.getString("private_key"), key),
+            CryptUtils.encrypt(middlewareRequest.getString("public_key"), key),
+            CryptUtils.encrypt(middlewareRequest.getString("public_key_hash"), key),
+            CryptUtils.encrypt(middlewareRequest.getString("wif"), key),
+            user
+
+        );
+        return wallet;
+    }
+
+    //Validate that import is unic for user
+    public List<Wallet> validateImport(User user, String address) {
+
+        return walletService.findOnebyUserAndAdress(user,address);
     }
 }

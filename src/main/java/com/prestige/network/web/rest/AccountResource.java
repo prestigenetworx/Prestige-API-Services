@@ -3,7 +3,9 @@ package com.prestige.network.web.rest;
 import com.codahale.metrics.annotation.Timed;
 
 import com.prestige.network.domain.User;
+import com.prestige.network.domain.Wallet;
 import com.prestige.network.repository.UserRepository;
+import com.prestige.network.repository.WalletRepository;
 import com.prestige.network.security.SecurityUtils;
 import com.prestige.network.service.MailService;
 import com.prestige.network.service.UserService;
@@ -15,6 +17,7 @@ import com.prestige.network.web.rest.vm.ManagedUserVM;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,6 +40,9 @@ public class AccountResource {
     private final UserService userService;
 
     private final MailService mailService;
+
+    @Autowired
+    private WalletRepository walletRepository;
 
     public AccountResource(UserRepository userRepository, UserService userService, MailService mailService) {
 
@@ -63,6 +69,7 @@ public class AccountResource {
         userRepository.findOneByLogin(managedUserVM.getLogin().toLowerCase()).ifPresent(u -> {throw new LoginAlreadyUsedException();});
         userRepository.findOneByEmailIgnoreCase(managedUserVM.getEmail()).ifPresent(u -> {throw new EmailAlreadyUsedException();});
         User user = userService.registerUser(managedUserVM, managedUserVM.getPassword());
+
         mailService.sendActivationEmail(user);
     }
 
@@ -79,6 +86,9 @@ public class AccountResource {
         if (!user.isPresent()) {
             throw new InternalServerErrorException("No user was found for this activation key");
         }
+        //Create wallet
+        Wallet wallet = new Wallet();
+        walletRepository.save(wallet.createWalletfromApi(user.get()));
     }
 
     /**

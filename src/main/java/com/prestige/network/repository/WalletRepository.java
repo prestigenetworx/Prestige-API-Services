@@ -20,5 +20,6 @@ public interface WalletRepository extends JpaRepository<Wallet, Long> {
     List<Wallet> findByUserIsCurrentUser();
     Page<Wallet> findByUserOrderById(User user, Pageable pageable);
     List<Wallet> findByUserAndAddress(User user,String address);
+    List<Wallet> findByUserOrderById(User user);
 
 }

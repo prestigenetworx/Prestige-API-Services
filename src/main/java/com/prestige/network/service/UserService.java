@@ -5,6 +5,7 @@ import com.prestige.network.domain.User;
 import com.prestige.network.repository.AuthorityRepository;
 import com.prestige.network.config.Constants;
 import com.prestige.network.repository.UserRepository;
+import com.prestige.network.repository.WalletRepository;
 import com.prestige.network.security.AuthoritiesConstants;
 import com.prestige.network.security.SecurityUtils;
 import com.prestige.network.service.util.RandomUtil;
@@ -13,6 +14,7 @@ import com.prestige.network.service.dto.UserDTO;
 import com.prestige.network.web.rest.errors.BadRequestAlertException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,6 +28,8 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.Collectors;
+
+import com.prestige.network.domain.Wallet;
 
 /**
  * Service class for managing users.
@@ -43,6 +47,9 @@ public class UserService {
     private final AuthorityRepository authorityRepository;
 
     private final CacheManager cacheManager;
+
+    @Autowired
+    private WalletRepository walletRepository;
 
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository, CacheManager cacheManager) {
         this.userRepository = userRepository;
@@ -204,6 +211,14 @@ public class UserService {
 
     public void deleteUser(String login) {
         userRepository.findOneByLogin(login).ifPresent(user -> {
+            List<Wallet> l = walletRepository.findByUserOrderById(user);
+            if(!l.isEmpty()) {
+                for (Wallet w : l) {
+                    Long idwallet = w.getId();
+                    log.debug("Request to delete Wallet by delete user: {}", idwallet);
+                    walletRepository.deleteById(idwallet);
+                }
+            }
             userRepository.delete(user);
             this.clearUserCaches(user);
             log.debug("Deleted User: {}", user);

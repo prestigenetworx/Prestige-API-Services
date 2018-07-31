@@ -110,7 +110,7 @@ public class UserResource {
             throw new EmailAlreadyUsedException();
         } else {
             User newUser = userService.createUser(userDTO);
-            log.debug("user from api 2 : {}",newUser);
+
             //Crear wallet
             Wallet wallet = new Wallet();
             walletRepository.save(wallet.createWalletfromApi(newUser));

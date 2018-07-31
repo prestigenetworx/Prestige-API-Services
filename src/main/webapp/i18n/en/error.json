@@ -11,6 +11,7 @@
         "validation": "Validation error on the server.",
         "addressexistforuser": "Address exist for the user",
         "noncurrentuser": "Current user doesn't exist",
-        "nonwalletexist": "Wallet doesn't exist"
+        "nonwalletexist": "Wallet doesn't exist",
+        "walletaccess": "You don't have access to this wallet"
     }
 }

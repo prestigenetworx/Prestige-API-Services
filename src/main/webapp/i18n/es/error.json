@@ -9,8 +9,9 @@
         },
         "concurrencyFailure": "Another user modified this data at the same time as you. Your changes were rejected.",
         "validation": "Validation error on the server.",
-        "addressexistforuser": "Address exist for the user",
-        "noncurrentuser": "Current user doesn't exist",
-        "nonwalletexist": "Wallet doesn't exist"
+        "addressexistforuser": "La dirección del wallet ya existe para el usuario",
+        "noncurrentuser": "Usuario actual no existe",
+        "nonwalletexist": "Wallet no existe",
+        "walletaccess": "No tienes acceso a éste wallet"
     }
 }

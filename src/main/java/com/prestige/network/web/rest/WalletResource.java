@@ -75,19 +75,6 @@ public class WalletResource {
     }
 
     /**
-     * POST  /wallets : Import a wallet.
-     *
-     * @param wallet the wallet to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new wallet, or with status 400 (Bad Request) if the wallet has already an ID
-     * @throws URISyntaxException if the Location URI syntax is incorrect
-     */
-    @PostMapping("/wallets2")
-    @Timed
-    public ResponseEntity<Wallet> importWallet(@RequestBody Wallet wallet) throws URISyntaxException {
-        return null;
-    }
-
-    /**
      * PUT  /wallets : Updates an existing wallet.
      *
      * @param wallet the wallet to update
@@ -156,6 +143,16 @@ public class WalletResource {
             throw new BadRequestAlertException("Wallet doesn't exist", "wallet", "nonwalletexist");
         }
         Wallet w = walletaux.get();
+
+        User currentUser = userService.getCurrentUser();
+        if(currentUser == null) {
+            throw new BadRequestAlertException("Current user doesn't exist", "wallet", "noncurrentuser");
+        }
+
+        if(!(currentUser.getId()).equals(w.getUser().getId())) {
+            throw new BadRequestAlertException("You don't have access to this wallet", "wallet", "walletaccess");
+        }
+
         w.setPublic_key(CryptUtils.decrypt(w.getPublic_key(), key));
         w.setPublic_key_hash(CryptUtils.decrypt(w.getPublic_key_hash(), key));
 

@@ -5,3 +5,5 @@ export * from './wallet-detail.component';
 export * from './wallet.component';
 export * from './wallet.route';
 export * from './wallet-import.component';
+export * from './wallet-getbalance.component';
+export * from './wallet-new-dialog.component';

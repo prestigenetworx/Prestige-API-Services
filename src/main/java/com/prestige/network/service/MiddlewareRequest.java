@@ -16,7 +16,6 @@ public class MiddlewareRequest {
 
     public MiddlewareRequest(){
         this.apiUrl = System.getenv("MIDDLEWARE_API_URL");
-        //this.apiUrl = "http://18.209.127.42:8080/v1";
     }
 
     public JSONObject get(String path) {

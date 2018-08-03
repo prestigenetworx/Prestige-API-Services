@@ -6,7 +6,8 @@
                 "title": "Wallets",
                 "createLabel": "Nuevo Wallet",
                 "createOrEditLabel": "Crear o editar Wallet",
-                "importLabel": "Importar Wallet"
+                "importLabel": "Importar Wallet",
+                "getbalanceLabel": "Obtener Saldo"
             },
             "created": "Un nuevo Wallet ha sido creado con el identificador {{ param }}",
             "updated": "Un Wallet ha sido actualizado con el identificador {{ param }}",
@@ -18,13 +19,13 @@
                 "title": "Wallet"
             },
             "address": "Dirección",
-            "name": "Name",
-            "private_key": "Private Key",
-            "public_key": "Public Key",
-            "public_key_hash": "Public Key Hash",
+            "name": "Nombre",
+            "private_key": "Llave Privada",
+            "public_key": "Llave Pública",
+            "public_key_hash": "Hash Llave Pública",
             "wif": "Wif",
-            "user": "User",
-            "import": "Import"
+            "user": "Usuario",
+            "import": "Importar"
         }
     }
 }

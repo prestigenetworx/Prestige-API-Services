@@ -228,4 +228,23 @@ public class Wallet implements Serializable {
          );
         return wallet;
      }
+
+    //Conection api NEO / accountstate
+    /*public List accountstatefromApi(Wallet wallet) {
+        //Import wallet
+        String key = System.getenv("PASSPHRASE_VALUE");
+        JSONObject middlewareRequest = new MiddlewareRequest().get("/get_data_from_wif/" + wif);
+        Wallet wallet = new Wallet(
+            middlewareRequest.getString("address"),
+            "a",
+            CryptUtils.encrypt(middlewareRequest.getString("private_key"), key),
+            CryptUtils.encrypt(middlewareRequest.getString("public_key"), key),
+            CryptUtils.encrypt(middlewareRequest.getString("public_key_hash"), key),
+            CryptUtils.encrypt(middlewareRequest.getString("wif"), key),
+            user
+        );
+        return wallet;
+    }*/
+
+
 }

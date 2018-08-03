@@ -99,7 +99,8 @@
             "edit": "Editar",
             "open": "Open",
             "save": "Guardar",
-            "view": "Vista"
+            "view": "Vista",
+            "getbalance": "Obtener saldo"
         },
         "detail": {
             "field": "Campo",
@@ -119,6 +120,10 @@
             "pattern": "Este campo debe seguir el patrón {{pattern}}.",
             "number": "Este campo debe ser un número.",
             "datetimelocal": "Este campo debe ser una fecha y hora."
+        },
+        "newpopup": {
+            "title": "Crear wallet",
+            "name": "Nombre"
         }
     },
     "error": {

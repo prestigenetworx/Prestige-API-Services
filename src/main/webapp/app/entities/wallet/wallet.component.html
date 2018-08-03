@@ -7,7 +7,9 @@
             Import Wallet
             </span>
         </button>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-wallet" (click)="createWallet()">
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-wallet" [routerLink]="['/', { outlets: { popup: 'wallet/new/popup'} }]"
+                replaceUrl="true"
+                queryParamsHandling="merge">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span  jhiTranslate="prestigeApp.wallet.home.createLabel">
             New Wallet
@@ -40,6 +42,12 @@
                                 class="btn btn-info btn-sm">
                             <fa-icon [icon]="'eye'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/wallet', wallet.id, 'getbalance' ]"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'plus'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.getbalance">Get balance</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'wallet/'+ wallet.id + '/delete'} }]"

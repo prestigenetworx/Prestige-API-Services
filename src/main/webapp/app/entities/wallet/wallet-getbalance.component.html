@@ -1,0 +1,16 @@
+<div>
+    <div class="col-12">
+        <div *ngIf="wallet">
+            <h2><span jhiTranslate="prestigeApp.wallet.detail.title">Wallet</span> {{wallet.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+        </div>
+    </div>
+</div>
+

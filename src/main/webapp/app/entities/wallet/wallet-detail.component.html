@@ -1,27 +1,47 @@
-<div class="row justify-content-center">
-    <div class="col-8">
+<div>
+    <div class="col-12">
         <div *ngIf="wallet">
             <h2><span jhiTranslate="prestigeApp.wallet.detail.title">Wallet</span> {{wallet.id}}</h2>
             <hr>
             <jhi-alert-error></jhi-alert-error>
-            <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="prestigeApp.wallet.address">Address</span></dt>
-                <dd>
-                    <span>{{wallet.address}}</span>
-                </dd>
-                <dt><span jhiTranslate="prestigeApp.wallet.public_key">Public Key</span></dt>
-                <dd>
-                    <span>{{wallet.public_key}}</span>
-                </dd>
-                <dt><span jhiTranslate="prestigeApp.wallet.public_key_hash">Public Key Hash</span></dt>
-                <dd>
-                    <span>{{wallet.public_key_hash}}</span>
-                </dd>
-                <dt><span jhiTranslate="prestigeApp.wallet.user">User</span></dt>
-                <dd>
-                    {{wallet.user?.login}}
-                </dd>
-            </dl>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th width="50%">
+                            <span jhiTranslate="prestigeApp.wallet.address">Address</span>
+                        </th>
+                        <th width="50%" border-bottom="none">
+                            <span jhiTranslate="prestigeApp.wallet.public_key">Public Key</span>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>{{wallet.address}}</span>
+                        </td>
+                        <td>
+                            <span>{{wallet.public_key}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="50%">
+                            <span jhiTranslate="prestigeApp.wallet.public_key_hash">Public Key Hash</span>
+                        </th>
+                        <th width="50%">
+                            <span jhiTranslate="prestigeApp.wallet.user">User</span>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>{{wallet.public_key_hash}}</span>
+                        </td>
+                        <td>
+                            {{wallet.user?.login}}
+                        </td>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
 
             <button type="submit"
                     (click)="previousState()"
@@ -31,3 +51,4 @@
         </div>
     </div>
 </div>
+

@@ -11,7 +11,9 @@ import { WalletComponent } from './wallet.component';
 import { WalletDetailComponent } from './wallet-detail.component';
 import { WalletUpdateComponent } from './wallet-update.component';
 import { WalletImportComponent } from './wallet-import.component';
+import { WalletGetBalanceComponent } from './wallet-getbalance.component';
 import { WalletDeletePopupComponent } from './wallet-delete-dialog.component';
+import { WalletNewPopupComponent } from './wallet-new-dialog.component';
 import { IWallet } from 'app/shared/model/wallet.model';
 
 @Injectable({ providedIn: 'root' })
@@ -88,6 +90,18 @@ export const walletRoute: Routes = [
             pageTitle: 'prestigeApp.wallet.home.title'
         },
         canActivate: [UserRouteAccessService]
+    },
+    {
+        path: 'wallet/:id/getbalance',
+        component: WalletGetBalanceComponent,
+        resolve: {
+            wallet: WalletResolve
+        },
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'prestigeApp.wallet.home.title'
+        },
+        canActivate: [UserRouteAccessService]
     }
 ];
 
@@ -95,6 +109,19 @@ export const walletPopupRoute: Routes = [
     {
         path: 'wallet/:id/delete',
         component: WalletDeletePopupComponent,
+        resolve: {
+            wallet: WalletResolve
+        },
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'prestigeApp.wallet.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },
+    {
+        path: 'wallet/new/popup',
+        component: WalletNewPopupComponent,
         resolve: {
             wallet: WalletResolve
         },

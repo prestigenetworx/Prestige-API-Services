@@ -9,6 +9,11 @@
                     <input type="text" class="form-control" name="wif" id="field_wif" required
                         [(ngModel)]="wallet.wif" />
                 </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="prestigeApp.wallet.name" for="field_name">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name" required
+                           [(ngModel)]="wallet.name" />
+                </div>
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">

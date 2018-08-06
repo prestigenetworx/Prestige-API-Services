@@ -24,7 +24,7 @@
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="address"><span jhiTranslate="prestigeApp.wallet.address">Address</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="user.login"><span jhiTranslate="prestigeApp.wallet.user">User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="name"><span jhiTranslate="prestigeApp.wallet.name">Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -33,7 +33,7 @@
                 <td><a [routerLink]="['/wallet', wallet.id, 'view' ]">{{wallet.id}}</a></td>
                 <td>{{wallet.address}}</td>
                 <td>
-                    {{wallet.user?.login}}
+                    {{wallet.name}}
                 </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
@@ -43,6 +43,12 @@
                             <fa-icon [icon]="'eye'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>
+                        <button type="submit"
+                                [routerLink]="['/wallet', wallet.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
                         <button type="submit"
                                 [routerLink]="['/wallet', wallet.id, 'getbalance' ]"
                                 class="btn btn-primary btn-sm">

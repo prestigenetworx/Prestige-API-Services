@@ -44,11 +44,7 @@ export class WalletUpdateComponent implements OnInit {
 
     save() {
         this.isSaving = true;
-        if (this.wallet.id !== undefined) {
-            this.subscribeToSaveResponse(this.walletService.update(this.wallet));
-        } else {
-            //this.subscribeToSaveResponse(this.walletService.create(this.wallet));
-        }
+        this.subscribeToSaveResponse(this.walletService.update(this.wallet));
     }
 
     private subscribeToSaveResponse(result: Observable<HttpResponse<IWallet>>) {

@@ -5,7 +5,7 @@
             "home": {
                 "title": "Wallets",
                 "createLabel": "Nuevo Wallet",
-                "createOrEditLabel": "Crear o editar Wallet",
+                "createOrEditLabel": "Editar Wallet",
                 "importLabel": "Importar Wallet",
                 "getbalanceLabel": "Obtener Saldo"
             },

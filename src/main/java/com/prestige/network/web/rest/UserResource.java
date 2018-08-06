@@ -113,7 +113,7 @@ public class UserResource {
 
             //Crear wallet
             Wallet wallet = new Wallet();
-            walletRepository.save(wallet.createWalletfromApi(newUser));
+            walletRepository.save(wallet.createWalletfromApi(newUser,null));
 
             mailService.sendCreationEmail(newUser);
             return ResponseEntity.created(new URI("/api/users/" + newUser.getLogin()))

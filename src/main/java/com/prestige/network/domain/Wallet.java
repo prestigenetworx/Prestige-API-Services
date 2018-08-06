@@ -196,13 +196,14 @@ public class Wallet implements Serializable {
     }
 
     //Conection api NEO / Fill Wallet
-    public Wallet createWalletfromApi(User user) {
+    public Wallet createWalletfromApi(User user,String nameWallet) {
         //Crear wallet
         String key = System.getenv("PASSPHRASE_VALUE");
         JSONObject middlewareRequest = new MiddlewareRequest().post("/wallet/new", new ArrayList<>());
+        String name = (nameWallet == null || nameWallet == "") ? ("Wallet-" + middlewareRequest.getString("address")) : nameWallet;
         Wallet wallet = new Wallet(
            middlewareRequest.getString("address"),
-           "a",
+           name,
            CryptUtils.encrypt(middlewareRequest.getString("private_key"), key),
            CryptUtils.encrypt(middlewareRequest.getString("public_key"), key),
            CryptUtils.encrypt(middlewareRequest.getString("public_key_hash"), key),
@@ -213,13 +214,14 @@ public class Wallet implements Serializable {
     }
 
     //Conection api NEO / Fill Wallet from Wif
-    public Wallet importWalletfromApi(User user,String wif) {
+    public Wallet importWalletfromApi(User user,String wif,String nameWallet) {
         //Import wallet
         String key = System.getenv("PASSPHRASE_VALUE");
         JSONObject middlewareRequest = new MiddlewareRequest().get("/get_data_from_wif/" + wif);
+        String name = (nameWallet == null || nameWallet == "") ? ("Wallet-" + middlewareRequest.getString("address")) : nameWallet;
         Wallet wallet = new Wallet(
             middlewareRequest.getString("address"),
-            "a",
+            name,
             CryptUtils.encrypt(middlewareRequest.getString("private_key"), key),
             CryptUtils.encrypt(middlewareRequest.getString("public_key"), key),
             CryptUtils.encrypt(middlewareRequest.getString("public_key_hash"), key),

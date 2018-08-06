@@ -56,18 +56,6 @@ export const walletRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
-        path: 'wallet/new',
-        component: WalletUpdateComponent,
-        resolve: {
-            wallet: WalletResolve
-        },
-        data: {
-            authorities: ['ROLE_USER'],
-            pageTitle: 'prestigeApp.wallet.home.title'
-        },
-        canActivate: [UserRouteAccessService]
-    },
-    {
         path: 'wallet/:id/edit',
         component: WalletUpdateComponent,
         resolve: {

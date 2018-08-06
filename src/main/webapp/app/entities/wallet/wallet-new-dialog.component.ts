@@ -7,6 +7,8 @@ import { JhiEventManager } from 'ng-jhipster';
 import { IWallet } from 'app/shared/model/wallet.model';
 import { WalletService } from './wallet.service';
 
+import { JhiAlertService } from 'ng-jhipster';
+
 @Component({
     selector: 'jhi-wallet-new-dialog',
     templateUrl: './wallet-new-dialog.component.html'
@@ -14,34 +16,23 @@ import { WalletService } from './wallet.service';
 export class WalletNewDialogComponent {
     wallet: IWallet;
 
-    constructor(private walletService: WalletService, public activeModal: NgbActiveModal, private eventManager: JhiEventManager) {}
+    constructor(private walletService: WalletService, public activeModal: NgbActiveModal, private eventManager: JhiEventManager, private jhiAlertService: JhiAlertService) {}
 
     clear() {
         this.activeModal.dismiss('cancel');
     }
 
-    confirmDelete(id: number) {
-        this.walletService.delete(id).subscribe(response => {
-            this.eventManager.broadcast({
-                name: 'walletListModification',
-                content: 'Deleted an wallet'
-            });
-            this.activeModal.dismiss(true);
-        });
-    }
-
     //Service for create wallet
     createWallet() {
-        this.walletService.create().subscribe(
+        this.walletService.create(this.wallet).subscribe(
             wallet => {
                 this.eventManager.broadcast({
                     name: 'walletListModification',
-                    content: 'Deleted an wallet'
+                    content: 'Wallet created'
                 });
                 this.activeModal.dismiss(true);
-                //this.loadAll();
             }, error => {
-                //this.onError("Wallet not created");
+                this.jhiAlertService.error("Wallet not created", null, null)
             }
         );
     }

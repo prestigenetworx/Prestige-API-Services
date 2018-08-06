@@ -62,13 +62,13 @@ public class WalletResource {
      */
     @PostMapping("/wallets")
     @Timed
-    public ResponseEntity<Wallet> createWallet() throws URISyntaxException {
+    public ResponseEntity<Wallet> createWallet(@RequestBody Wallet w) throws URISyntaxException {
         User user = userService.getCurrentUser();
         if(user == null) {
             throw new BadRequestAlertException("Current user doesn't exist", "wallet", "noncurrentuser");
         }
         Wallet wallet = new Wallet();
-        Wallet result = walletService.save(wallet.createWalletfromApi(user));
+        Wallet result = walletService.save(wallet.createWalletfromApi(user,w.getName()));
         return ResponseEntity.created(new URI("/api/wallets/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -86,16 +86,22 @@ public class WalletResource {
     @PutMapping("/wallets")
     @Timed
     public ResponseEntity<Wallet> updateWallet(@RequestBody Wallet wallet) throws URISyntaxException {
-        User user = userService.getCurrentUser();
-        if(user == null) {
-            throw new BadRequestAlertException("Current user doesn't exist", "wallet", "noncurrentuser");
-        }
-        String wif = wallet.getWif();
-        Wallet w = wallet.importWalletfromApi(user,wif);
-        if(!validateImport(user,w.getAddress())) {
-            throw new BadRequestAlertException("Address exist for the user", "wallet", "addressexistforuser");
+        log.debug("wallet desde update o import : {}",wallet);
+        Wallet w = null;
+        if(wallet.getId() == null) {
+            User user = userService.getCurrentUser();
+            if(user == null) {
+                throw new BadRequestAlertException("Current user doesn't exist", "wallet", "noncurrentuser");
+            }
+            w = wallet.importWalletfromApi(user,wallet.getWif(),wallet.getName());
+            if(!validateImport(user,w.getAddress())) {
+                throw new BadRequestAlertException("Address exist for the user", "wallet", "addressexistforuser");
+            }
+        }else {
+            w = wallet;
         }
         Wallet result = walletService.save(w);
+
         return ResponseEntity.created(new URI("/api/wallets/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);

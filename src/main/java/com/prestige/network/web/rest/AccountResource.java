@@ -88,7 +88,7 @@ public class AccountResource {
         }
         //Create wallet
         Wallet wallet = new Wallet();
-        walletRepository.save(wallet.createWalletfromApi(user.get()));
+        walletRepository.save(wallet.createWalletfromApi(user.get(),null));
     }
 
     /**

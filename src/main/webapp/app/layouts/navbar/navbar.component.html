@@ -1,10 +1,31 @@
-<div class="navbar navbar-expand-lg is-transparent" id="mainnav">
-    <nav class="container">
-        <a class="navbar-brand animated" data-animate="fadeInDown" data-delay=".65" href="./">
-            <img class="logo logo-dark" alt="logo" src="../../../content/images/logo.png" srcset="../../../content/images/logo2x.png 2x">
-        </a>
-        <div class="navbar-collapse collapse" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed" [ngSwitch]="isAuthenticated()">
+<header class="topbar">
+    <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="homepage">
+                <!-- Logo icon --><b>
+                <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                <!-- Dark Logo icon -->
+                <img src="../../../content/images/logo-white.png" alt="homepage" class="dark-logo">
+            </b>
+                <!--End Logo icon -->
+                <!--<span class="hidden-xs"><span class="font-bold">elite</span>hospital</span>-->
+            </a>
+        </div>
+
+        <div class="navbar-collapse" [ngbCollapse]="isNavbarCollapsed" [ngSwitch]="isAuthenticated()">
             <ul class="navbar-nav ml-auto">
+                <li class="nav-item"> <a class="nav-link nav-toggler d-block d-md-none waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                <li class="nav-item"> <a class="nav-link sidebartoggler d-none d-lg-block d-md-block waves-effect waves-dark" href="javascript:void(0)"><i class="icon-menu"></i></a> </li>
+                <li class="nav-item">
+                    <form class="app-search d-none d-md-block d-lg-block">
+                        <input type="text" class="form-control" placeholder="Search &amp; enter">
+                    </form>
+                </li>
+            </ul>
+            <ul class="navbar-nav my-lg-0">
+                <li class="nav-item dropdown">
+
+                </li>
                 <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                     <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
                     <span>
@@ -17,24 +38,6 @@
                         <span jhiTranslate="global.menu.entities.wallet">Wallet</span>
                     </a>
                 </li>
-                <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
-                <!--<li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                    <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">
-                    <span>
-                        <span jhiTranslate="global.menu.entities.main">
-                            Entities
-                        </span>
-                    </span>
-                    </a>
-                    <ul class="dropdown-menu" ngbDropdownMenu>
-                        <li>
-                        <a class="dropdown-item" routerLink="wallet" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <span jhiTranslate="global.menu.entities.wallet">Wallet</span>
-                        </a>
-                    </li>
-                        <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here
-                    </ul>
-                </li>-->
                 <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                     <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="admin-menu">
                     <span>
@@ -143,10 +146,24 @@
                         </li>
                     </ul>
                 </li>
+                <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                    <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
+                    <span>
+                        <fa-icon [icon]="'list'"></fa-icon>
+                    </span>
+                    </a>
+                </li>
             </ul>
         </div>
+
     </nav>
 
-</div>
+</header>
+
+
+
+
+
+
 
 

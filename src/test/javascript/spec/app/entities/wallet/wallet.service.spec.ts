@@ -31,7 +31,7 @@ describe('Service Tests', () => {
             });
 
             it('should create a Wallet', () => {
-                service.create().subscribe(received => {
+                service.create(new Wallet()).subscribe(received => {
                     expect(received.body.id).toEqual(null);
                 });
 

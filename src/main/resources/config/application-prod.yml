@@ -42,7 +42,7 @@ spring:
     liquibase:
         contexts: prod
     mail:
-         host: smtp.gmail.com
+        host: smtp.gmail.com
         port: 587
         username: ${MAIL_USERNAME}  #Replace this field with your Gmail username.
         password: ${MAIL_PASSWORD}           #Replace this field with your Gmail password.

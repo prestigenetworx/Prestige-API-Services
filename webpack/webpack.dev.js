@@ -38,7 +38,7 @@ module.exports = (options) => webpackMerge(commonConfig({ env: ENV }), {
     },
     entry: {
         polyfills: './src/main/webapp/app/polyfills',
-        global: './src/main/webapp/content/scss/global.scss',
+        global: './src/main/webapp/content/dist/css/style.css',
         main: './src/main/webapp/app/app.main'
     },
     output: {
@@ -79,19 +79,19 @@ module.exports = (options) => webpackMerge(commonConfig({ env: ENV }), {
         {
             test: /\.scss$/,
             loaders: ['to-string-loader', 'css-loader', 'sass-loader'],
-            exclude: /(vendor\.scss|global\.scss)/
+            exclude: /(vendor\.scss|style\.scss)/
         },
         {
-            test: /(vendor\.scss|global\.scss)/,
+            test: /(vendor\.scss|style\.scss)/,
             loaders: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
         },
         {
             test: /\.css$/,
             loaders: ['to-string-loader', 'css-loader'],
-            exclude: /(vendor\.css|global\.css)/
+            exclude: /(vendor\.css|style\.css)/
         },
         {
-            test: /(vendor\.css|global\.css)/,
+            test: /(vendor\.css|style\.css)/,
             loaders: ['style-loader', 'css-loader']
         }]
     },

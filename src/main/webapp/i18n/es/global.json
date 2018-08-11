@@ -17,7 +17,8 @@
                 "sessions": "Sesiones",
                 "login": "Iniciar sesión",
                 "logout": "Cerrar la sesión",
-                "register": "Crear una cuenta"
+                "register": "Crear una cuenta",
+                "main-sidebar": "--- CUENTA"
             },
             "admin": {
                 "main": "Administración",
@@ -32,7 +33,10 @@
                 "database": "Base de datos",
                 "jhipster-needle-menu-add-admin-element": "JHipster will add additional menu entries here (do not translate!)"
             },
-            "language": "Idioma"
+            "language": "Idioma",
+            "language-sidebar": "--- IDIOMA",
+            "language-english": "English",
+            "language-spanish": "Español"
         },
         "form": {
             "username": "Usuario",

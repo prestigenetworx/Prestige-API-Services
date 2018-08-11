@@ -1,23 +1,30 @@
-<div>
-    <h2 id="page-heading">
-        <span jhiTranslate="prestigeApp.wallet.home.title">Wallets</span>
-        <button id="jh-import-entity" class="btn btn-primary float-right jh-import-entity import-wallet" [routerLink]="['/wallet/import']">
-            <fa-icon [icon]="'plus'"></fa-icon>
-            <span  jhiTranslate="prestigeApp.wallet.home.importLabel">
+<div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+        <h4 class="text-themecolor" jhiTranslate="prestigeApp.wallet.home.title">Wallets</h4>
+    </div>
+    <div class="col-md-7 align-self-center text-right">
+        <div class="d-flex justify-content-end align-items-center">
+            <button id="jh-import-entity" class="btn btn-primary float-right jh-import-entity import-wallet" [routerLink]="['/wallet/import']">
+                <fa-icon [icon]="'plus'"></fa-icon>
+                <span  jhiTranslate="prestigeApp.wallet.home.importLabel">
             Import Wallet
             </span>
-        </button>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-wallet" [routerLink]="['/', { outlets: { popup: 'wallet/new/popup'} }]"
-                replaceUrl="true"
-                queryParamsHandling="merge">
-            <fa-icon [icon]="'plus'"></fa-icon>
-            <span  jhiTranslate="prestigeApp.wallet.home.createLabel">
+            </button>
+            <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-wallet" [routerLink]="['/', { outlets: { popup: 'wallet/new/popup'} }]"
+                    replaceUrl="true"
+                    queryParamsHandling="merge">
+                <fa-icon [icon]="'plus'"></fa-icon>
+                <span  jhiTranslate="prestigeApp.wallet.home.createLabel">
             New Wallet
             </span>
-        </button>
-    </h2>
+            </button>
+        </div>
+    </div>
     <jhi-alert></jhi-alert>
     <br/>
+</div>
+
+<div class="card jh-card">
     <div class="table-responsive" *ngIf="wallets">
         <table class="table table-striped">
             <thead>

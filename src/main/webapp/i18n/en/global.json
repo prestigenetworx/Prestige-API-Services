@@ -18,7 +18,9 @@
                 "sessions": "Sessions",
                 "login": "Sign in",
                 "logout": "Sign out",
-                "register": "Register"
+                "register": "Register",
+                "main-sidebar": "--- ACCOUNT"
+
             },
             "admin": {
                 "main": "Administration",
@@ -33,7 +35,10 @@
                 "database": "Database",
                 "jhipster-needle-menu-add-admin-element": "JHipster will add additional menu entries here (do not translate!)"
             },
-            "language": "Language"
+            "language": "Language",
+            "language-sidebar": "--- LANGUAGE",
+            "language-english": "English",
+            "language-spanish": "Español"
         },
         "form": {
             "username": "Username",

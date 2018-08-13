@@ -13,6 +13,7 @@ import {
     SettingsComponent,
     accountState
 } from './';
+import { SigninComponent } from './signin/signin.component';
 
 @NgModule({
     imports: [PrestigeSharedModule, RouterModule.forChild(accountState)],
@@ -23,7 +24,8 @@ import {
         PasswordStrengthBarComponent,
         PasswordResetInitComponent,
         PasswordResetFinishComponent,
-        SettingsComponent
+        SettingsComponent,
+        SigninComponent
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

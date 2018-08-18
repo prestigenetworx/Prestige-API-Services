@@ -1,16 +1,18 @@
-<jhi-page-ribbon></jhi-page-ribbon>
-<div>
-    <router-outlet name="navbar"></router-outlet>
-</div>
-<jhi-sidebar></jhi-sidebar>
-<div class="page-wrapper" style="min-height: 352px;">
-    <div class="container-fluid">
-        <router-outlet></router-outlet>
-        <div class="card jh-card">
-            <router-outlet name="popup"></router-outlet>
-        </div>
+<div [ngSwitch]="isAuthenticated()">
+    <jhi-page-ribbon></jhi-page-ribbon>
+    <div *ngSwitchCase="true">
+        <router-outlet name="navbar"></router-outlet>
+    </div>
+    <jhi-sidebar *ngSwitchCase="true"></jhi-sidebar>
+    <div class="page-wrapper" style="min-height: 352px;">
+        <div class="container-fluid">
+            <router-outlet></router-outlet>
+            <div class="card jh-card">
+                <router-outlet name="popup"></router-outlet>
+            </div>
 
-        <jhi-footer></jhi-footer>
+            <jhi-footer *ngSwitchCase="true"></jhi-footer>
+        </div>
     </div>
 </div>
 

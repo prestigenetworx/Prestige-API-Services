@@ -18,7 +18,10 @@
                 "login": "Iniciar sesión",
                 "logout": "Cerrar la sesión",
                 "register": "Crear una cuenta",
-                "main-sidebar": "--- CUENTA"
+                "main-sidebar": "--- CUENTA",
+                "signin": "Iniciar sesión",
+                "login-facebook": "Iniciar sesión con Facebook",
+                "login-google": "Iniciar sesión con Google"
             },
             "admin": {
                 "main": "Administración",

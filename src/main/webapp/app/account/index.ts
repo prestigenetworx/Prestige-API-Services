@@ -18,3 +18,5 @@ export * from './settings/settings.component';
 export * from './settings/settings.route';
 export * from './account.route';
 export * from './signin/signin.component';
+export * from './forgot-password/forgot-password.route';
+export * from './forgot-password/forgot-password.component';

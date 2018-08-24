@@ -7,6 +7,9 @@
     <div class="page-wrapper" style="min-height: 352px;">
         <div class="container-fluid">
             <router-outlet></router-outlet>
+            <div *ngSwitchCase="true">
+                <router-outlet name="signinrn"></router-outlet>
+            </div>
             <div class="card jh-card">
                 <router-outlet name="popup"></router-outlet>
             </div>

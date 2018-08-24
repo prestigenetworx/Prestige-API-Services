@@ -1,4 +1,5 @@
 import './vendor.ts';
+import 'hammerjs';
 
 import { NgModule, Injector } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -32,7 +33,15 @@ import { SidebarComponent } from './layouts/sidebar/sidebar.component';
         PrestigeEntityModule
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
-    declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent, SidebarComponent],
+    declarations: [
+        JhiMainComponent,
+        NavbarComponent,
+        ErrorComponent,
+        PageRibbonComponent,
+        ActiveMenuDirective,
+        FooterComponent,
+        SidebarComponent
+    ],
     providers: [
         {
             provide: HTTP_INTERCEPTORS,

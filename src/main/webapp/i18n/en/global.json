@@ -16,7 +16,7 @@
                 "settings": "Settings",
                 "password": "Password",
                 "sessions": "Sessions",
-                "login": "Sign in",
+                "login": "Sign In",
                 "logout": "Sign out",
                 "register": "Register",
                 "main-sidebar": "--- ACCOUNT",
@@ -60,7 +60,7 @@
             "info": {
                 "authenticated": {
                     "prefix": "If you want to ",
-                    "link": "sign in",
+                    "link": "sign In",
                     "suffix": ", you can try the default accounts:<br/>- Administrator (login=\"admin\" and password=\"admin\") <br/>- User (login=\"user\" and password=\"user\")."
                 },
                 "register": {

@@ -1,0 +1,61 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="prestigeSubscription">
+            <h2><span jhiTranslate="prestigeApp.prestigeSubscription.detail.title">Prestige Subscription</span> {{prestigeSubscription.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="prestigeApp.prestigeSubscription.description">Description</span></dt>
+                <dd>
+                    <span>{{prestigeSubscription.description}}</span>
+                </dd>
+                <dt><span jhiTranslate="prestigeApp.prestigeSubscription.type">Type</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'prestigeApp.SubscriptionType.' + prestigeSubscription.type}}">{{prestigeSubscription.type}}</span>
+                </dd>
+                <dt><span jhiTranslate="prestigeApp.prestigeSubscription.startDate">Start Date</span></dt>
+                <dd>
+                    <span>{{prestigeSubscription.startDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="prestigeApp.prestigeSubscription.endDate">End Date</span></dt>
+                <dd>
+                    <span>{{prestigeSubscription.endDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="prestigeApp.prestigeSubscription.renewalDate">Renewal Date</span></dt>
+                <dd>
+                    <span>{{prestigeSubscription.renewalDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="prestigeApp.prestigeSubscription.currency">Currency</span></dt>
+                <dd>
+                    <div *ngIf="prestigeSubscription.currencyId">
+                        <a [routerLink]="['/currency-app', prestigeSubscription.currencyId, 'view']">{{prestigeSubscription.currencyId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="prestigeApp.prestigeSubscription.customer">Customer</span></dt>
+                <dd>
+                    <div *ngIf="prestigeSubscription.customerId">
+                        <a [routerLink]="['/customer-app', prestigeSubscription.customerId, 'view']">{{prestigeSubscription.customerId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="prestigeApp.prestigeSubscription.product">Product</span></dt>
+                <dd>
+                    <div *ngIf="prestigeSubscription.productId">
+                        <a [routerLink]="['/product-app', prestigeSubscription.productId, 'view']">{{prestigeSubscription.productId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/prestige-subscription-app', prestigeSubscription.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

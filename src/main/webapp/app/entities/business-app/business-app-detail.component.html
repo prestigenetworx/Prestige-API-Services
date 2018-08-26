@@ -1,0 +1,64 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="business">
+            <h2><span jhiTranslate="prestigeApp.business.detail.title">Business</span> {{business.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="prestigeApp.business.name">Name</span></dt>
+                <dd>
+                    <span>{{business.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="prestigeApp.business.description">Description</span></dt>
+                <dd>
+                    <span>{{business.description}}</span>
+                </dd>
+                <dt><span jhiTranslate="prestigeApp.business.logo">Logo</span></dt>
+                <dd>
+                    <div *ngIf="business.logo">
+                        <a (click)="openFile(business.logoContentType, business.logo)">
+                            <img [src]="'data:' + business.logoContentType + ';base64,' + business.logo" style="max-width: 100%;" alt="business image"/>
+                        </a>
+                        {{business.logoContentType}}, {{byteSize(business.logo)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="prestigeApp.business.street1">Street 1</span></dt>
+                <dd>
+                    <span>{{business.street1}}</span>
+                </dd>
+                <dt><span jhiTranslate="prestigeApp.business.street2">Street 2</span></dt>
+                <dd>
+                    <span>{{business.street2}}</span>
+                </dd>
+                <dt><span jhiTranslate="prestigeApp.business.zipcode">Zipcode</span></dt>
+                <dd>
+                    <span>{{business.zipcode}}</span>
+                </dd>
+                <dt><span jhiTranslate="prestigeApp.business.city">City</span></dt>
+                <dd>
+                    <span>{{business.city}}</span>
+                </dd>
+                <dt><span jhiTranslate="prestigeApp.business.state">State</span></dt>
+                <dd>
+                    <span>{{business.state}}</span>
+                </dd>
+                <dt><span jhiTranslate="prestigeApp.business.country">Country</span></dt>
+                <dd>
+                    <span>{{business.country}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/business-app', business.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

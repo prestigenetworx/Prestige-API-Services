@@ -1,0 +1,60 @@
+{
+    "name": "Product",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "value",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "active",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "attributes",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "metadata",
+            "otherEntityName": "metadata",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "product"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "currency",
+            "otherEntityName": "currency",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "product"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "business",
+            "otherEntityName": "business",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20180826001942",
+    "entityTableName": "product",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "app"
+}

@@ -1,0 +1,22 @@
+
+{
+    "prestigeApp": {
+        "metadata" : {
+            "home": {
+                "title": "Metadata",
+                "createLabel": "Crear nuevo Metadata",
+                "createOrEditLabel": "Crear o editar Metadata"
+            },
+            "created": "Un nuevo Metadata ha sido creado con el identificador {{ param }}",
+            "updated": "Un Metadata ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Metadata ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Metadata {{ id }}?"
+            },
+            "detail": {
+                "title": "Metadata"
+            },
+            "metadata": "Metadata"
+        }
+    }
+}

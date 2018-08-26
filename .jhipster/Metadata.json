@@ -1,0 +1,21 @@
+{
+    "name": "Metadata",
+    "fields": [
+        {
+            "fieldName": "metadata",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20180826001946",
+    "entityTableName": "metadata",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "app"
+}

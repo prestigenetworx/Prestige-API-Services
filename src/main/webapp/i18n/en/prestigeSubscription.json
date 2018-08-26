@@ -1,0 +1,29 @@
+
+{
+    "prestigeApp": {
+        "prestigeSubscription" : {
+            "home": {
+                "title": "Prestige Subscriptions",
+                "createLabel": "Create a new Prestige Subscription",
+                "createOrEditLabel": "Create or edit a Prestige Subscription"
+            },
+            "created": "A new Prestige Subscription is created with identifier {{ param }}",
+            "updated": "A Prestige Subscription is updated with identifier {{ param }}",
+            "deleted": "A Prestige Subscription is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Prestige Subscription {{ id }}?"
+            },
+            "detail": {
+                "title": "Prestige Subscription"
+            },
+            "description": "Description",
+            "type": "Type",
+            "startDate": "Start Date",
+            "endDate": "End Date",
+            "renewalDate": "Renewal Date",
+            "currency": "Currency",
+            "customer": "Customer",
+            "product": "Product"
+        }
+    }
+}

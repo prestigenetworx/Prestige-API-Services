@@ -31,10 +31,12 @@
         </div>
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav" [ngSwitch]="isAuthenticated()">
-            <ul id="sidebarnavlanguages">
-                <li class="nav-small-cap"><span jhiTranslate="global.menu.language-sidebar">--- LANGUAGE</span></li>
-                <li> <a class="waves-effect waves-dark" href="pages-login.html" aria-expanded="false"><i class="far fa-circle text-success"></i><span class="hide-menu" jhiTranslate="global.menu.language-english">English</span></a></li>
-                <li> <a class="waves-effect waves-dark" href="pages-login.html" aria-expanded="false"><i class="far fa-circle text-success"></i><span class="hide-menu" jhiTranslate="global.menu.language-spanish">Español</span></a></li>
+            <ul>
+                <li *ngSwitchCase="true"> <a class="waves-effect waves-dark dropdown-item" aria-expanded="false" routerLink="charge-app" routerLinkActive="active" (click)="collapseNavbar()"><i class="far fa-circle text-success"></i><span class="hide-menu" jhiTranslate="global.menu.entities.chargeApp">Charge</span></a></li>
+                <li *ngSwitchCase="true"> <a class="waves-effect waves-dark" routerLink="wallet" routerLinkActive="active" (click)="collapseNavbar()" aria-expanded="false"><i class="far fa-circle text-success"></i><span class="hide-menu" jhiTranslate="global.menu.account.password">Wallet</span></a></li>
+                <li *ngSwitchCase="true"> <a class="waves-effect waves-dark" (click)="logout()" aria-expanded="false"><i class="far fa-circle text-success"></i><span class="hide-menu" jhiTranslate="global.menu.account.logout">Sign out</span></a></li>
+                <li *ngSwitchCase="false"> <a class="waves-effect waves-dark" (click)="login()" aria-expanded="false"><i class="far fa-circle text-success"></i><span class="hide-menu" jhiTranslate="global.menu.account.login">Sign In</span></a></li>
+                <li *ngSwitchCase="false"> <a class="waves-effect waves-dark" aria-expanded="false" routerLink="register" routerLinkActive="active" (click)="collapseNavbar()"><i class="far fa-circle text-success"></i><span class="hide-menu" jhiTranslate="global.menu.account.register">Register</span></a></li>
             </ul>
             <ul id="sidebarnav">
                 <li class="nav-small-cap"><span jhiTranslate="global.menu.account.main-sidebar">--- ACCOUNT</span></li>

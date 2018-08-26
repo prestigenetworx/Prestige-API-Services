@@ -1,0 +1,70 @@
+{
+    "name": "Charge",
+    "fields": [
+        {
+            "fieldName": "amount",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required",
+                "min"
+            ],
+            "fieldValidateRulesMin": 0
+        },
+        {
+            "fieldName": "transaction",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "addressFrom",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "addressTo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "completed",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "blockchainTx",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "metadata",
+            "otherEntityName": "metadata",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "charge"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "currency",
+            "otherEntityName": "currency",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "customer",
+            "otherEntityName": "customer",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20180826001938",
+    "entityTableName": "charge",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "app"
+}

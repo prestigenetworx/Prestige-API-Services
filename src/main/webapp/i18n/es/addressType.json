@@ -1,0 +1,9 @@
+{
+    "prestigeApp": {
+        "AddressType" : {
+            "null": "",
+            "SHIPPING": "SHIPPING",
+            "BILLING": "BILLING"
+        }
+    }
+}

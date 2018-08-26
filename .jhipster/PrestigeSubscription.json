@@ -1,0 +1,58 @@
+{
+    "name": "PrestigeSubscription",
+    "fields": [
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "SubscriptionType",
+            "fieldValues": "MONTHLY,WEEKLY,DAILY,YEARLY,TWOWEEKS,THREEMONTHS,SIXMONTHS"
+        },
+        {
+            "fieldName": "startDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "endDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "renewalDate",
+            "fieldType": "Instant"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "currency",
+            "otherEntityName": "currency",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "prestigeSubscription"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "customer",
+            "otherEntityName": "customer",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "product",
+            "otherEntityName": "product",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20180826001941",
+    "entityTableName": "prestige_subscription",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "app"
+}

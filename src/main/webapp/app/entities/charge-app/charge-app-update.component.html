@@ -1,0 +1,94 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-charge-app-heading" jhiTranslate="prestigeApp.charge.home.createOrEditLabel">Create or edit a Charge</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!charge.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="charge.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="prestigeApp.charge.amount" for="field_amount">Amount</label>
+                    <input type="number" class="form-control" name="amount" id="field_amount"
+                        [(ngModel)]="charge.amount" required min="0" jhiMin="0"/>
+                    <div [hidden]="!(editForm.controls.amount?.dirty && editForm.controls.amount?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.amount?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.amount?.errors?.min" jhiTranslate="entity.validation.min" translateValues="{ min: 0 }">
+                            This field should be at least 0.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.amount?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="prestigeApp.charge.transaction" for="field_transaction">Transaction</label>
+                    <input type="text" class="form-control" name="transaction" id="field_transaction"
+                        [(ngModel)]="charge.transaction" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="prestigeApp.charge.description" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                        [(ngModel)]="charge.description" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="prestigeApp.charge.addressFrom" for="field_addressFrom">Address From</label>
+                    <input type="text" class="form-control" name="addressFrom" id="field_addressFrom"
+                        [(ngModel)]="charge.addressFrom" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="prestigeApp.charge.addressTo" for="field_addressTo">Address To</label>
+                    <input type="text" class="form-control" name="addressTo" id="field_addressTo"
+                        [(ngModel)]="charge.addressTo" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="prestigeApp.charge.completed" for="field_completed">Completed</label>
+                    <input type="checkbox" class="form-control" name="completed" id="field_completed"
+                        [(ngModel)]="charge.completed" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="prestigeApp.charge.blockchainTx" for="field_blockchainTx">Blockchain Tx</label>
+                    <input type="text" class="form-control" name="blockchainTx" id="field_blockchainTx"
+                        [(ngModel)]="charge.blockchainTx" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="prestigeApp.charge.metadata" for="field_metadata">Metadata</label>
+                    <select class="form-control" id="field_metadata" name="metadata" [(ngModel)]="charge.metadataId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="metadataOption.id" *ngFor="let metadataOption of metadata; trackBy: trackMetadataById">{{metadataOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="prestigeApp.charge.currency" for="field_currency">Currency</label>
+                    <select class="form-control" id="field_currency" name="currency" [(ngModel)]="charge.currencyId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="currencyOption.id" *ngFor="let currencyOption of currencies; trackBy: trackCurrencyById">{{currencyOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="prestigeApp.charge.customer" for="field_customer">Customer</label>
+                    <select class="form-control" id="field_customer" name="customer" [(ngModel)]="charge.customerId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="customerOption.id" *ngFor="let customerOption of customers; trackBy: trackCustomerById">{{customerOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

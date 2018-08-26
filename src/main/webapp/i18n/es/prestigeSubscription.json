@@ -1,0 +1,29 @@
+
+{
+    "prestigeApp": {
+        "prestigeSubscription" : {
+            "home": {
+                "title": "Prestige Subscriptions",
+                "createLabel": "Crear nuevo Prestige Subscription",
+                "createOrEditLabel": "Crear o editar Prestige Subscription"
+            },
+            "created": "Un nuevo Prestige Subscription ha sido creado con el identificador {{ param }}",
+            "updated": "Un Prestige Subscription ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Prestige Subscription ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Prestige Subscription {{ id }}?"
+            },
+            "detail": {
+                "title": "Prestige Subscription"
+            },
+            "description": "Description",
+            "type": "Type",
+            "startDate": "Start Date",
+            "endDate": "End Date",
+            "renewalDate": "Renewal Date",
+            "currency": "Currency",
+            "customer": "Customer",
+            "product": "Product"
+        }
+    }
+}

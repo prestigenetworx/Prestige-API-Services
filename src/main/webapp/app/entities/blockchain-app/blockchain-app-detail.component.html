@@ -1,0 +1,31 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="blockchain">
+            <h2><span jhiTranslate="prestigeApp.blockchain.detail.title">Blockchain</span> {{blockchain.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="prestigeApp.blockchain.name">Name</span></dt>
+                <dd>
+                    <span>{{blockchain.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="prestigeApp.blockchain.symbol">Symbol</span></dt>
+                <dd>
+                    <span>{{blockchain.symbol}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/blockchain-app', blockchain.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

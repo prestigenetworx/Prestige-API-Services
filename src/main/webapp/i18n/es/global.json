@@ -7,7 +7,16 @@
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Entidades",
-                "wallet": "Wallet",
+                "wallet": "Billetera",
+                "chargeApp": "Charge",
+                "businessApp": "Business",
+                "customerApp": "Customer",
+                "prestigeSubscriptionApp": "Prestige Subscription",
+                "productApp": "Product",
+                "addressApp": "Address",
+                "currencyApp": "Currency",
+                "blockchainApp": "Blockchain",
+                "metadataApp": "Metadata",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

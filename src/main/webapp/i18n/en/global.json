@@ -9,6 +9,15 @@
             "entities": {
                 "main": "Entities",
                 "wallet": "Wallet",
+                "chargeApp": "Charge",
+                "businessApp": "Business",
+                "customerApp": "Customer",
+                "prestigeSubscriptionApp": "Prestige Subscription",
+                "productApp": "Product",
+                "addressApp": "Address",
+                "currencyApp": "Currency",
+                "blockchainApp": "Blockchain",
+                "metadataApp": "Metadata",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

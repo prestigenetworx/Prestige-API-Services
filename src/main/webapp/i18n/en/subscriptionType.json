@@ -1,0 +1,14 @@
+{
+    "prestigeApp": {
+        "SubscriptionType" : {
+            "null": "",
+            "MONTHLY": "MONTHLY",
+            "WEEKLY": "WEEKLY",
+            "DAILY": "DAILY",
+            "YEARLY": "YEARLY",
+            "TWOWEEKS": "TWOWEEKS",
+            "THREEMONTHS": "THREEMONTHS",
+            "SIXMONTHS": "SIXMONTHS"
+        }
+    }
+}

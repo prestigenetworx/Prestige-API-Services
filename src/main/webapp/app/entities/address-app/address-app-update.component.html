@@ -1,0 +1,80 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-address-app-heading" jhiTranslate="prestigeApp.address.home.createOrEditLabel">Create or edit a Address</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!address.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="address.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="prestigeApp.address.street1" for="field_street1">Street 1</label>
+                    <input type="text" class="form-control" name="street1" id="field_street1"
+                        [(ngModel)]="address.street1" required/>
+                    <div [hidden]="!(editForm.controls.street1?.dirty && editForm.controls.street1?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.street1?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="prestigeApp.address.street2" for="field_street2">Street 2</label>
+                    <input type="text" class="form-control" name="street2" id="field_street2"
+                        [(ngModel)]="address.street2" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="prestigeApp.address.zipcode" for="field_zipcode">Zipcode</label>
+                    <input type="text" class="form-control" name="zipcode" id="field_zipcode"
+                        [(ngModel)]="address.zipcode" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="prestigeApp.address.city" for="field_city">City</label>
+                    <input type="text" class="form-control" name="city" id="field_city"
+                        [(ngModel)]="address.city" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="prestigeApp.address.state" for="field_state">State</label>
+                    <input type="text" class="form-control" name="state" id="field_state"
+                        [(ngModel)]="address.state" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="prestigeApp.address.country" for="field_country">Country</label>
+                    <input type="text" class="form-control" name="country" id="field_country"
+                        [(ngModel)]="address.country" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="prestigeApp.address.type" for="field_type">Type</label>
+                    <select class="form-control" name="type" [(ngModel)]="address.type" id="field_type"  required>
+                        <option value="SHIPPING">{{'prestigeApp.AddressType.SHIPPING' | translate}}</option>
+                        <option value="BILLING">{{'prestigeApp.AddressType.BILLING' | translate}}</option>
+                    </select>
+                    <div [hidden]="!(editForm.controls.type?.dirty && editForm.controls.type?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.type?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="prestigeApp.address.customer" for="field_customer">Customer</label>
+                    <select class="form-control" id="field_customer" name="customer" [(ngModel)]="address.customerId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="customerOption.id" *ngFor="let customerOption of customers; trackBy: trackCustomerById">{{customerOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+
+{
+    "prestigeApp": {
+        "blockchain" : {
+            "home": {
+                "title": "Blockchains",
+                "createLabel": "Crear nuevo Blockchain",
+                "createOrEditLabel": "Crear o editar Blockchain"
+            },
+            "created": "Un nuevo Blockchain ha sido creado con el identificador {{ param }}",
+            "updated": "Un Blockchain ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Blockchain ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Blockchain {{ id }}?"
+            },
+            "detail": {
+                "title": "Blockchain"
+            },
+            "name": "Name",
+            "symbol": "Symbol"
+        }
+    }
+}

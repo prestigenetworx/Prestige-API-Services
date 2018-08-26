@@ -1,0 +1,30 @@
+
+{
+    "prestigeApp": {
+        "business" : {
+            "home": {
+                "title": "Businesses",
+                "createLabel": "Crear nuevo Business",
+                "createOrEditLabel": "Crear o editar Business"
+            },
+            "created": "Un nuevo Business ha sido creado con el identificador {{ param }}",
+            "updated": "Un Business ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Business ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Business {{ id }}?"
+            },
+            "detail": {
+                "title": "Business"
+            },
+            "name": "Name",
+            "description": "Description",
+            "logo": "Logo",
+            "street1": "Street 1",
+            "street2": "Street 2",
+            "zipcode": "Zipcode",
+            "city": "City",
+            "state": "State",
+            "country": "Country"
+        }
+    }
+}

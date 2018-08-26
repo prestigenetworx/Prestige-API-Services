@@ -1,0 +1,69 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="charge">
+            <h2><span jhiTranslate="prestigeApp.charge.detail.title">Charge</span> {{charge.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="prestigeApp.charge.amount">Amount</span></dt>
+                <dd>
+                    <span>{{charge.amount}}</span>
+                </dd>
+                <dt><span jhiTranslate="prestigeApp.charge.transaction">Transaction</span></dt>
+                <dd>
+                    <span>{{charge.transaction}}</span>
+                </dd>
+                <dt><span jhiTranslate="prestigeApp.charge.description">Description</span></dt>
+                <dd>
+                    <span>{{charge.description}}</span>
+                </dd>
+                <dt><span jhiTranslate="prestigeApp.charge.addressFrom">Address From</span></dt>
+                <dd>
+                    <span>{{charge.addressFrom}}</span>
+                </dd>
+                <dt><span jhiTranslate="prestigeApp.charge.addressTo">Address To</span></dt>
+                <dd>
+                    <span>{{charge.addressTo}}</span>
+                </dd>
+                <dt><span jhiTranslate="prestigeApp.charge.completed">Completed</span></dt>
+                <dd>
+                    <span>{{charge.completed}}</span>
+                </dd>
+                <dt><span jhiTranslate="prestigeApp.charge.blockchainTx">Blockchain Tx</span></dt>
+                <dd>
+                    <span>{{charge.blockchainTx}}</span>
+                </dd>
+                <dt><span jhiTranslate="prestigeApp.charge.metadata">Metadata</span></dt>
+                <dd>
+                    <div *ngIf="charge.metadataId">
+                        <a [routerLink]="['/metadata-app', charge.metadataId, 'view']">{{charge.metadataId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="prestigeApp.charge.currency">Currency</span></dt>
+                <dd>
+                    <div *ngIf="charge.currencyId">
+                        <a [routerLink]="['/currency-app', charge.currencyId, 'view']">{{charge.currencyId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="prestigeApp.charge.customer">Customer</span></dt>
+                <dd>
+                    <div *ngIf="charge.customerId">
+                        <a [routerLink]="['/customer-app', charge.customerId, 'view']">{{charge.customerId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/charge-app', charge.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

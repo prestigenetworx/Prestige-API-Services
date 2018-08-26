@@ -1,0 +1,61 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="product">
+            <h2><span jhiTranslate="prestigeApp.product.detail.title">Product</span> {{product.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="prestigeApp.product.name">Name</span></dt>
+                <dd>
+                    <span>{{product.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="prestigeApp.product.description">Description</span></dt>
+                <dd>
+                    <span>{{product.description}}</span>
+                </dd>
+                <dt><span jhiTranslate="prestigeApp.product.value">Value</span></dt>
+                <dd>
+                    <span>{{product.value}}</span>
+                </dd>
+                <dt><span jhiTranslate="prestigeApp.product.active">Active</span></dt>
+                <dd>
+                    <span>{{product.active}}</span>
+                </dd>
+                <dt><span jhiTranslate="prestigeApp.product.attributes">Attributes</span></dt>
+                <dd>
+                    <span>{{product.attributes}}</span>
+                </dd>
+                <dt><span jhiTranslate="prestigeApp.product.metadata">Metadata</span></dt>
+                <dd>
+                    <div *ngIf="product.metadataId">
+                        <a [routerLink]="['/metadata-app', product.metadataId, 'view']">{{product.metadataId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="prestigeApp.product.currency">Currency</span></dt>
+                <dd>
+                    <div *ngIf="product.currencyId">
+                        <a [routerLink]="['/currency-app', product.currencyId, 'view']">{{product.currencyId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="prestigeApp.product.business">Business</span></dt>
+                <dd>
+                    <div *ngIf="product.businessId">
+                        <a [routerLink]="['/business-app', product.businessId, 'view']">{{product.businessId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/product-app', product.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

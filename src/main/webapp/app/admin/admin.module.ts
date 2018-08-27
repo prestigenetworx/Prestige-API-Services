@@ -3,6 +3,10 @@ import { RouterModule } from '@angular/router';
 import { JhiLanguageService } from 'ng-jhipster';
 import { JhiLanguageHelper } from 'app/core';
 import { PrestigeSharedModule } from 'app/shared';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatInputModule } from '@angular/material';
+import { FormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
 /* jhipster-needle-add-admin-module-import - JHipster will add admin modules imports here */
 
 import {
@@ -24,6 +28,10 @@ import {
 @NgModule({
     imports: [
         PrestigeSharedModule,
+        BrowserAnimationsModule,
+        MatInputModule,
+        FormsModule,
+        MatSelectModule,
         RouterModule.forChild(adminState)
         /* jhipster-needle-add-admin-module - JHipster will add admin modules here */
     ],

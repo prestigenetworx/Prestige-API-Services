@@ -129,15 +129,4 @@ export class WalletComponent implements OnInit, OnDestroy {
     private onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
     }
-
-    //Service for import wallet from wif
-    /*importWallet() {
-        this.walletService.import().subscribe(
-            wallet => {
-                this.loadAll();
-            },error => {
-                this.onError("Wallet not created");
-            }
-        );
-    }*/
 }

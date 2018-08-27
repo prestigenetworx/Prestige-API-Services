@@ -52,6 +52,8 @@
         },
         "form": {
             "username": "Usuario",
+            "firstname.placeholder": "Nombres",
+            "lastname.placeholder": "Apellidos",
             "username.placeholder": "Nombre de usuario",
             "currentpassword": "Current password",
             "currentpassword.placeholder": "Current password",

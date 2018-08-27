@@ -7,16 +7,15 @@
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="entity.newpopup.name" for="field_name">Name</label>
-            <input type="text" class="form-control" name="name" id="field_name" required
+            <input placeholder="{{'entity.newpopup.name' | translate}}" type="text" class="form-control" name="name" id="field_name" required
                    [(ngModel)]="wallet.name" />
         </div>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+        <button type="button" class="btn btn-inverse waves-effect waves-light" data-dismiss="modal" (click)="clear()">
             <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
         </button>
-        <button type="submit" class="btn btn-primary">
+        <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">
             <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
         </button>
     </div>

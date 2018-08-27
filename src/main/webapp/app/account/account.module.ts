@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 import {
     PasswordStrengthBarComponent,
@@ -20,7 +21,15 @@ import {
 import { SigninComponent } from './signin/signin.component';
 
 @NgModule({
-    imports: [PrestigeSharedModule, RouterModule.forChild(accountState)],
+    imports: [
+        PrestigeSharedModule,
+        BrowserAnimationsModule,
+        MatInputModule,
+        FormsModule,
+        MatSelectModule,
+        MatFormFieldModule,
+        RouterModule.forChild(accountState)
+    ],
     declarations: [
         ActivateComponent,
         RegisterComponent,

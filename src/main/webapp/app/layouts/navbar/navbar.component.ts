@@ -7,6 +7,11 @@ import { VERSION } from 'app/app.constants';
 import { JhiLanguageHelper, Principal, LoginModalService, LoginService } from 'app/core';
 import { ProfileService } from '../profiles/profile.service';
 
+export interface Food {
+    value: string;
+    viewValue: string;
+}
+
 @Component({
     selector: 'jhi-navbar',
     templateUrl: './navbar.component.html',

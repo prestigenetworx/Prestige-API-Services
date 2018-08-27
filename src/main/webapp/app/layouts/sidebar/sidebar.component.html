@@ -1,5 +1,3 @@
-<!-- Left Sidebar - style you can find in sidebar.scss  -->
-<!-- ============================================================== -->
 <aside class="left-sidebar">
     <!-- Sidebar scroll-->
     <div class="scroll-sidebar">
@@ -8,43 +6,35 @@
             <div class="user-pro-body">
                 <div><img src="../../../assets/images/users/2.jpg" alt="user-img" class="img-circle"></div>
                 <div class="dropdown">
-                    <a href="javascript:void(0)" class="dropdown-toggle u-dropdown link hide-menu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Steave Gection <span class="caret"></span></a>
+                    <a class="dropdown-toggle u-dropdown link hide-menu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Steave Gection <span class="caret"></span></a>
                     <div class="dropdown-menu animated flipInY">
                         <!-- text-->
-                        <a href="javascript:void(0)" class="dropdown-item"><i class="ti-user"></i> My Profile</a>
-                        <!-- text-->
-                        <a href="javascript:void(0)" class="dropdown-item"><i class="ti-wallet"></i> My Balance</a>
-                        <!-- text-->
-                        <a href="javascript:void(0)" class="dropdown-item"><i class="ti-email"></i> Inbox</a>
+                        <a class="dropdown-item"><i class="ti-user"></i> My Profile</a>
                         <!-- text-->
                         <div class="dropdown-divider"></div>
                         <!-- text-->
-                        <a href="javascript:void(0)" class="dropdown-item"><i class="ti-settings"></i> Account Setting</a>
-                        <!-- text-->
-                        <div class="dropdown-divider"></div>
-                        <!-- text-->
-                        <a href="pages-login.html" class="dropdown-item"><i class="fa fa-power-off"></i> Logout</a>
+                        <a (click)="logout()" class="dropdown-item"><i class="fa fa-power-off"></i> Logout</a>
                         <!-- text-->
                     </div>
                 </div>
             </div>
         </div>
         <!-- Sidebar navigation-->
-        <nav class="sidebar-nav" [ngSwitch]="isAuthenticated()">
-            <ul>
-                <li *ngSwitchCase="true"> <a class="waves-effect waves-dark dropdown-item" aria-expanded="false" routerLink="charge-app" routerLinkActive="active" (click)="collapseNavbar()"><i class="far fa-circle text-success"></i><span class="hide-menu" jhiTranslate="global.menu.entities.chargeApp">Charge</span></a></li>
-                <li *ngSwitchCase="true"> <a class="waves-effect waves-dark" routerLink="wallet" routerLinkActive="active" (click)="collapseNavbar()" aria-expanded="false"><i class="far fa-circle text-success"></i><span class="hide-menu" jhiTranslate="global.menu.account.password">Wallet</span></a></li>
-                <li *ngSwitchCase="true"> <a class="waves-effect waves-dark" (click)="logout()" aria-expanded="false"><i class="far fa-circle text-success"></i><span class="hide-menu" jhiTranslate="global.menu.account.logout">Sign out</span></a></li>
-                <li *ngSwitchCase="false"> <a class="waves-effect waves-dark" (click)="login()" aria-expanded="false"><i class="far fa-circle text-success"></i><span class="hide-menu" jhiTranslate="global.menu.account.login">Sign In</span></a></li>
-                <li *ngSwitchCase="false"> <a class="waves-effect waves-dark" aria-expanded="false" routerLink="register" routerLinkActive="active" (click)="collapseNavbar()"><i class="far fa-circle text-success"></i><span class="hide-menu" jhiTranslate="global.menu.account.register">Register</span></a></li>
-            </ul>
+        <nav class="sidebar-nav">
             <ul id="sidebarnav">
-                <li class="nav-small-cap"><span jhiTranslate="global.menu.account.main-sidebar">--- ACCOUNT</span></li>
-                <li *ngSwitchCase="true"> <a class="waves-effect waves-dark dropdown-item" aria-expanded="false" routerLink="settings" routerLinkActive="active" (click)="collapseNavbar()"><i class="far fa-circle text-success"></i><span class="hide-menu" jhiTranslate="global.menu.account.settings">Settings</span></a></li>
-                <li *ngSwitchCase="true"> <a class="waves-effect waves-dark" routerLink="password" routerLinkActive="active" (click)="collapseNavbar()" aria-expanded="false"><i class="far fa-circle text-success"></i><span class="hide-menu" jhiTranslate="global.menu.account.password">Password</span></a></li>
-                <li *ngSwitchCase="true"> <a class="waves-effect waves-dark" (click)="logout()" aria-expanded="false"><i class="far fa-circle text-success"></i><span class="hide-menu" jhiTranslate="global.menu.account.logout">Sign out</span></a></li>
-                <li *ngSwitchCase="false"> <a class="waves-effect waves-dark" (click)="login()" aria-expanded="false"><i class="far fa-circle text-success"></i><span class="hide-menu" jhiTranslate="global.menu.account.login">Sign In</span></a></li>
-                <li *ngSwitchCase="false"> <a class="waves-effect waves-dark" aria-expanded="false" routerLink="register" routerLinkActive="active" (click)="collapseNavbar()"><i class="far fa-circle text-success"></i><span class="hide-menu" jhiTranslate="global.menu.account.register">Register</span></a></li>
+                <li class="nav-small-cap">--- Crypto</li>
+                <li *jhiHasAnyAuthority="'ROLE_USER'">
+                    <a class="waves-effect waves-dark" routerLink="wallet" routerLinkActive="active" aria-expanded="false">
+                        <i class="far fa-credit-card"></i>
+                        <span jhiTranslate="global.menu.entities.wallet" class="hide-menu">Wallets</span>
+                    </a>
+                </li>
+                <li *jhiHasAnyAuthority="'ROLE_USER'">
+                    <a class="waves-effect waves-dark" (click)="logout()" aria-expanded="false">
+                        <i class="far fa-circle text-success"></i>
+                        <span class="hide-menu" jhiTranslate="global.menu.account.logout">Sign out</span>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- End Sidebar navigation -->
@@ -53,4 +43,5 @@
 </aside>
 <!-- ============================================================== -->
 <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+<!-- ============================================================== -->
 <!-- ============================================================== -->

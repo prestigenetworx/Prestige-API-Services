@@ -6,6 +6,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Ng2Webstorage, LocalStorageService, SessionStorageService } from 'ngx-webstorage';
 import { JhiEventManager } from 'ng-jhipster';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatInputModule } from '@angular/material';
+import { FormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
 
 import { AuthInterceptor } from './blocks/interceptor/auth.interceptor';
 import { AuthExpiredInterceptor } from './blocks/interceptor/auth-expired.interceptor';
@@ -30,7 +34,11 @@ import { SidebarComponent } from './layouts/sidebar/sidebar.component';
         PrestigeCoreModule,
         PrestigeHomeModule,
         PrestigeAccountModule,
-        PrestigeEntityModule
+        PrestigeEntityModule,
+        BrowserAnimationsModule,
+        MatInputModule,
+        FormsModule,
+        MatSelectModule
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [

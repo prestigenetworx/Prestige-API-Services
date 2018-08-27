@@ -3,6 +3,9 @@ import { RouterModule } from '@angular/router';
 
 import { PrestigeSharedModule } from 'app/shared';
 import { PrestigeAdminModule } from 'app/admin/admin.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatInputModule } from '@angular/material';
+import { FormsModule } from '@angular/forms';
 import {
     WalletComponent,
     WalletDetailComponent,
@@ -14,15 +17,41 @@ import {
     WalletImportComponent,
     WalletGetBalanceComponent,
     WalletNewPopupComponent,
-    WalletNewDialogComponent,
+    WalletNewDialogComponent
 } from './';
 
 const ENTITY_STATES = [...walletRoute, ...walletPopupRoute];
 
 @NgModule({
-    imports: [PrestigeSharedModule, PrestigeAdminModule, RouterModule.forChild(ENTITY_STATES)],
-    declarations: [WalletComponent, WalletDetailComponent, WalletUpdateComponent, WalletDeleteDialogComponent, WalletDeletePopupComponent,WalletImportComponent,WalletGetBalanceComponent,WalletNewDialogComponent, WalletNewPopupComponent],
-    entryComponents: [WalletComponent, WalletUpdateComponent, WalletDeleteDialogComponent, WalletDeletePopupComponent,WalletImportComponent,WalletGetBalanceComponent,WalletNewDialogComponent, WalletNewPopupComponent ],
+    imports: [
+        PrestigeSharedModule,
+        PrestigeAdminModule,
+        BrowserAnimationsModule,
+        MatInputModule,
+        FormsModule,
+        RouterModule.forChild(ENTITY_STATES)
+    ],
+    declarations: [
+        WalletComponent,
+        WalletDetailComponent,
+        WalletUpdateComponent,
+        WalletDeleteDialogComponent,
+        WalletDeletePopupComponent,
+        WalletImportComponent,
+        WalletGetBalanceComponent,
+        WalletNewDialogComponent,
+        WalletNewPopupComponent
+    ],
+    entryComponents: [
+        WalletComponent,
+        WalletUpdateComponent,
+        WalletDeleteDialogComponent,
+        WalletDeletePopupComponent,
+        WalletImportComponent,
+        WalletGetBalanceComponent,
+        WalletNewDialogComponent,
+        WalletNewPopupComponent
+    ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class PrestigeWalletModule {}

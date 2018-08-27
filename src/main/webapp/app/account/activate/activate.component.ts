@@ -7,7 +7,8 @@ import { ActivateService } from './activate.service';
 
 @Component({
     selector: 'jhi-activate',
-    templateUrl: './activate.component.html'
+    templateUrl: './activate.component.html',
+    styleUrls: ['activate.scss']
 })
 export class ActivateComponent implements OnInit {
     error: string;

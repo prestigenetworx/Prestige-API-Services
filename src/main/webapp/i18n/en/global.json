@@ -55,6 +55,8 @@
         },
         "form": {
             "username": "Username",
+            "firstname.placeholder": "Your firstname",
+            "lastname.placeholder": "Your lastname",
             "username.placeholder": "Your username",
             "currentpassword": "Current password",
             "currentpassword.placeholder": "Current password",

@@ -1,28 +1,55 @@
-<div class="row justify-content-center">
-    <div class="col-8">
-        <form name="importForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
-            <h2 id="jhi-wallet-heading" jhiTranslate="prestigeApp.wallet.home.importLabel">Import a Wallet</h2>
-            <div>
-                <jhi-alert-error></jhi-alert-error>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="prestigeApp.wallet.wif" for="field_wif">Wif</label>
-                    <input type="text" class="form-control" name="wif" id="field_wif" required
-                        [(ngModel)]="wallet.wif" />
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="prestigeApp.wallet.name" for="field_name">Name</label>
-                    <input type="text" class="form-control" name="name" id="field_name" required
-                           [(ngModel)]="wallet.name" />
+<div class="page-wrapper">
+    <div class="container-fluid">
+        <div class="row page-titles">
+            <div class="col-md-5 align-self-center">
+                <h4 class="text-themecolor" jhiTranslate="prestigeApp.wallet.home.importLabel">Import a Wallet</h4>
+            </div>
+            <div class="col-md-7 align-self-center text-right">
+                <div class="d-flex justify-content-end align-items-center">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a routerLink="/home" jhiTranslate="global.menu.home">Home</a></li>
+                        <li class="breadcrumb-item"><a routerLink="/wallet" jhiTranslate="prestigeApp.wallet.home.title">Wallets</a></li>
+                        <li class="breadcrumb-item active" jhiTranslate="prestigeApp.wallet.home.importLabel">Import a Wallet</li>
+                    </ol>
                 </div>
             </div>
-            <div>
-                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
-                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
-                </button>
-                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
-                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="prestigeApp.wallet.import">Import</span>
-                </button>
+            <jhi-alert></jhi-alert>
+            <br/>
+        </div>
+
+        <section id="wrapper">
+            <div class="import-wallet">
+                <div class="login-box card">
+                    <div class="card-body">
+                        <form name="importForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+                            <h2 id="jhi-wallet-heading" jhiTranslate="prestigeApp.wallet.home.importLabel">Import a Wallet</h2>
+                            <div>
+                                <jhi-alert-error></jhi-alert-error>
+                                <div class="form-group">
+                                    <input placeholder="{{'prestigeApp.wallet.wif' | translate}}" type="text" class="form-control" name="wif" id="field_wif" required
+                                           [(ngModel)]="wallet.wif" />
+                                </div>
+                                <div class="form-group">
+                                    <input placeholder="{{'prestigeApp.wallet.name' | translate}}" type="text" class="form-control" name="name" id="field_name" required
+                                           [(ngModel)]="wallet.name" />
+                                </div>
+                            </div>
+                            <div>
+                                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-success waves-effect waves-light m-r-10">
+                                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="prestigeApp.wallet.import">Import</span>
+                                </button>
+                                <button type="button" id="cancel-save" class="btn btn-inverse waves-effect waves-light"  (click)="previousState()">
+                                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-        </form>
+
+        </section>
+
+
+
     </div>
 </div>

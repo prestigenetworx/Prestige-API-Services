@@ -16,7 +16,7 @@
             Import Wallet
             </span>
                     </button>
-                    <button id="jh-create-entity" class="btn btn-dark d-none d-lg-block m-l-15" [routerLink]="['/', { outlets: { popup: 'wallet/new/popup'} }]" type="button"
+                    <button id="jh-create-entity" class="btn btn-dark d-none d-lg-block m-l-15" [routerLink]="['/wallet/new']" type="button"
                             replaceUrl="true"
                             queryParamsHandling="merge">
                         <i class="fa fa-plus-circle"></i>
@@ -58,11 +58,6 @@
                                     [routerLink]="['/wallet', wallet.id, 'edit']"
                                     class="btn btn-info btn-sm">
                                 <fa-icon [icon]="'pencil-alt'"></fa-icon>
-                            </button>
-                            <button type="submit"
-                                    [routerLink]="['/wallet', wallet.id, 'getbalance' ]"
-                                    class="btn btn-primary btn-sm">
-                                <fa-icon [icon]="'plus'"></fa-icon>
                             </button>
                             <button type="submit"
                                     [routerLink]="['/', { outlets: { popup: 'wallet/'+ wallet.id + '/delete'} }]"

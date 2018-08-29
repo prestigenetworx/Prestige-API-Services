@@ -10,7 +10,8 @@ import { IUser, UserService } from 'app/core';
 
 @Component({
     selector: 'jhi-wallet-import',
-    templateUrl: './wallet-import.component.html'
+    templateUrl: './wallet-import.component.html',
+    styleUrls: ['wallet.scss']
 })
 export class WalletImportComponent implements OnInit {
     private _wallet: IWallet;
@@ -30,12 +31,6 @@ export class WalletImportComponent implements OnInit {
         this.activatedRoute.data.subscribe(({ wallet }) => {
             this.wallet = wallet;
         });
-        this.userService.query().subscribe(
-            (res: HttpResponse<IUser[]>) => {
-                this.users = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
     }
 
     previousState() {

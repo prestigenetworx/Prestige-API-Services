@@ -5,6 +5,7 @@ import com.prestige.network.service.CryptUtils;
 import com.prestige.network.service.MiddlewareRequest;
 import com.prestige.network.service.WalletService;
 import org.json.JSONObject;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -34,15 +35,19 @@ public class Wallet implements Serializable {
     private String name;
 
     @Column(name = "private_key")
+    @JsonIgnore
     private String private_key;
 
     @Column(name = "public_key")
+    @JsonIgnore
     private String public_key;
 
     @Column(name = "public_key_hash")
+    @JsonIgnore
     private String public_key_hash;
 
     @Column(name = "wif")
+    @JsonIgnore
     private String wif;
 
     @ManyToOne

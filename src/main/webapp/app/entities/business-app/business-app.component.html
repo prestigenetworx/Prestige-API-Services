@@ -1,13 +1,75 @@
+<div class="page-wrapper">
+    <div class="container-fluid">
+        <div class="row page-titles">
+            <div class="col-md-5 align-self-center">
+                <h4 class="text-themecolor" jhiTranslate="prestigeApp.business.home.title">Business</h4>
+            </div>
+            <div class="col-md-7 align-self-center text-right">
+                <div class="d-flex justify-content-end align-items-center">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a routerLink="/home" jhiTranslate="global.menu.home">Home</a></li>
+                        <li class="breadcrumb-item active" jhiTranslate="prestigeApp.wallet.home.title">Wallets</li>
+                    </ol>
+                </div>
+            </div>
+            <jhi-alert></jhi-alert>
+            <br/>
+        </div>
+
+        <div class="card jh-card">
+            <div class="table-responsive" *ngIf="wallets">
+                <table class="table table-striped">
+                    <thead>
+                    <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+                        <th><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                        <th><span jhiTranslate="prestigeApp.wallet.address">Address</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                        <th><span jhiTranslate="prestigeApp.wallet.name">Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let wallet of wallets ;trackBy: trackId">
+                        <td><a [routerLink]="['/wallet', wallet.id, 'view' ]">{{wallet.id}}</a></td>
+                        <td>{{wallet.address}}</td>
+                        <td>
+                            {{wallet.name}}
+                        </td>
+                        <td class="text-right">
+                            <button type="submit"
+                                    [routerLink]="['/wallet', wallet.id, 'view' ]"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon [icon]="'eye'"></fa-icon>
+                            </button>
+                            <button type="submit"
+                                    [routerLink]="['/wallet', wallet.id, 'edit']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            </button>
+                            <button type="submit"
+                                    [routerLink]="['/', { outlets: { popup: 'wallet/'+ wallet.id + '/delete'} }]"
+                                    replaceUrl="true"
+                                    queryParamsHandling="merge"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div *ngIf="wallets && wallets.length">
+                <div class="row justify-content-center">
+                    <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+                </div>
+                <div class="row justify-content-center">
+                    <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div>
-    <h2 id="page-heading">
-        <span jhiTranslate="prestigeApp.business.home.title">Businesses</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-business-app" [routerLink]="['/business-app/new']">
-            <fa-icon [icon]="'plus'"></fa-icon>
-            <span  jhiTranslate="prestigeApp.business.home.createLabel">
-            Create new Business
-            </span>
-        </button>
-    </h2>
     <jhi-alert></jhi-alert>
     <br/>
     <div class="table-responsive" *ngIf="businesses">

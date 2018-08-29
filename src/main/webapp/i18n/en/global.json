@@ -13,7 +13,7 @@
                 "businessApp": "Business",
                 "customerApp": "Customer",
                 "prestigeSubscriptionApp": "Prestige Subscription",
-                "productApp": "Product",
+                "productApp": "Products",
                 "addressApp": "Address",
                 "currencyApp": "Currency",
                 "blockchainApp": "Blockchain",
@@ -29,6 +29,8 @@
                 "logout": "Sign out",
                 "register": "Register",
                 "main-sidebar": "--- ACCOUNT",
+                "crypto-sidebar": "--- Crypto",
+                "merchants-sidebar": "--- Merchants",
                 "signin": "Login",
                 "login-facebook": "Login with Facebook",
                 "login-google": "Login with Google"

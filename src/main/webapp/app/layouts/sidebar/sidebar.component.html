@@ -22,11 +22,24 @@
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
-                <li class="nav-small-cap">--- Crypto</li>
+                <li class="nav-small-cap" jhiTranslate="global.menu.account.crypto-sidebar">--- Crypto</li>
                 <li *jhiHasAnyAuthority="'ROLE_USER'">
                     <a class="waves-effect waves-dark" routerLink="wallet" routerLinkActive="active" aria-expanded="false">
                         <i class="far fa-credit-card"></i>
                         <span jhiTranslate="global.menu.entities.wallet" class="hide-menu">Wallets</span>
+                    </a>
+                </li>
+                <li class="nav-small-cap" jhiTranslate="global.menu.account.merchants-sidebar">--- Merchants</li>
+                <li *jhiHasAnyAuthority="'ROLE_USER'">
+                    <a class="waves-effect waves-dark" routerLink="business-app" routerLinkActive="active" aria-expanded="false">
+                        <i class="far fa-circle text-success"></i>
+                        <span jhiTranslate="global.menu.entities.businessApp" class="hide-menu">Business</span>
+                    </a>
+                </li>
+                <li *jhiHasAnyAuthority="'ROLE_USER'">
+                    <a class="waves-effect waves-dark" routerLink="product-app" routerLinkActive="active" aria-expanded="false">
+                        <i class="far fa-circle text-success"></i>
+                        <span jhiTranslate="global.menu.entities.productApp" class="hide-menu">Products</span>
                     </a>
                 </li>
                 <li *jhiHasAnyAuthority="'ROLE_USER'">

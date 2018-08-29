@@ -10,7 +10,8 @@ import { IUser, UserService } from 'app/core';
 
 @Component({
     selector: 'jhi-wallet-update',
-    templateUrl: './wallet-update.component.html'
+    templateUrl: './wallet-update.component.html',
+    styleUrls: ['wallet.scss']
 })
 export class WalletUpdateComponent implements OnInit {
     private _wallet: IWallet;
@@ -30,12 +31,6 @@ export class WalletUpdateComponent implements OnInit {
         this.activatedRoute.data.subscribe(({ wallet }) => {
             this.wallet = wallet;
         });
-        this.userService.query().subscribe(
-            (res: HttpResponse<IUser[]>) => {
-                this.users = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
     }
 
     previousState() {

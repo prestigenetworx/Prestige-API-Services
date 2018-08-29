@@ -19,6 +19,7 @@ import {
     WalletNewPopupComponent,
     WalletNewDialogComponent
 } from './';
+import { WalletNewComponent } from './wallet-new/wallet-new.component';
 
 const ENTITY_STATES = [...walletRoute, ...walletPopupRoute];
 
@@ -40,7 +41,8 @@ const ENTITY_STATES = [...walletRoute, ...walletPopupRoute];
         WalletImportComponent,
         WalletGetBalanceComponent,
         WalletNewDialogComponent,
-        WalletNewPopupComponent
+        WalletNewPopupComponent,
+        WalletNewComponent
     ],
     entryComponents: [
         WalletComponent,
@@ -50,7 +52,8 @@ const ENTITY_STATES = [...walletRoute, ...walletPopupRoute];
         WalletImportComponent,
         WalletGetBalanceComponent,
         WalletNewDialogComponent,
-        WalletNewPopupComponent
+        WalletNewPopupComponent,
+        WalletNewComponent
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

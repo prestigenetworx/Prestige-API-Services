@@ -33,10 +33,10 @@
                             <div class="d-flex no-block align-items-center">
                                 <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" name="rememberMe" id="rememberMe" [(ngModel)]="rememberMe" checked>
-                                    <label class="custom-control-label" for="rememberMe" jhiTranslate="login.form.rememberme">Remember me</label>
+                                    <label class="custom-control-label cursor-pointer" for="rememberMe" jhiTranslate="login.form.rememberme">Remember me</label>
                                 </div>
                                 <div class="ml-auto">
-                                    <a id="to-recover" class="text-muted" (click)="requestResetPassword()"><i class="fas fa-lock m-r-5"></i> Forgot pwd?</a>
+                                    <a id="to-recover" class="text-muted cursor-pointer" (click)="requestResetPassword()"><i class="fas fa-lock m-r-5"></i> Forgot pwd?</a>
                                 </div>
                             </div>
                         </div>
@@ -56,7 +56,7 @@
                     </div>
                     <div class="form-group m-b-0">
                         <div class="col-sm-12 text-center">
-                            <a jhiTranslate="global.messages.info.register.noaccount"></a><a (click)="register()" jhiTranslate="global.messages.info.register.link" class="text-info m-l-5"><b>Sign Up</b></a>
+                            <a jhiTranslate="global.messages.info.register.noaccount"></a><a (click)="register()" jhiTranslate="global.messages.info.register.link" class="text-info m-l-5 cursor-pointer"><b>Sign Up</b></a>
                         </div>
                     </div>
                 </form>

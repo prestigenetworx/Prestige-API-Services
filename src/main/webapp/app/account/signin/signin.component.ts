@@ -67,7 +67,7 @@ export class SigninComponent implements OnInit {
                     this.router.navigate([redirect]);
                 } else {
                     this.stateStorageService.storeUrl(null);
-                    this.router.navigate(['/home']);
+                    this.router.navigate(['/business-app']);
                 }
             })
             .catch(() => {

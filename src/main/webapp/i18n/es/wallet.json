@@ -25,7 +25,10 @@
             "public_key_hash": "Hash Llave Pública",
             "wif": "Wif",
             "user": "Usuario",
-            "import": "Importar"
+            "import": "Importar",
+            "view": "Ver",
+            "edit": "Editar",
+            "new": "Nuevo"
         }
     }
 }

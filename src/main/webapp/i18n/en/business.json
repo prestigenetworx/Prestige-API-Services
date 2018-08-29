@@ -3,7 +3,7 @@
     "prestigeApp": {
         "business" : {
             "home": {
-                "title": "Businesses",
+                "title": "Business",
                 "createLabel": "Create a new Business",
                 "createOrEditLabel": "Create or edit a Business"
             },

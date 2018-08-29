@@ -1,54 +1,55 @@
-<div>
-    <div class="col-12">
-        <div *ngIf="wallet">
-            <h2>{{wallet.name}}</h2>
-            <hr>
-            <jhi-alert-error></jhi-alert-error>
-            <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th width="50%">
-                            <span jhiTranslate="prestigeApp.wallet.address">Address</span>
-                        </th>
-                        <th width="50%" border-bottom="none">
-                            <span jhiTranslate="prestigeApp.wallet.public_key">Public Key</span>
-                        </th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span>{{wallet.address}}</span>
-                        </td>
-                        <td>
-                            <span>{{wallet.public_key}}</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th width="50%">
-                            <span jhiTranslate="prestigeApp.wallet.public_key_hash">Public Key Hash</span>
-                        </th>
-                        <th width="50%">
-                            <span jhiTranslate="prestigeApp.wallet.user">User</span>
-                        </th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span>{{wallet.public_key_hash}}</span>
-                        </td>
-                        <td>
-                            {{wallet.user?.login}}
-                        </td>
-                    </tr>
-                    </thead>
-                </table>
+<div class="page-wrapper">
+    <div class="container-fluid">
+        <div class="row page-titles">
+            <div class="col-md-5 align-self-center">
+                <h4 class="text-themecolor" jhiTranslate="prestigeApp.wallet.view">View</h4>
+            </div>
+            <div class="col-md-7 align-self-center text-right">
+                <div class="d-flex justify-content-end align-items-center">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a routerLink="/home" jhiTranslate="global.menu.home">Home</a></li>
+                        <li class="breadcrumb-item"><a routerLink="/wallet" jhiTranslate="prestigeApp.wallet.home.title">Wallets</a></li>
+                        <li class="breadcrumb-item active" jhiTranslate="prestigeApp.wallet.view">View</li>
+                    </ol>
+                </div>
+            </div>
+            <jhi-alert></jhi-alert>
+            <br/>
+        </div>
+
+        <section id="wrapper">
+            <div class="import-wallet">
+                <div class="login-box card">
+                    <div class="card-body">
+                        <form name="importForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+                            <div>
+                                <jhi-alert-error></jhi-alert-error>
+                                <div class="form-group">
+                                    <label jhiTranslate="prestigeApp.wallet.name">Name</label>
+                                    <input class="form-control" type="text" placeholder="{{wallet.name}}" readonly="">
+                                </div>
+                                <div class="form-group">
+                                    <label jhiTranslate="prestigeApp.wallet.address">Address</label>
+                                    <input class="form-control" type="text" placeholder="{{wallet.address}}" readonly="">
+                                </div>
+                                <div class="form-group">
+                                    <label jhiTranslate="prestigeApp.wallet.user">User</label>
+                                    <input class="form-control" type="text" placeholder="{{wallet.user?.login}}" readonly="">
+                                </div>
+                            </div>
+                            <div>
+                                <button type="button"
+                                        (click)="previousState()"
+                                        class="btn btn-inverse waves-effect waves-light">
+                                    <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
 
-            <button type="submit"
-                    (click)="previousState()"
-                    class="btn btn-info">
-                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
-            </button>
-        </div>
+        </section>
     </div>
 </div>
 

@@ -22,16 +22,21 @@
                 <div class="login-box card">
                     <div class="card-body">
                         <form name="importForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
-                            <h2 id="jhi-wallet-heading" jhiTranslate="prestigeApp.wallet.home.importLabel">Import a Wallet</h2>
                             <div>
                                 <jhi-alert-error></jhi-alert-error>
                                 <div class="form-group">
-                                    <input placeholder="{{'prestigeApp.wallet.wif' | translate}}" type="text" class="form-control" name="wif" id="field_wif" required
-                                           [(ngModel)]="wallet.wif" />
+                                    <div class="example-container">
+                                        <mat-form-field class="example-full-width">
+                                            <input class="form-control" matInput name="name" id="field_name" type="text" required placeholder="{{'prestigeApp.wallet.name' | translate}}" [(ngModel)]="wallet.name">
+                                        </mat-form-field>
+                                    </div>
                                 </div>
                                 <div class="form-group">
-                                    <input placeholder="{{'prestigeApp.wallet.name' | translate}}" type="text" class="form-control" name="name" id="field_name" required
-                                           [(ngModel)]="wallet.name" />
+                                    <div class="example-container">
+                                        <mat-form-field class="example-full-width">
+                                            <input class="form-control" matInput name="wif" id="field_wif" type="text" required placeholder="{{'prestigeApp.wallet.wif' | translate}}" [(ngModel)]="wallet.wif">
+                                        </mat-form-field>
+                                    </div>
                                 </div>
                             </div>
                             <div>

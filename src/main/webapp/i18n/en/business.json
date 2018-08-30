@@ -4,7 +4,7 @@
         "business" : {
             "home": {
                 "title": "Business",
-                "createLabel": "Create a new Business",
+                "createLabel": "New Business",
                 "createOrEditLabel": "Create or edit a Business"
             },
             "created": "A new Business is created with identifier {{ param }}",
@@ -24,7 +24,8 @@
             "zipcode": "Zipcode",
             "city": "City",
             "state": "State",
-            "country": "Country"
+            "country": "Country",
+            "user": "User"
         }
     }
 }

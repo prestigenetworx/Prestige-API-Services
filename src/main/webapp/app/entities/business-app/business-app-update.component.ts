@@ -1,25 +1,32 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { JhiDataUtils } from 'ng-jhipster';
+import { JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 
 import { IBusinessApp } from 'app/shared/model/business-app.model';
 import { BusinessAppService } from './business-app.service';
+import { IUser, UserService } from 'app/core';
 
 @Component({
     selector: 'jhi-business-app-update',
-    templateUrl: './business-app-update.component.html'
+    templateUrl: './business-app-update.component.html',
+    styleUrls: ['business-app.scss']
 })
 export class BusinessAppUpdateComponent implements OnInit {
     private _business: IBusinessApp;
     isSaving: boolean;
 
+    users: IUser[];
+
     constructor(
         private dataUtils: JhiDataUtils,
+        private jhiAlertService: JhiAlertService,
         private businessService: BusinessAppService,
+        private userService: UserService,
         private elementRef: ElementRef,
-        private activatedRoute: ActivatedRoute
+        private activatedRoute: ActivatedRoute,
+        private router: Router
     ) {}
 
     ngOnInit() {
@@ -46,7 +53,7 @@ export class BusinessAppUpdateComponent implements OnInit {
     }
 
     previousState() {
-        window.history.back();
+        this.router.navigate(['/business-app']);
     }
 
     save() {
@@ -69,6 +76,14 @@ export class BusinessAppUpdateComponent implements OnInit {
 
     private onSaveError() {
         this.isSaving = false;
+    }
+
+    private onError(errorMessage: string) {
+        this.jhiAlertService.error(errorMessage, null, null);
+    }
+
+    trackUserById(index: number, item: IUser) {
+        return item.id;
     }
     get business() {
         return this._business;

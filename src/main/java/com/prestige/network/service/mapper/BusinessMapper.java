@@ -8,10 +8,15 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity Business and its DTO BusinessDTO.
  */
-@Mapper(componentModel = "spring", uses = {})
+@Mapper(componentModel = "spring", uses = {UserMapper.class})
 public interface BusinessMapper extends EntityMapper<BusinessDTO, Business> {
 
+    @Mapping(source = "user.id", target = "userId")
+    @Mapping(source = "user.login", target = "userLogin")
+    BusinessDTO toDto(Business business);
 
+    @Mapping(source = "userId", target = "user")
+    Business toEntity(BusinessDTO businessDTO);
 
     default Business fromId(Long id) {
         if (id == null) {

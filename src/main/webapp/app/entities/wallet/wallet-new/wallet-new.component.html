@@ -21,7 +21,7 @@
             <div class="import-wallet">
                 <div class="login-box card">
                     <div class="card-body">
-                        <form name="newForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+                        <form name="newForm" role="form" novalidate (ngSubmit)="createWallet()" #editForm="ngForm">
                             <div>
                                 <jhi-alert-error></jhi-alert-error>
                                 <div class="form-group">
@@ -33,8 +33,8 @@
                                 </div>
                             </div>
                             <div>
-                                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-success waves-effect waves-light m-r-10">
-                                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="prestigeApp.wallet.import">Import</span>
+                                <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">
+                                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
                                 </button>
                                 <button type="button" id="cancel-save" class="btn btn-inverse waves-effect waves-light"  (click)="previousState()">
                                     <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>

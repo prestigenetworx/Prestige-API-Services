@@ -2,14 +2,22 @@
     <div class="container-fluid">
         <div class="row page-titles">
             <div class="col-md-5 align-self-center">
-                <h4 class="text-themecolor" jhiTranslate="prestigeApp.business.home.title">Business</h4>
+                <h4 class="text-themecolor" jhiTranslate="prestigeApp.business.home.title">Businesses</h4>
             </div>
             <div class="col-md-7 align-self-center text-right">
                 <div class="d-flex justify-content-end align-items-center">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a routerLink="/home" jhiTranslate="global.menu.home">Home</a></li>
-                        <li class="breadcrumb-item active" jhiTranslate="prestigeApp.wallet.home.title">Wallets</li>
+                        <li class="breadcrumb-item active" jhiTranslate="prestigeApp.business.home.title">Businesses</li>
                     </ol>
+                    <button id="jh-create-entity" class="btn btn-dark d-none d-lg-block m-l-15" [routerLink]="['/business-app/new']" type="button"
+                            replaceUrl="true"
+                            queryParamsHandling="merge">
+                        <i class="fa fa-plus-circle"></i>
+                        <span  jhiTranslate="prestigeApp.business.home.createLabel">
+            New Business
+            </span>
+                    </button>
                 </div>
             </div>
             <jhi-alert></jhi-alert>
@@ -17,36 +25,32 @@
         </div>
 
         <div class="card jh-card">
-            <div class="table-responsive" *ngIf="wallets">
+            <div class="table-responsive" *ngIf="businesses">
                 <table class="table table-striped">
                     <thead>
                     <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
                         <th><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                        <th><span jhiTranslate="prestigeApp.wallet.address">Address</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                        <th><span jhiTranslate="prestigeApp.wallet.name">Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                        <th><span jhiTranslate="prestigeApp.business.name">Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                         <th></th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr *ngFor="let wallet of wallets ;trackBy: trackId">
-                        <td><a [routerLink]="['/wallet', wallet.id, 'view' ]">{{wallet.id}}</a></td>
-                        <td>{{wallet.address}}</td>
-                        <td>
-                            {{wallet.name}}
-                        </td>
+                    <tr *ngFor="let business of businesses ;trackBy: trackId">
+                        <td><a [routerLink]="['/business-app', business.id, 'view' ]">{{business.id}}</a></td>
+                        <td>{{business.name}}</td>
                         <td class="text-right">
                             <button type="submit"
-                                    [routerLink]="['/wallet', wallet.id, 'view' ]"
+                                    [routerLink]="['/business-app', business.id, 'view' ]"
                                     class="btn btn-info btn-sm">
                                 <fa-icon [icon]="'eye'"></fa-icon>
                             </button>
                             <button type="submit"
-                                    [routerLink]="['/wallet', wallet.id, 'edit']"
+                                    [routerLink]="['/business-app', business.id, 'edit']"
                                     class="btn btn-info btn-sm">
                                 <fa-icon [icon]="'pencil-alt'"></fa-icon>
                             </button>
                             <button type="submit"
-                                    [routerLink]="['/', { outlets: { popup: 'wallet/'+ wallet.id + '/delete'} }]"
+                                    [routerLink]="['/', { outlets: { popup: 'business-app/'+ business.id + '/delete'} }]"
                                     replaceUrl="true"
                                     queryParamsHandling="merge"
                                     class="btn btn-danger btn-sm">
@@ -55,9 +59,10 @@
                         </td>
                     </tr>
                     </tbody>
+
                 </table>
             </div>
-            <div *ngIf="wallets && wallets.length">
+            <div *ngIf="businesses && businesses.length">
                 <div class="row justify-content-center">
                     <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
                 </div>
@@ -65,81 +70,6 @@
                     <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-
-<div>
-    <jhi-alert></jhi-alert>
-    <br/>
-    <div class="table-responsive" *ngIf="businesses">
-        <table class="table table-striped">
-            <thead>
-            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="name"><span jhiTranslate="prestigeApp.business.name">Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="description"><span jhiTranslate="prestigeApp.business.description">Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="logo"><span jhiTranslate="prestigeApp.business.logo">Logo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="street1"><span jhiTranslate="prestigeApp.business.street1">Street 1</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="street2"><span jhiTranslate="prestigeApp.business.street2">Street 2</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="zipcode"><span jhiTranslate="prestigeApp.business.zipcode">Zipcode</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="city"><span jhiTranslate="prestigeApp.business.city">City</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="state"><span jhiTranslate="prestigeApp.business.state">State</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="country"><span jhiTranslate="prestigeApp.business.country">Country</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let business of businesses ;trackBy: trackId">
-                <td><a [routerLink]="['/business-app', business.id, 'view' ]">{{business.id}}</a></td>
-                <td>{{business.name}}</td>
-                <td>{{business.description}}</td>
-                <td>
-                    <a *ngIf="business.logo" (click)="openFile(business.logoContentType, business.logo)">
-                        <img [src]="'data:' + business.logoContentType + ';base64,' + business.logo" style="max-height: 30px;" alt="business image"/>
-                    </a>
-                    <span *ngIf="business.logo">{{business.logoContentType}}, {{byteSize(business.logo)}}</span>
-                </td>
-                <td>{{business.street1}}</td>
-                <td>{{business.street2}}</td>
-                <td>{{business.zipcode}}</td>
-                <td>{{business.city}}</td>
-                <td>{{business.state}}</td>
-                <td>{{business.country}}</td>
-                <td class="text-right">
-                    <div class="btn-group flex-btn-group-container">
-                        <button type="submit"
-                                [routerLink]="['/business-app', business.id, 'view' ]"
-                                class="btn btn-info btn-sm">
-                            <fa-icon [icon]="'eye'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-                        </button>
-                        <button type="submit"
-                                [routerLink]="['/business-app', business.id, 'edit']"
-                                class="btn btn-primary btn-sm">
-                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
-                        </button>
-                        <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'business-app/'+ business.id + '/delete'} }]"
-                                replaceUrl="true"
-                                queryParamsHandling="merge"
-                                class="btn btn-danger btn-sm">
-                            <fa-icon [icon]="'times'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
-                        </button>
-                    </div>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <div *ngIf="businesses && businesses.length">
-        <div class="row justify-content-center">
-            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
-        </div>
-        <div class="row justify-content-center">
-            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
         </div>
     </div>
 </div>

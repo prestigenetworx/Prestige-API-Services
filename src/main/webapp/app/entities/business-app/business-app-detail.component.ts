@@ -6,7 +6,8 @@ import { IBusinessApp } from 'app/shared/model/business-app.model';
 
 @Component({
     selector: 'jhi-business-app-detail',
-    templateUrl: './business-app-detail.component.html'
+    templateUrl: './business-app-detail.component.html',
+    styleUrls: ['business-app.scss']
 })
 export class BusinessAppDetailComponent implements OnInit {
     business: IBusinessApp;

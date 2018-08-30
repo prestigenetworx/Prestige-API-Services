@@ -7,4 +7,4 @@ export * from './wallet.route';
 export * from './wallet-import.component';
 export * from './wallet-getbalance.component';
 export * from './wallet-new-dialog.component';
-export * from 'wallet-new/wallet-new.component';
+export * from './wallet-new/wallet-new.component';

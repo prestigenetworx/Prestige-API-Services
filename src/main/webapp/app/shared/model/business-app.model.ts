@@ -10,6 +10,8 @@ export interface IBusinessApp {
     city?: string;
     state?: string;
     country?: string;
+    userLogin?: string;
+    userId?: number;
 }
 
 export class BusinessApp implements IBusinessApp {
@@ -24,6 +26,8 @@ export class BusinessApp implements IBusinessApp {
         public zipcode?: string,
         public city?: string,
         public state?: string,
-        public country?: string
+        public country?: string,
+        public userLogin?: string,
+        public userId?: number
     ) {}
 }

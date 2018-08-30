@@ -9,12 +9,15 @@ import com.prestige.network.service.dto.BusinessDTO;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.prestige.network.domain.User;
+import com.prestige.network.service.UserService;
 
 import javax.validation.Valid;
 import java.net.URI;
@@ -36,6 +39,9 @@ public class BusinessResource {
 
     private final BusinessService businessService;
 
+    @Autowired
+    private UserService userService;
+
     public BusinessResource(BusinessService businessService) {
         this.businessService = businessService;
     }
@@ -50,6 +56,11 @@ public class BusinessResource {
     @PostMapping("/businesses")
     @Timed
     public ResponseEntity<BusinessDTO> createBusiness(@Valid @RequestBody BusinessDTO businessDTO) throws URISyntaxException {
+        User user = userService.getCurrentUser();
+        if(user == null) {
+            throw new BadRequestAlertException("Current user doesn't exist", "business", "noncurrentuser");
+        }
+
         log.debug("REST request to save Business : {}", businessDTO);
         if (businessDTO.getId() != null) {
             throw new BadRequestAlertException("A new business cannot already have an ID", ENTITY_NAME, "idexists");

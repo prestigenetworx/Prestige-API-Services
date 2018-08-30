@@ -11,7 +11,7 @@ import { WalletComponent } from './wallet.component';
 import { WalletDetailComponent } from './wallet-detail.component';
 import { WalletUpdateComponent } from './wallet-update.component';
 import { WalletImportComponent } from './wallet-import.component';
-import { WalletNewComponent } from 'wallet-new/wallet-new.component';
+import { WalletNewComponent } from './wallet-new/wallet-new.component';
 import { WalletGetBalanceComponent } from './wallet-getbalance.component';
 import { WalletDeletePopupComponent } from './wallet-delete-dialog.component';
 import { WalletNewPopupComponent } from './wallet-new-dialog.component';

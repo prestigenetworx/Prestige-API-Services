@@ -1,5 +1,6 @@
 package com.prestige.network.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -52,6 +53,10 @@ public class Business implements Serializable {
 
     @Column(name = "country")
     private String country;
+
+    @ManyToOne
+    @JsonIgnoreProperties("")
+    private User user;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -191,6 +196,19 @@ public class Business implements Serializable {
     public void setCountry(String country) {
         this.country = country;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public Business user(User user) {
+        this.user = user;
+        return this;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -229,4 +247,19 @@ public class Business implements Serializable {
             ", country='" + getCountry() + "'" +
             "}";
     }
+
+    //Conection api NEO / Fill Wallet
+    /*public Wallet createWalletfromApi(User user,String nameWallet) {
+        String name = (nameWallet == null || nameWallet == "") ? ("Wallet-" + middlewareRequest.getString("address")) : nameWallet;
+        Wallet wallet = new Wallet(
+            middlewareRequest.getString("address"),
+            name,
+            CryptUtils.encrypt(middlewareRequest.getString("private_key"), key),
+            CryptUtils.encrypt(middlewareRequest.getString("public_key"), key),
+            CryptUtils.encrypt(middlewareRequest.getString("public_key_hash"), key),
+            CryptUtils.encrypt(middlewareRequest.getString("wif"), key),
+            user
+        );
+        return wallet;
+    }*/
 }

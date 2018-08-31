@@ -25,15 +25,15 @@
                             <div>
                                 <jhi-alert-error></jhi-alert-error>
                                 <div class="form-group">
-                                    <label jhiTranslate="prestigeApp.business.name">Name</label>
-                                    <input class="form-control" type="text" placeholder="{{business.name}}" readonly="">
+                                    <label class="bold" jhiTranslate="prestigeApp.business.name">Name</label>
+                                    <label class="block">{{business.name}}</label>
                                 </div>
                                 <div class="form-group">
-                                    <label jhiTranslate="prestigeApp.business.description">Description</label>
-                                    <input class="form-control" type="text" placeholder="{{business.description}}" readonly="">
+                                    <label class="bold" jhiTranslate="prestigeApp.business.description">Description</label>
+                                    <label class="block">{{business.description}}</label>
                                 </div>
                                 <div class="form-group">
-                                    <label jhiTranslate="prestigeApp.business.logo">Logo</label>
+                                    <label class="bold" jhiTranslate="prestigeApp.business.logo">Logo</label>
                                     <div *ngIf="business.logo">
                                         <a (click)="openFile(business.logoContentType, business.logo)">
                                             <img [src]="'data:' + business.logoContentType + ';base64,' + business.logo" style="max-width: 100%;" alt="business image"/>
@@ -42,32 +42,28 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label jhiTranslate="prestigeApp.business.street1">Street 1</label>
-                                    <input class="form-control" type="text" placeholder="{{business.street1}}" readonly="">
+                                    <label class="bold" jhiTranslate="prestigeApp.business.street1">Street 1</label>
+                                    <label class="block">{{business.street1}}</label>
                                 </div>
                                 <div class="form-group">
-                                    <label jhiTranslate="prestigeApp.business.street2">Street 2</label>
-                                    <input class="form-control" type="text" placeholder="{{business.street2}}" readonly="">
+                                    <label class="bold" jhiTranslate="prestigeApp.business.street2">Street 2</label>
+                                    <label class="block">{{business.street2}}</label>
                                 </div>
                                 <div class="form-group">
-                                    <label jhiTranslate="prestigeApp.business.zipcode">Zipcode</label>
-                                    <input class="form-control" type="text" placeholder="{{business.zipcode}}" readonly="">
+                                    <label class="bold" jhiTranslate="prestigeApp.business.zipcode">Zipcode</label>
+                                    <label class="block">{{business.zipcode}}</label>
                                 </div>
                                 <div class="form-group">
-                                    <label jhiTranslate="prestigeApp.business.city">City</label>
-                                    <input class="form-control" type="text" placeholder="{{business.city}}" readonly="">
+                                    <label class="bold" jhiTranslate="prestigeApp.business.city">City</label>
+                                    <label class="block">{{business.city}}</label>
                                 </div>
                                 <div class="form-group">
-                                    <label jhiTranslate="prestigeApp.business.state">State</label>
-                                    <input class="form-control" type="text" placeholder="{{business.state}}" readonly="">
+                                    <label class="bold" jhiTranslate="prestigeApp.business.state">State</label>
+                                    <label class="block">{{business.state}}</label>
                                 </div>
                                 <div class="form-group">
-                                    <label jhiTranslate="prestigeApp.business.country">Country</label>
-                                    <input class="form-control" type="text" placeholder="{{business.country}}" readonly="">
-                                </div>
-                                <div class="form-group">
-                                    <label jhiTranslate="prestigeApp.business.user">User</label>
-                                    <input class="form-control" type="text" placeholder="{{business.userLogin}}" readonly="">
+                                    <label class="bold" jhiTranslate="prestigeApp.business.country">Country</label>
+                                    <label class="block">{{business.country}}</label>
                                 </div>
                             </div>
                             <div>

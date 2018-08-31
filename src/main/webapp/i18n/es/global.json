@@ -17,7 +17,6 @@
                 "currencyApp": "Currency",
                 "blockchainApp": "Blockchain",
                 "metadataApp": "Metadata",
-                "businessApp": "Business",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

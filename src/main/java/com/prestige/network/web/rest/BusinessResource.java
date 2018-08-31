@@ -16,8 +16,11 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import com.prestige.network.domain.User;
 import com.prestige.network.service.UserService;
+import com.prestige.network.domain.Business;
+import com.prestige.network.service.mapper.BusinessMapper;
 
 import javax.validation.Valid;
 import java.net.URI;
@@ -42,6 +45,9 @@ public class BusinessResource {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private BusinessMapper businessMapper;
+
     public BusinessResource(BusinessService businessService) {
         this.businessService = businessService;
     }
@@ -58,14 +64,19 @@ public class BusinessResource {
     public ResponseEntity<BusinessDTO> createBusiness(@Valid @RequestBody BusinessDTO businessDTO) throws URISyntaxException {
         User user = userService.getCurrentUser();
         if(user == null) {
-            throw new BadRequestAlertException("Current user doesn't exist", "business", "noncurrentuser");
+            throw new BadRequestAlertException("Current user doesn't exist", ENTITY_NAME, "noncurrentuser");
         }
 
         log.debug("REST request to save Business : {}", businessDTO);
         if (businessDTO.getId() != null) {
             throw new BadRequestAlertException("A new business cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        BusinessDTO result = businessService.save(businessDTO);
+        Business business = new Business();
+        Business businessDTOtoEntity = businessMapper.toEntity(businessDTO);
+
+        BusinessDTO businessEntitytoDTO = businessMapper.toDto(business.createBusinessWithgetCurrentUser(user,businessDTOtoEntity));
+
+        BusinessDTO result = businessService.save(businessEntitytoDTO);
         return ResponseEntity.created(new URI("/api/businesses/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -103,7 +114,14 @@ public class BusinessResource {
     @Timed
     public ResponseEntity<List<BusinessDTO>> getAllBusinesses(Pageable pageable) {
         log.debug("REST request to get a page of Businesses");
-        Page<BusinessDTO> page = businessService.findAll(pageable);
+
+        User user = userService.getCurrentUser();
+        if(user == null) {
+            throw new BadRequestAlertException("Current user doesn't exist", ENTITY_NAME, "noncurrentuser");
+        }
+
+        Page<BusinessDTO> page = businessService.findAllById(user,pageable);
+
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/businesses");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
@@ -118,7 +136,27 @@ public class BusinessResource {
     @Timed
     public ResponseEntity<BusinessDTO> getBusiness(@PathVariable Long id) {
         log.debug("REST request to get Business : {}", id);
-        Optional<BusinessDTO> businessDTO = businessService.findOne(id);
+        Optional<BusinessDTO> businessDTOaux = businessService.findOne(id);
+        log.debug("business present : {}", businessDTOaux.isPresent());
+        log.debug("business object : {}", businessDTOaux.get());
+
+        if (!businessDTOaux.isPresent()) {
+            log.debug("No business exist");
+            throw new BadRequestAlertException("Business doesn't exist", ENTITY_NAME, "nonbusinessexist");
+        }
+        Business b = businessMapper.toEntity(businessDTOaux.get());
+
+        User currentUser = userService.getCurrentUser();
+        if(currentUser == null) {
+            throw new BadRequestAlertException("Current user doesn't exist", ENTITY_NAME, "noncurrentuser");
+        }
+
+        if(!(currentUser.getId()).equals(b.getUser().getId())) {
+            throw new BadRequestAlertException("You don't have access to this business", ENTITY_NAME, "businessaccess");
+        }
+
+        Optional<BusinessDTO> businessDTO = Optional.of(businessMapper.toDto(b));
+
         return ResponseUtil.wrapOrNotFound(businessDTO);
     }
 

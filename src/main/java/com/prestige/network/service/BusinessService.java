@@ -1,5 +1,6 @@
 package com.prestige.network.service;
 
+import com.prestige.network.domain.User;
 import com.prestige.network.service.dto.BusinessDTO;
 
 import org.springframework.data.domain.Page;
@@ -27,6 +28,14 @@ public interface BusinessService {
      * @return the list of entities
      */
     Page<BusinessDTO> findAll(Pageable pageable);
+
+    /**
+     * Get all the businesses by getcurrentuser.
+     *
+     * @param pageable the pagination information
+     * @return the list of entities
+     */
+    Page<BusinessDTO> findAllById(User user, Pageable pageable);
 
 
     /**

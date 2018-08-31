@@ -13,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.prestige.network.domain.User;
 
 import java.util.Optional;
 /**
@@ -59,6 +60,18 @@ public class BusinessServiceImpl implements BusinessService {
         log.debug("Request to get all Businesses");
         return businessRepository.findAll(pageable)
             .map(businessMapper::toDto);
+    }
+
+    /**
+     * Return all Business by getcurrentuser.
+     *
+     * @param pageable the pagination information
+     * @return the list of entities
+     */
+    @Transactional(readOnly = true)
+    public Page<BusinessDTO> findAllById(User user, Pageable pageable) {
+        log.debug("Request to get all Business with User login");
+        return businessRepository.findByUserOrderById(user,pageable).map(businessMapper::toDto);
     }
 
 

@@ -1,68 +1,87 @@
-<div class="row justify-content-center">
-    <div class="col-8">
-        <div *ngIf="business">
-            <h2><span jhiTranslate="prestigeApp.business.detail.title">Business</span> {{business.id}}</h2>
-            <hr>
-            <jhi-alert-error></jhi-alert-error>
-            <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="prestigeApp.business.name">Name</span></dt>
-                <dd>
-                    <span>{{business.name}}</span>
-                </dd>
-                <dt><span jhiTranslate="prestigeApp.business.description">Description</span></dt>
-                <dd>
-                    <span>{{business.description}}</span>
-                </dd>
-                <dt><span jhiTranslate="prestigeApp.business.logo">Logo</span></dt>
-                <dd>
-                    <div *ngIf="business.logo">
-                        <a (click)="openFile(business.logoContentType, business.logo)">
-                            <img [src]="'data:' + business.logoContentType + ';base64,' + business.logo" style="max-width: 100%;" alt="business image"/>
-                        </a>
-                        {{business.logoContentType}}, {{byteSize(business.logo)}}
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="prestigeApp.business.street1">Street 1</span></dt>
-                <dd>
-                    <span>{{business.street1}}</span>
-                </dd>
-                <dt><span jhiTranslate="prestigeApp.business.street2">Street 2</span></dt>
-                <dd>
-                    <span>{{business.street2}}</span>
-                </dd>
-                <dt><span jhiTranslate="prestigeApp.business.zipcode">Zipcode</span></dt>
-                <dd>
-                    <span>{{business.zipcode}}</span>
-                </dd>
-                <dt><span jhiTranslate="prestigeApp.business.city">City</span></dt>
-                <dd>
-                    <span>{{business.city}}</span>
-                </dd>
-                <dt><span jhiTranslate="prestigeApp.business.state">State</span></dt>
-                <dd>
-                    <span>{{business.state}}</span>
-                </dd>
-                <dt><span jhiTranslate="prestigeApp.business.country">Country</span></dt>
-                <dd>
-                    <span>{{business.country}}</span>
-                </dd>
-                <dt><span jhiTranslate="prestigeApp.business.user">User</span></dt>
-                <dd>
-                    {{business.userLogin}}
-                </dd>
-            </dl>
-
-            <button type="submit"
-                    (click)="previousState()"
-                    class="btn btn-info">
-                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
-            </button>
-
-            <button type="button"
-                    [routerLink]="['/business-app', business.id, 'edit']"
-                    class="btn btn-primary">
-                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
-            </button>
+<div class="page-wrapper">
+    <div class="container-fluid">
+        <div class="row page-titles">
+            <div class="col-md-5 align-self-center">
+                <h4 class="text-themecolor" jhiTranslate="prestigeApp.business.view">View</h4>
+            </div>
+            <div class="col-md-7 align-self-center text-right">
+                <div class="d-flex justify-content-end align-items-center">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a routerLink="/home" jhiTranslate="global.menu.home">Home</a></li>
+                        <li class="breadcrumb-item"><a routerLink="/business-app" jhiTranslate="prestigeApp.business.home.title">Business</a></li>
+                        <li class="breadcrumb-item active" jhiTranslate="prestigeApp.business.view">View</li>
+                    </ol>
+                </div>
+            </div>
+            <jhi-alert></jhi-alert>
+            <br/>
         </div>
+
+        <section id="wrapper">
+            <div class="import-wallet">
+                <div class="login-box card">
+                    <div class="card-body">
+                        <form name="viewForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+                            <div>
+                                <jhi-alert-error></jhi-alert-error>
+                                <div class="form-group">
+                                    <label jhiTranslate="prestigeApp.business.name">Name</label>
+                                    <input class="form-control" type="text" placeholder="{{business.name}}" readonly="">
+                                </div>
+                                <div class="form-group">
+                                    <label jhiTranslate="prestigeApp.business.description">Description</label>
+                                    <input class="form-control" type="text" placeholder="{{business.description}}" readonly="">
+                                </div>
+                                <div class="form-group">
+                                    <label jhiTranslate="prestigeApp.business.logo">Logo</label>
+                                    <div *ngIf="business.logo">
+                                        <a (click)="openFile(business.logoContentType, business.logo)">
+                                            <img [src]="'data:' + business.logoContentType + ';base64,' + business.logo" style="max-width: 100%;" alt="business image"/>
+                                        </a>
+                                        {{business.logoContentType}}, {{byteSize(business.logo)}}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label jhiTranslate="prestigeApp.business.street1">Street 1</label>
+                                    <input class="form-control" type="text" placeholder="{{business.street1}}" readonly="">
+                                </div>
+                                <div class="form-group">
+                                    <label jhiTranslate="prestigeApp.business.street2">Street 2</label>
+                                    <input class="form-control" type="text" placeholder="{{business.street2}}" readonly="">
+                                </div>
+                                <div class="form-group">
+                                    <label jhiTranslate="prestigeApp.business.zipcode">Zipcode</label>
+                                    <input class="form-control" type="text" placeholder="{{business.zipcode}}" readonly="">
+                                </div>
+                                <div class="form-group">
+                                    <label jhiTranslate="prestigeApp.business.city">City</label>
+                                    <input class="form-control" type="text" placeholder="{{business.city}}" readonly="">
+                                </div>
+                                <div class="form-group">
+                                    <label jhiTranslate="prestigeApp.business.state">State</label>
+                                    <input class="form-control" type="text" placeholder="{{business.state}}" readonly="">
+                                </div>
+                                <div class="form-group">
+                                    <label jhiTranslate="prestigeApp.business.country">Country</label>
+                                    <input class="form-control" type="text" placeholder="{{business.country}}" readonly="">
+                                </div>
+                                <div class="form-group">
+                                    <label jhiTranslate="prestigeApp.business.user">User</label>
+                                    <input class="form-control" type="text" placeholder="{{business.userLogin}}" readonly="">
+                                </div>
+                            </div>
+                            <div>
+                                <button type="button"
+                                        (click)="previousState()"
+                                        class="btn btn-inverse waves-effect waves-light">
+                                    <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </section>
     </div>
 </div>

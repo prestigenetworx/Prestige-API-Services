@@ -25,7 +25,8 @@
             "city": "City",
             "state": "State",
             "country": "Country",
-            "user": "User"
+            "user": "User",
+            "view": "View"
         }
     }
 }

@@ -12,6 +12,8 @@
         "addressexistforuser": "La dirección del wallet ya existe para el usuario",
         "noncurrentuser": "Usuario actual no existe",
         "nonwalletexist": "Wallet no existe",
-        "walletaccess": "No tienes acceso a éste wallet"
+        "walletaccess": "No tienes acceso a éste wallet",
+        "nonbusinessexist": "Negocio no existe",
+        "businessaccess": "No tienes acceso a éste negocio"
     }
 }

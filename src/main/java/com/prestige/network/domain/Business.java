@@ -248,18 +248,20 @@ public class Business implements Serializable {
             "}";
     }
 
-    //Conection api NEO / Fill Wallet
-    /*public Wallet createWalletfromApi(User user,String nameWallet) {
-        String name = (nameWallet == null || nameWallet == "") ? ("Wallet-" + middlewareRequest.getString("address")) : nameWallet;
-        Wallet wallet = new Wallet(
-            middlewareRequest.getString("address"),
-            name,
-            CryptUtils.encrypt(middlewareRequest.getString("private_key"), key),
-            CryptUtils.encrypt(middlewareRequest.getString("public_key"), key),
-            CryptUtils.encrypt(middlewareRequest.getString("public_key_hash"), key),
-            CryptUtils.encrypt(middlewareRequest.getString("wif"), key),
-            user
-        );
-        return wallet;
-    }*/
+    //Creation business with getCurrentUser
+    public Business createBusinessWithgetCurrentUser(User u,Business b) {
+        Business business = new Business()
+            .name(b.getName())
+            .description(b.getDescription())
+            .logo(b.getLogo())
+            .city(b.getCity())
+            .country(b.getCountry())
+            .logoContentType(b.getLogoContentType())
+            .state(b.getState())
+            .street1(b.getStreet1())
+            .street2(b.getStreet2())
+            .zipcode(b.getZipcode())
+            .user(u);
+        return business;
+    }
 }

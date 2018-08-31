@@ -25,7 +25,8 @@
             "city": "Ciudad",
             "state": "Estado",
             "country": "País",
-            "user": "Usuario"
+            "user": "Usuario",
+            "view": "Vista"
         }
     }
 }

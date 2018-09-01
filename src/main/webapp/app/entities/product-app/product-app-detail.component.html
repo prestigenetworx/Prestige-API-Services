@@ -43,6 +43,10 @@
                         <a [routerLink]="['/business-app', product.businessId, 'view']">{{product.businessId}}</a>
                     </div>
                 </dd>
+                <dt><span jhiTranslate="prestigeApp.product.user">User</span></dt>
+                <dd>
+                    {{product.userLogin}}
+                </dd>
             </dl>
 
             <button type="submit"

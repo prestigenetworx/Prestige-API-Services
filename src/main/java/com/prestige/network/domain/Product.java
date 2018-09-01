@@ -49,6 +49,10 @@ public class Product implements Serializable {
     @JsonIgnoreProperties("")
     private Business business;
 
+    @ManyToOne
+    @JsonIgnoreProperties("")
+    private User user;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -160,6 +164,19 @@ public class Product implements Serializable {
 
     public void setBusiness(Business business) {
         this.business = business;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public Product user(User user) {
+        this.user = user;
+        return this;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { JhiAlertService, JhiDataUtils } from 'ng-jhipster';
@@ -12,10 +12,12 @@ import { ICurrencyApp } from 'app/shared/model/currency-app.model';
 import { CurrencyAppService } from 'app/entities/currency-app';
 import { IBusinessApp } from 'app/shared/model/business-app.model';
 import { BusinessAppService } from 'app/entities/business-app';
+import { IUser, UserService } from 'app/core';
 
 @Component({
     selector: 'jhi-product-app-update',
-    templateUrl: './product-app-update.component.html'
+    templateUrl: './product-app-update.component.html',
+    styleUrls: ['product-app.scss']
 })
 export class ProductAppUpdateComponent implements OnInit {
     private _product: IProductApp;
@@ -27,6 +29,8 @@ export class ProductAppUpdateComponent implements OnInit {
 
     businesses: IBusinessApp[];
 
+    users: IUser[];
+
     constructor(
         private dataUtils: JhiDataUtils,
         private jhiAlertService: JhiAlertService,
@@ -34,7 +38,9 @@ export class ProductAppUpdateComponent implements OnInit {
         private metadataService: MetadataAppService,
         private currencyService: CurrencyAppService,
         private businessService: BusinessAppService,
-        private activatedRoute: ActivatedRoute
+        private userService: UserService,
+        private activatedRoute: ActivatedRoute,
+        private router: Router
     ) {}
 
     ngOnInit() {
@@ -93,7 +99,7 @@ export class ProductAppUpdateComponent implements OnInit {
     }
 
     previousState() {
-        window.history.back();
+        this.router.navigate(['/product-app']);
     }
 
     save() {
@@ -131,6 +137,10 @@ export class ProductAppUpdateComponent implements OnInit {
     }
 
     trackBusinessById(index: number, item: IBusinessApp) {
+        return item.id;
+    }
+
+    trackUserById(index: number, item: IUser) {
         return item.id;
     }
     get product() {

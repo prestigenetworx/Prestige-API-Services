@@ -8,6 +8,8 @@ export interface IProductApp {
     metadataId?: number;
     currencyId?: number;
     businessId?: number;
+    userLogin?: string;
+    userId?: number;
 }
 
 export class ProductApp implements IProductApp {
@@ -20,7 +22,9 @@ export class ProductApp implements IProductApp {
         public attributes?: any,
         public metadataId?: number,
         public currencyId?: number,
-        public businessId?: number
+        public businessId?: number,
+        public userLogin?: string,
+        public userId?: number
     ) {
         this.active = false;
     }

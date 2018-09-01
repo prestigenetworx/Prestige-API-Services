@@ -4,7 +4,7 @@
         "product" : {
             "home": {
                 "title": "Products",
-                "createLabel": "Create a new Product",
+                "createLabel": "New Product",
                 "createOrEditLabel": "Create or edit a Product"
             },
             "created": "A new Product is created with identifier {{ param }}",
@@ -23,7 +23,8 @@
             "attributes": "Attributes",
             "metadata": "Metadata",
             "currency": "Currency",
-            "business": "Business"
+            "business": "Business",
+            "user": "User"
         }
     }
 }

@@ -1,88 +1,82 @@
-<div>
-    <h2 id="page-heading">
-        <span jhiTranslate="prestigeApp.product.home.title">Products</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-product-app" [routerLink]="['/product-app/new']">
-            <fa-icon [icon]="'plus'"></fa-icon>
-            <span  jhiTranslate="prestigeApp.product.home.createLabel">
-            Create new Product
+<div class="page-wrapper">
+    <div class="container-fluid">
+        <div class="row page-titles">
+            <div class="col-md-5 align-self-center">
+                <h4 class="text-themecolor" jhiTranslate="prestigeApp.product.home.title">Products</h4>
+            </div>
+            <div class="col-md-7 align-self-center text-right">
+                <div class="d-flex justify-content-end align-items-center">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a routerLink="/home" jhiTranslate="global.menu.home">Home</a></li>
+                        <li class="breadcrumb-item active" jhiTranslate="prestigeApp.product.home.title">Products</li>
+                    </ol>
+                    <button id="jh-create-entity" class="btn btn-dark d-none d-lg-block m-l-15" [routerLink]="['/product-app/new']" type="button"
+                            replaceUrl="true"
+                            queryParamsHandling="merge">
+                        <i class="fa fa-plus-circle"></i>
+                        <span  jhiTranslate="prestigeApp.product.home.createLabel">
+            New Product
             </span>
-        </button>
-    </h2>
-    <jhi-alert></jhi-alert>
-    <br/>
-    <div class="table-responsive" *ngIf="products">
-        <table class="table table-striped">
-            <thead>
-            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="name"><span jhiTranslate="prestigeApp.product.name">Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="description"><span jhiTranslate="prestigeApp.product.description">Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="value"><span jhiTranslate="prestigeApp.product.value">Value</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="active"><span jhiTranslate="prestigeApp.product.active">Active</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="attributes"><span jhiTranslate="prestigeApp.product.attributes">Attributes</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="metadataId"><span jhiTranslate="prestigeApp.product.metadata">Metadata</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="currencyId"><span jhiTranslate="prestigeApp.product.currency">Currency</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="businessId"><span jhiTranslate="prestigeApp.product.business">Business</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let product of products ;trackBy: trackId">
-                <td><a [routerLink]="['/product-app', product.id, 'view' ]">{{product.id}}</a></td>
-                <td>{{product.name}}</td>
-                <td>{{product.description}}</td>
-                <td>{{product.value}}</td>
-                <td>{{product.active}}</td>
-                <td>{{product.attributes}}</td>
-                <td>
-                    <div *ngIf="product.metadataId">
-                        <a [routerLink]="['../metadata-app', product.metadataId , 'view' ]" >{{product.metadataId}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="product.currencyId">
-                        <a [routerLink]="['../currency-app', product.currencyId , 'view' ]" >{{product.currencyId}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="product.businessId">
-                        <a [routerLink]="['../business-app', product.businessId , 'view' ]" >{{product.businessId}}</a>
-                    </div>
-                </td>
-                <td class="text-right">
-                    <div class="btn-group flex-btn-group-container">
-                        <button type="submit"
-                                [routerLink]="['/product-app', product.id, 'view' ]"
-                                class="btn btn-info btn-sm">
-                            <fa-icon [icon]="'eye'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-                        </button>
-                        <button type="submit"
-                                [routerLink]="['/product-app', product.id, 'edit']"
-                                class="btn btn-primary btn-sm">
-                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
-                        </button>
-                        <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'product-app/'+ product.id + '/delete'} }]"
-                                replaceUrl="true"
-                                queryParamsHandling="merge"
-                                class="btn btn-danger btn-sm">
-                            <fa-icon [icon]="'times'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
-                        </button>
-                    </div>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <div *ngIf="products && products.length">
-        <div class="row justify-content-center">
-            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+                    </button>
+                </div>
+            </div>
+            <jhi-alert></jhi-alert>
+            <br/>
         </div>
-        <div class="row justify-content-center">
-            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+
+        <div class="card jh-card">
+            <div class="table-responsive" *ngIf="products">
+                <table class="table table-striped">
+                    <thead>
+                    <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+                        <th><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                        <th><span jhiTranslate="prestigeApp.product.name">Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                        <th><span jhiTranslate="prestigeApp.product.value">Value</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                        <th><span jhiTranslate="prestigeApp.product.business">Business</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let product of products ;trackBy: trackId">
+                        <td><a [routerLink]="['/product-app', product.id, 'view' ]">{{product.id}}</a></td>
+                        <td>{{product.name}}</td>
+                        <td>{{product.value}}</td>
+                        <td>
+                            <div *ngIf="product.businessId">
+                                <a [routerLink]="['../business-app', product.businessId , 'view' ]" >{{product.businessId}}</a>
+                            </div>
+                        </td>
+                        <td class="text-right">
+                            <button type="submit"
+                                    [routerLink]="['/product-app', product.id, 'view' ]"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon [icon]="'eye'"></fa-icon>
+                            </button>
+                            <button type="submit"
+                                    [routerLink]="['/product-app', product.id, 'edit']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            </button>
+                            <button type="submit"
+                                    [routerLink]="['/', { outlets: { popup: 'product-app/'+ product.id + '/delete'} }]"
+                                    replaceUrl="true"
+                                    queryParamsHandling="merge"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div *ngIf="products && products.length">
+                <div class="row justify-content-center">
+                    <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+                </div>
+                <div class="row justify-content-center">
+                    <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+                </div>
+            </div>
         </div>
     </div>
 </div>

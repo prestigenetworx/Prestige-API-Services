@@ -6,7 +6,8 @@ import { IProductApp } from 'app/shared/model/product-app.model';
 
 @Component({
     selector: 'jhi-product-app-detail',
-    templateUrl: './product-app-detail.component.html'
+    templateUrl: './product-app-detail.component.html',
+    styleUrls: ['product-app.scss']
 })
 export class ProductAppDetailComponent implements OnInit {
     product: IProductApp;

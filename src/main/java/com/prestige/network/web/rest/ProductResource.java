@@ -1,7 +1,6 @@
 package com.prestige.network.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-import com.prestige.network.service.ProductService;
 import com.prestige.network.web.rest.errors.BadRequestAlertException;
 import com.prestige.network.web.rest.util.HeaderUtil;
 import com.prestige.network.web.rest.util.PaginationUtil;
@@ -9,12 +8,19 @@ import com.prestige.network.service.dto.ProductDTO;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import com.prestige.network.domain.User;
+import com.prestige.network.service.UserService;
+import com.prestige.network.service.ProductService;
+import com.prestige.network.domain.Product;
+import com.prestige.network.service.mapper.ProductMapper;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -35,6 +41,11 @@ public class ProductResource {
 
     private final ProductService productService;
 
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private ProductMapper productMapper;
+
     public ProductResource(ProductService productService) {
         this.productService = productService;
     }
@@ -49,11 +60,22 @@ public class ProductResource {
     @PostMapping("/products")
     @Timed
     public ResponseEntity<ProductDTO> createProduct(@RequestBody ProductDTO productDTO) throws URISyntaxException {
+        User user = userService.getCurrentUser();
+        if(user == null) {
+            throw new BadRequestAlertException("Current user doesn't exist", ENTITY_NAME, "noncurrentuser");
+        }
+
         log.debug("REST request to save Product : {}", productDTO);
         if (productDTO.getId() != null) {
             throw new BadRequestAlertException("A new product cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        ProductDTO result = productService.save(productDTO);
+        Product product = new Product();
+        Product productDTOtoEntity = productMapper.toEntity(productDTO);
+
+        ProductDTO productEntitytoDTO = productMapper.toDto(product.createProductWithgetCurrentUser(user,productDTOtoEntity));
+
+        ProductDTO result = productService.save(productEntitytoDTO);
+
         return ResponseEntity.created(new URI("/api/products/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -91,7 +113,13 @@ public class ProductResource {
     @Timed
     public ResponseEntity<List<ProductDTO>> getAllProducts(Pageable pageable) {
         log.debug("REST request to get a page of Products");
-        Page<ProductDTO> page = productService.findAll(pageable);
+
+        User user = userService.getCurrentUser();
+        if(user == null) {
+            throw new BadRequestAlertException("Current user doesn't exist", ENTITY_NAME, "noncurrentuser");
+        }
+
+        Page<ProductDTO> page = productService.findAllById(user,pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/products");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
@@ -106,7 +134,25 @@ public class ProductResource {
     @Timed
     public ResponseEntity<ProductDTO> getProduct(@PathVariable Long id) {
         log.debug("REST request to get Product : {}", id);
-        Optional<ProductDTO> productDTO = productService.findOne(id);
+        Optional<ProductDTO> productDTOaux = productService.findOne(id);
+
+        if (!productDTOaux.isPresent()) {
+            log.debug("No product exist");
+            throw new BadRequestAlertException("Product doesn't exist", ENTITY_NAME, "nonproductexist");
+        }
+        Product p = productMapper.toEntity(productDTOaux.get());
+
+        User currentUser = userService.getCurrentUser();
+        if(currentUser == null) {
+            throw new BadRequestAlertException("Current user doesn't exist", ENTITY_NAME, "noncurrentuser");
+        }
+
+        if(!(currentUser.getId()).equals(p.getUser().getId())) {
+            throw new BadRequestAlertException("You don't have access to this business", ENTITY_NAME, "productaccess");
+        }
+
+        Optional<ProductDTO> productDTO = Optional.of(productMapper.toDto(p));
+
         return ResponseUtil.wrapOrNotFound(productDTO);
     }
 

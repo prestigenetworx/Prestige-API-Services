@@ -24,7 +24,8 @@
             "metadata": "Metadata",
             "currency": "Currency",
             "business": "Business",
-            "user": "User"
+            "user": "User",
+            "view": "View"
         }
     }
 }

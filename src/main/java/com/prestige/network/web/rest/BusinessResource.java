@@ -137,8 +137,6 @@ public class BusinessResource {
     public ResponseEntity<BusinessDTO> getBusiness(@PathVariable Long id) {
         log.debug("REST request to get Business : {}", id);
         Optional<BusinessDTO> businessDTOaux = businessService.findOne(id);
-        log.debug("business present : {}", businessDTOaux.isPresent());
-        log.debug("business object : {}", businessDTOaux.get());
 
         if (!businessDTOaux.isPresent()) {
             log.debug("No business exist");

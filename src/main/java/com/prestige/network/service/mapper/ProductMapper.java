@@ -14,6 +14,7 @@ public interface ProductMapper extends EntityMapper<ProductDTO, Product> {
     @Mapping(source = "metadata.id", target = "metadataId")
     @Mapping(source = "currency.id", target = "currencyId")
     @Mapping(source = "business.id", target = "businessId")
+    @Mapping(source = "business.name", target = "businessName")
     @Mapping(source = "user.id", target = "userId")
     @Mapping(source = "user.login", target = "userLogin")
     ProductDTO toDto(Product product);

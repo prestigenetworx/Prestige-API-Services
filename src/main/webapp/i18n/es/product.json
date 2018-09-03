@@ -24,7 +24,8 @@
             "metadata": "Metadata",
             "currency": "Moneda",
             "business": "Negocio",
-            "user": "Usuario"
+            "user": "Usuario",
+            "view": "Vista"
         }
     }
 }

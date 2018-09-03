@@ -13,6 +13,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.prestige.network.domain.User;
+
 
 import java.util.Optional;
 /**
@@ -59,6 +61,18 @@ public class ProductServiceImpl implements ProductService {
         log.debug("Request to get all Products");
         return productRepository.findAll(pageable)
             .map(productMapper::toDto);
+    }
+
+    /**
+     * Return all Products by getcurrentuser.
+     *
+     * @param pageable the pagination information
+     * @return the list of entities
+     */
+    @Transactional(readOnly = true)
+    public Page<ProductDTO> findAllById(User user, Pageable pageable) {
+        log.debug("Request to get all Products with User login");
+        return productRepository.findByUserOrderById(user,pageable).map(productMapper::toDto);
     }
 
 

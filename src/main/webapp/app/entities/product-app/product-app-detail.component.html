@@ -1,65 +1,80 @@
-<div class="row justify-content-center">
-    <div class="col-8">
-        <div *ngIf="product">
-            <h2><span jhiTranslate="prestigeApp.product.detail.title">Product</span> {{product.id}}</h2>
-            <hr>
-            <jhi-alert-error></jhi-alert-error>
-            <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="prestigeApp.product.name">Name</span></dt>
-                <dd>
-                    <span>{{product.name}}</span>
-                </dd>
-                <dt><span jhiTranslate="prestigeApp.product.description">Description</span></dt>
-                <dd>
-                    <span>{{product.description}}</span>
-                </dd>
-                <dt><span jhiTranslate="prestigeApp.product.value">Value</span></dt>
-                <dd>
-                    <span>{{product.value}}</span>
-                </dd>
-                <dt><span jhiTranslate="prestigeApp.product.active">Active</span></dt>
-                <dd>
-                    <span>{{product.active}}</span>
-                </dd>
-                <dt><span jhiTranslate="prestigeApp.product.attributes">Attributes</span></dt>
-                <dd>
-                    <span>{{product.attributes}}</span>
-                </dd>
-                <dt><span jhiTranslate="prestigeApp.product.metadata">Metadata</span></dt>
-                <dd>
-                    <div *ngIf="product.metadataId">
-                        <a [routerLink]="['/metadata-app', product.metadataId, 'view']">{{product.metadataId}}</a>
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="prestigeApp.product.currency">Currency</span></dt>
-                <dd>
-                    <div *ngIf="product.currencyId">
-                        <a [routerLink]="['/currency-app', product.currencyId, 'view']">{{product.currencyId}}</a>
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="prestigeApp.product.business">Business</span></dt>
-                <dd>
-                    <div *ngIf="product.businessId">
-                        <a [routerLink]="['/business-app', product.businessId, 'view']">{{product.businessId}}</a>
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="prestigeApp.product.user">User</span></dt>
-                <dd>
-                    {{product.userLogin}}
-                </dd>
-            </dl>
-
-            <button type="submit"
-                    (click)="previousState()"
-                    class="btn btn-info">
-                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
-            </button>
-
-            <button type="button"
-                    [routerLink]="['/product-app', product.id, 'edit']"
-                    class="btn btn-primary">
-                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
-            </button>
+<div class="page-wrapper">
+    <div class="container-fluid">
+        <div class="row page-titles">
+            <div class="col-md-5 align-self-center">
+                <h4 class="text-themecolor" jhiTranslate="prestigeApp.product.view">View</h4>
+            </div>
+            <div class="col-md-7 align-self-center text-right">
+                <div class="d-flex justify-content-end align-items-center">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a routerLink="/home" jhiTranslate="global.menu.home">Home</a></li>
+                        <li class="breadcrumb-item"><a routerLink="/product-app" jhiTranslate="prestigeApp.product.home.title">Product</a></li>
+                        <li class="breadcrumb-item active" jhiTranslate="prestigeApp.product.view">View</li>
+                    </ol>
+                </div>
+            </div>
+            <jhi-alert></jhi-alert>
+            <br/>
         </div>
+
+        <section id="wrapper">
+            <div class="view-product">
+                <div class="login-box card">
+                    <div class="card-body">
+                        <form name="viewForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+                            <div>
+                                <jhi-alert-error></jhi-alert-error>
+                                <div class="form-group">
+                                    <label class="bold" jhiTranslate="prestigeApp.product.name">Name</label>
+                                    <label class="block">{{product.name}}</label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="bold" jhiTranslate="prestigeApp.product.description">Description</label>
+                                    <label class="block">{{product.description}}</label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="bold" jhiTranslate="prestigeApp.product.value">Value</label>
+                                    <label class="block">{{product.value}}</label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="bold" jhiTranslate="prestigeApp.product.active">Active</label>
+                                    <label class="block">{{product.active}}</label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="bold" jhiTranslate="prestigeApp.product.attributes">Attributes</label>
+                                    <label class="block">{{product.attributes}}</label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="bold" jhiTranslate="prestigeApp.product.metadata">Metadata</label>
+                                    <div *ngIf="product.metadataId">
+                                        <a [routerLink]="['/metadata-app', product.metadataId, 'view']">{{product.metadataId}}</a>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="bold" jhiTranslate="prestigeApp.product.currency">Currency</label>
+                                    <div *ngIf="product.currencyId">
+                                        <a [routerLink]="['/currency-app', product.currencyId, 'view']">{{product.currencyId}}</a>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="bold" jhiTranslate="prestigeApp.product.business">Business</label>
+                                    <div *ngIf="product.businessId">
+                                        <a [routerLink]="['/business-app', product.businessId, 'view']">{{product.businessId}}{{product.businessName}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <button type="button"
+                                        (click)="previousState()"
+                                        class="btn btn-inverse waves-effect waves-light">
+                                    <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </section>
     </div>
 </div>

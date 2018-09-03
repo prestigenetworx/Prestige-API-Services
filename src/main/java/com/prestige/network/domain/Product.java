@@ -211,4 +211,19 @@ public class Product implements Serializable {
             ", attributes='" + getAttributes() + "'" +
             "}";
     }
+
+    //Creation product with getCurrentUser
+    public Product createProductWithgetCurrentUser(User u,Product p) {
+        Product product = new Product()
+            .active(p.isActive())
+            .attributes(p.getAttributes())
+            .name(p.getName())
+            .description(p.getDescription())
+            .value(p.getValue())
+            .business(p.getBusiness())
+            .currency(p.getCurrency())
+            .metadata(p.getMetadata())
+            .user(u);
+        return product;
+    }
 }

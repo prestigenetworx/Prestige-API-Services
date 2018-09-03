@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.Optional;
+import com.prestige.network.domain.User;
 
 /**
  * Service Interface for managing Product.
@@ -27,6 +28,14 @@ public interface ProductService {
      * @return the list of entities
      */
     Page<ProductDTO> findAll(Pageable pageable);
+
+    /**
+     * Get all the businesses by getcurrentuser.
+     *
+     * @param pageable the pagination information
+     * @return the list of entities
+     */
+    Page<ProductDTO> findAllById(User user, Pageable pageable);
 
 
     /**

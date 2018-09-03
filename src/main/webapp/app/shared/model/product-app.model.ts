@@ -10,6 +10,7 @@ export interface IProductApp {
     businessId?: number;
     userLogin?: string;
     userId?: number;
+    businessName?: string;
 }
 
 export class ProductApp implements IProductApp {
@@ -24,7 +25,8 @@ export class ProductApp implements IProductApp {
         public currencyId?: number,
         public businessId?: number,
         public userLogin?: string,
-        public userId?: number
+        public userId?: number,
+        public businessName?: string
     ) {
         this.active = false;
     }

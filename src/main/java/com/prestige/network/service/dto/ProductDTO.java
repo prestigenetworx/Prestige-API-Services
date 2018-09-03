@@ -28,6 +28,8 @@ public class ProductDTO implements Serializable {
 
     private Long businessId;
 
+    private String businessName;
+
     private Long userId;
 
     private String userLogin;
@@ -102,6 +104,14 @@ public class ProductDTO implements Serializable {
 
     public void setBusinessId(Long businessId) {
         this.businessId = businessId;
+    }
+
+    public String getBusinessName() {
+        return businessName;
+    }
+
+    public void setBusinessName(String businessName) {
+        this.businessName = businessName;
     }
 
     public Long getUserId() {

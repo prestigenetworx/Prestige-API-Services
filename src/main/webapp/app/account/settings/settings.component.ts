@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { JhiLanguageService } from 'ng-jhipster';
 
 import { Principal, AccountService, JhiLanguageHelper } from 'app/core';
 
 @Component({
     selector: 'jhi-settings',
-    templateUrl: './settings.component.html'
+    templateUrl: './settings.component.html',
+    styleUrls: ['settings.scss']
 })
 export class SettingsComponent implements OnInit {
     error: string;

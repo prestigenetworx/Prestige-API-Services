@@ -13,7 +13,7 @@
     <link rel="manifest" href="manifest.webapp" />
     <!-- jhipster-needle-add-resources-to-root - JHipster will add new resources here -->
 </head>
-<body>
+<body class="skin-megna fixed-layout" id="indexBody">
     <!--[if lt IE 9]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -41,5 +41,18 @@
     </script>-->
     <script src="content/js/globals.js"></script>
     <script src="content/dist/js/custom.min.js"></script>
+    <script>
+        function minizerSideBar() {
+            const element = document.getElementById("indexBody");
+            const element2 = document.getElementById("text-image-logo");
+            if (element.classList.contains('mini-sidebar')) {
+                element.classList.remove("mini-sidebar");
+                element2.classList.remove("text-none");
+            } else {
+                element.classList.add("mini-sidebar");
+                element2.classList.add("text-none");
+            }
+        }
+    </script>
 </body>
 </html>

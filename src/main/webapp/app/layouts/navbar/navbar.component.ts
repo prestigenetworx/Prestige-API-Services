@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { JhiLanguageService } from 'ng-jhipster';
+import { JhiAlertService, JhiLanguageService, JhiParseLinks } from 'ng-jhipster';
 
 import { VERSION } from 'app/app.constants';
 import { JhiLanguageHelper, Principal, LoginModalService, LoginService } from 'app/core';
 import { ProfileService } from '../profiles/profile.service';
+import { WalletService } from 'app/entities/wallet/wallet.service';
+import { IWallet } from 'app/shared/model/wallet.model';
+import { HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 
 export interface Food {
     value: string;
@@ -24,6 +27,7 @@ export class NavbarComponent implements OnInit {
     swaggerEnabled: boolean;
     modalRef: NgbModalRef;
     version: string;
+    wallets: IWallet[];
 
     constructor(
         private loginService: LoginService,
@@ -32,7 +36,8 @@ export class NavbarComponent implements OnInit {
         private principal: Principal,
         private loginModalService: LoginModalService,
         private profileService: ProfileService,
-        private router: Router
+        private router: Router,
+        private walletService: WalletService
     ) {
         this.version = VERSION ? 'v' + VERSION : '';
         this.isNavbarCollapsed = true;

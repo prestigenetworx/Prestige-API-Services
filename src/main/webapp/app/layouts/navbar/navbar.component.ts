@@ -28,6 +28,14 @@ export class NavbarComponent implements OnInit {
     modalRef: NgbModalRef;
     version: string;
     wallets: IWallet[];
+    links: any;
+    totalItems: any;
+    queryCount: any;
+    itemsPerPage: any;
+    page: any;
+    predicate: any;
+    previousPage: any;
+    reverse: any;
 
     constructor(
         private loginService: LoginService,
@@ -37,7 +45,8 @@ export class NavbarComponent implements OnInit {
         private loginModalService: LoginModalService,
         private profileService: ProfileService,
         private router: Router,
-        private walletService: WalletService
+        private walletService: WalletService,
+        private jhiAlertService: JhiAlertService
     ) {
         this.version = VERSION ? 'v' + VERSION : '';
         this.isNavbarCollapsed = true;
@@ -52,6 +61,7 @@ export class NavbarComponent implements OnInit {
             this.inProduction = profileInfo.inProduction;
             this.swaggerEnabled = profileInfo.swaggerEnabled;
         });
+        this.loadAll();
     }
 
     changeLanguage(languageKey: string) {
@@ -82,5 +92,31 @@ export class NavbarComponent implements OnInit {
 
     getImageUrl() {
         return this.isAuthenticated() ? this.principal.getImageUrl() : null;
+    }
+
+    loadAll() {
+        this.walletService
+            .query({})
+            .subscribe(
+                (res: HttpResponse<IWallet[]>) => this.paginateWallets(res.body, res.headers),
+                (res: HttpErrorResponse) => this.onError(res.message)
+            );
+    }
+
+    private paginateWallets(data: IWallet[], headers: HttpHeaders) {
+        this.wallets = data;
+        //this.getBalance(this.wallets[0].id);
+    }
+
+    private onError(errorMessage: string) {
+        this.jhiAlertService.error(errorMessage, null, null);
+    }
+
+    sort() {
+        const result = [this.predicate + ',' + (this.reverse ? 'asc' : 'desc')];
+        if (this.predicate !== 'id') {
+            result.push('id');
+        }
+        return result;
     }
 }

@@ -105,7 +105,6 @@ export class NavbarComponent implements OnInit {
 
     private paginateWallets(data: IWallet[], headers: HttpHeaders) {
         this.wallets = data;
-        //this.getBalance(this.wallets[0].id);
     }
 
     private onError(errorMessage: string) {

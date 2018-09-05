@@ -4,7 +4,7 @@ import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiLanguageService } from 'ng-jhipster';
 
 import { VERSION } from 'app/app.constants';
-import { JhiLanguageHelper, Principal, LoginModalService, LoginService } from 'app/core';
+import { JhiLanguageHelper, Principal, LoginModalService, LoginService, Account } from 'app/core';
 import { ProfileService } from '../profiles/profile.service';
 
 @Component({
@@ -19,6 +19,7 @@ export class SidebarComponent implements OnInit {
     swaggerEnabled: boolean;
     modalRef: NgbModalRef;
     version: string;
+    account: Account;
 
     constructor(
         private loginService: LoginService,
@@ -34,6 +35,9 @@ export class SidebarComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.principal.identity().then(account => {
+            this.account = account;
+        });
         this.languageHelper.getAll().then(languages => {
             this.languages = languages;
         });

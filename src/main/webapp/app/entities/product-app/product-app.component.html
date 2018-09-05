@@ -32,7 +32,6 @@
                         <th><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                         <th><span jhiTranslate="prestigeApp.product.name">Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                         <th><span jhiTranslate="prestigeApp.product.value">Value</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                        <th><span jhiTranslate="prestigeApp.product.business">Business</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                         <th></th>
                     </tr>
                     </thead>
@@ -41,11 +40,6 @@
                         <td><a [routerLink]="['/product-app', product.id, 'view' ]">{{product.id}}</a></td>
                         <td>{{product.name}}</td>
                         <td>{{product.value}}</td>
-                        <td>
-                            <div *ngIf="product.businessId">
-                                <a [routerLink]="['../business-app', product.businessId , 'view' ]" >{{product.businessName}}</a>
-                            </div>
-                        </td>
                         <td class="text-right">
                             <button type="submit"
                                     [routerLink]="['/product-app', product.id, 'view' ]"

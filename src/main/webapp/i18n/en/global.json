@@ -23,10 +23,12 @@
             "account": {
                 "main": "Account",
                 "settings": "Settings",
+                "settings2": " Settings",
                 "password": "Password",
                 "sessions": "Sessions",
                 "login": "Sign In",
                 "logout": "Sign out",
+                "logout2": " Sign out",
                 "register": "Register",
                 "main-sidebar": "--- ACCOUNT",
                 "crypto-sidebar": "--- Crypto",

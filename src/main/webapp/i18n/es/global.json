@@ -22,10 +22,12 @@
             "account": {
                 "main": "Cuenta",
                 "settings": "Ajustes",
+                "settings2": " Ajustes",
                 "password": "Contraseña",
                 "sessions": "Sesiones",
                 "login": "Iniciar sesión",
                 "logout": "Cerrar la sesión",
+                "logout2": " Cerrar la sesión",
                 "register": "Crear una cuenta",
                 "main-sidebar": "--- CUENTA",
                 "crypto-sidebar": "--- Crypto",

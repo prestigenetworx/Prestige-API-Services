@@ -26,7 +26,9 @@
             "state": "State",
             "country": "Country",
             "user": "User",
-            "view": "View"
+            "view": "View",
+            "businessinfo": "Business information",
+            "userinfo": "User information"
         }
     }
 }

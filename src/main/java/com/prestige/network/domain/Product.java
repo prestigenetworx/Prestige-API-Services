@@ -224,6 +224,7 @@ public class Product implements Serializable {
             .currency(p.getCurrency())
             .metadata(p.getMetadata())
             .user(u);
+        //falta poner el business por defecto
         return product;
     }
 }

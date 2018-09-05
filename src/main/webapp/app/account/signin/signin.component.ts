@@ -1,16 +1,3 @@
-/*import { Component, OnInit } from '@angular/core';
-
-@Component({
-    selector: 'jhi-signin',
-    templateUrl: './signin.component.html',
-    styleUrls: ['signin.scss']
-})
-export class SigninComponent implements OnInit {
-    constructor() {}
-
-    ngOnInit() {}
-}*/
-
 import { Component, ElementRef, OnInit, Renderer } from '@angular/core';
 import { Router } from '@angular/router';
 import { JhiEventManager } from 'ng-jhipster';
@@ -83,5 +70,7 @@ export class SigninComponent implements OnInit {
         this.router.navigate(['/reset', 'request']);
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.loginService.logout();
+    }
 }

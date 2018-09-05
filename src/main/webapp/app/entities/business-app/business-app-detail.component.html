@@ -18,54 +18,67 @@
         </div>
 
         <section id="wrapper">
-            <div class="import-wallet">
-                <div class="login-box card">
-                    <div class="card-body">
-                        <form name="viewForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
-                            <div>
-                                <jhi-alert-error></jhi-alert-error>
-                                <div class="form-group">
-                                    <label class="bold" jhiTranslate="prestigeApp.business.name">Name</label>
-                                    <label class="block">{{business.name}}</label>
+            <div class="card">
+                <ul class="nav nav-tabs profile-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#businessinfo" role="tab"><span jhiTranslate="prestigeApp.business.businessinfo"> Business information</span> <i class="fas fa-edit" data-target="#myModalProfile" data-toggle="modal"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#userinfo" role="tab"><span jhiTranslate="prestigeApp.business.userinfo"> User information</span><i class="fas fa-plus-circle" data-target="#myModalExperience" data-toggle="modal"></i></a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane" id="userinfo" role="tabpanel">
+                        <div class="card-body"> </div>
+                    </div>
+                    <div class="tab-pane active" id="businessinfo" role="tabpanel">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3 col-xs-6 b-r">
+                                    <strong jhiTranslate="prestigeApp.business.name">Name</strong> <br>
+                                    <p class="text-muted">{{business.name}}</p>
                                 </div>
-                                <div class="form-group">
-                                    <label class="bold" jhiTranslate="prestigeApp.business.description">Description</label>
-                                    <label class="block">{{business.description}}</label>
+                                <div class="col-md-3 col-xs-6 b-r">
+                                    <strong jhiTranslate="prestigeApp.business.description">Description</strong> <br>
+                                    <p class="text-muted">{{business.description}}</p>
                                 </div>
-                                <div class="form-group">
-                                    <label class="bold" jhiTranslate="prestigeApp.business.logo">Logo</label>
-                                    <div *ngIf="business.logo">
-                                        <a (click)="openFile(business.logoContentType, business.logo)">
-                                            <img [src]="'data:' + business.logoContentType + ';base64,' + business.logo" style="max-width: 100%;" alt="business image"/>
-                                        </a>
-                                        {{business.logoContentType}}, {{byteSize(business.logo)}}
-                                    </div>
+                                <div class="col-md-3 col-xs-6">
+                                    <strong jhiTranslate="prestigeApp.business.street1">Street 1</strong> <br>
+                                    <p class="text-muted">{{business.street1}}</p>
                                 </div>
-                                <div class="form-group">
-                                    <label class="bold" jhiTranslate="prestigeApp.business.street1">Street 1</label>
-                                    <label class="block">{{business.street1}}</label>
+                                <div class="col-md-3 col-xs-6">
+                                    <strong jhiTranslate="prestigeApp.business.street2">Street 2</strong> <br>
+                                    <p class="text-muted">{{business.street2}}</p>
                                 </div>
-                                <div class="form-group">
-                                    <label class="bold" jhiTranslate="prestigeApp.business.street2">Street 2</label>
-                                    <label class="block">{{business.street2}}</label>
+                                <div class="col-md-3 col-xs-6">
+                                    <strong jhiTranslate="prestigeApp.business.zipcode">Zipcode</strong> <br>
+                                    <p class="text-muted">{{business.zipcode}}</p>
                                 </div>
-                                <div class="form-group">
-                                    <label class="bold" jhiTranslate="prestigeApp.business.zipcode">Zipcode</label>
-                                    <label class="block">{{business.zipcode}}</label>
+                                <div class="col-md-3 col-xs-6">
+                                    <strong jhiTranslate="prestigeApp.business.city">City</strong> <br>
+                                    <p class="text-muted">{{business.city}}</p>
                                 </div>
-                                <div class="form-group">
-                                    <label class="bold" jhiTranslate="prestigeApp.business.city">City</label>
-                                    <label class="block">{{business.city}}</label>
+                                <div class="col-md-3 col-xs-6">
+                                    <strong jhiTranslate="prestigeApp.business.state">State</strong> <br>
+                                    <p class="text-muted">{{business.state}}</p>
                                 </div>
-                                <div class="form-group">
-                                    <label class="bold" jhiTranslate="prestigeApp.business.state">State</label>
-                                    <label class="block">{{business.state}}</label>
+                                <div class="col-md-3 col-xs-6">
+                                    <strong jhiTranslate="prestigeApp.business.country">Country</strong> <br>
+                                    <p class="text-muted">{{business.country}}</p>
                                 </div>
-                                <div class="form-group">
-                                    <label class="bold" jhiTranslate="prestigeApp.business.country">Country</label>
-                                    <label class="block">{{business.country}}</label>
+                                <div class="col-md-3 col-xs-6 b-r">
+                                    <strong jhiTranslate="prestigeApp.business.logo">Logo</strong> <br>
+                                    <p class="text-muted">
+                                        <div *ngIf="business.logo">
+                                            <a (click)="openFile(business.logoContentType, business.logo)">
+                                                <img [src]="'data:' + business.logoContentType + ';base64,' + business.logo" style="max-width: 100%;" alt="business image"/>
+                                            </a>
+                                            {{business.logoContentType}}, {{byteSize(business.logo)}}
+                                        </div>
+                                    </p>
                                 </div>
                             </div>
+                            <hr>
                             <div>
                                 <button type="button"
                                         (click)="previousState()"
@@ -73,7 +86,7 @@
                                     <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
                                 </button>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>

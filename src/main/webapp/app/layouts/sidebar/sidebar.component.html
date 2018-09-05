@@ -6,14 +6,14 @@
             <div class="user-pro-body">
                 <div><img src="../../../assets/images/users/2.jpg" alt="user-img" class="img-circle"></div>
                 <div class="dropdown">
-                    <a class="dropdown-toggle u-dropdown link hide-menu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Steave Gection <span class="caret"></span></a>
+                    <a class="dropdown-toggle u-dropdown link hide-menu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{account.login}} <span class="caret"></span></a>
                     <div class="dropdown-menu animated flipInY">
                         <!-- text-->
-                        <a routerLink="/settings" class="dropdown-item"><i class="ti-user"></i> My Profile</a>
+                        <a routerLink="/settings" class="dropdown-item"><i class="ti-user"></i><span jhiTranslate="global.menu.account.settings2"> Settings</span></a>
                         <!-- text-->
                         <div class="dropdown-divider"></div>
                         <!-- text-->
-                        <a (click)="logout()" class="dropdown-item"><i class="fa fa-power-off"></i> Logout</a>
+                        <a (click)="logout()" class="dropdown-item"><i class="fa fa-power-off"></i><span jhiTranslate="global.menu.account.logout2"> Sign out</span></a>
                         <!-- text-->
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                 <li class="nav-small-cap" jhiTranslate="global.menu.account.merchants-sidebar">--- Merchants</li>
                 <li *jhiHasAnyAuthority="'ROLE_USER'">
                     <a class="waves-effect waves-dark" routerLink="business-app" routerLinkActive="active" aria-expanded="false">
-                        <i class="far fa-circle text-success"></i>
+                        <i class="ti-user"></i>
                         <span jhiTranslate="global.menu.entities.businessApp" class="hide-menu">Business</span>
                     </a>
                 </li>
@@ -44,7 +44,7 @@
                 </li>
                 <li *jhiHasAnyAuthority="'ROLE_USER'">
                     <a class="waves-effect waves-dark" (click)="logout()" aria-expanded="false">
-                        <i class="far fa-circle text-success"></i>
+                        <i class="fa fa-power-off"></i>
                         <span class="hide-menu" jhiTranslate="global.menu.account.logout">Sign out</span>
                     </a>
                 </li>

@@ -56,12 +56,6 @@
                                         <a [routerLink]="['/currency-app', product.currencyId, 'view']">{{product.currencyId}}</a>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="bold" jhiTranslate="prestigeApp.product.business">Business</label>
-                                    <div *ngIf="product.businessId">
-                                        <a [routerLink]="['/business-app', product.businessId, 'view']">{{product.businessId}}{{product.businessName}}</a>
-                                    </div>
-                                </div>
                             </div>
                             <div>
                                 <button type="button"

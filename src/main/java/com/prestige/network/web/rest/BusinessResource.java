@@ -132,11 +132,12 @@ public class BusinessResource {
      * @param id the id of the businessDTO to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the businessDTO, or with status 404 (Not Found)
      */
-    @GetMapping("/businesses/{id}")
+    @GetMapping("/businesses/getbusiness")
     @Timed
-    public ResponseEntity<BusinessDTO> getBusiness(@PathVariable Long id) {
-        log.debug("REST request to get Business : {}", id);
-        Optional<BusinessDTO> businessDTOaux = businessService.findOne(id);
+    public ResponseEntity<BusinessDTO> getBusiness() {
+        User user = userService.getCurrentUser();
+
+        Optional<BusinessDTO> businessDTOaux = businessService.findByUser(user);
 
         if (!businessDTOaux.isPresent()) {
             log.debug("No business exist");

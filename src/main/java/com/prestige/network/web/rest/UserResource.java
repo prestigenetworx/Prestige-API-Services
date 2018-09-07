@@ -4,7 +4,6 @@ import com.prestige.network.config.Constants;
 import com.codahale.metrics.annotation.Timed;
 import com.prestige.network.domain.User;
 import com.prestige.network.repository.UserRepository;
-import com.prestige.network.repository.WalletRepository;
 import com.prestige.network.security.AuthoritiesConstants;
 import com.prestige.network.service.MailService;
 import com.prestige.network.service.UserService;
@@ -35,6 +34,9 @@ import java.util.*;
 import com.prestige.network.service.MiddlewareRequest;
 import org.json.JSONObject;
 import com.prestige.network.domain.Wallet;
+import com.prestige.network.repository.WalletRepository;
+import com.prestige.network.domain.Business;
+import com.prestige.network.repository.BusinessRepository;
 import com.prestige.network.service.CryptUtils;
 
 /**
@@ -76,6 +78,9 @@ public class UserResource {
     @Autowired
     private WalletRepository walletRepository;
 
+    @Autowired
+    private BusinessRepository businessRepository;
+
     public UserResource(UserService userService, UserRepository userRepository, MailService mailService) {
 
         this.userService = userService;
@@ -114,6 +119,10 @@ public class UserResource {
             //Crear wallet
             Wallet wallet = new Wallet();
             walletRepository.save(wallet.createWalletfromApi(newUser,null));
+
+            //Create business
+            Business business = new Business();
+            businessRepository.save(business.createBusinessWithgetCurrentUser(newUser,new Business()));
 
             mailService.sendCreationEmail(newUser);
             return ResponseEntity.created(new URI("/api/users/" + newUser.getLogin()))

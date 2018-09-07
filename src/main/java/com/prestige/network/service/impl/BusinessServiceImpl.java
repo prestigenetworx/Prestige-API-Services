@@ -90,6 +90,20 @@ public class BusinessServiceImpl implements BusinessService {
     }
 
     /**
+     * Get the getcurrentuser for business.
+     *
+     * @param user
+     * @return the entity
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<BusinessDTO> findByUser(User user) {
+        log.debug("Request the business with get current user");
+        return businessRepository.findByUser(user)
+            .map(businessMapper::toDto);
+    }
+
+    /**
      * Delete the business by id.
      *
      * @param id the id of the entity

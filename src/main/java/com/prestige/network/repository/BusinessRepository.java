@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
+
 import com.prestige.network.domain.User;
 
 /**
@@ -19,5 +21,5 @@ public interface BusinessRepository extends JpaRepository<Business, Long> {
     @Query("select business from Business business where business.user.login = ?#{principal.username}")
     List<Business> findByUserIsCurrentUser();
     Page<Business> findByUserOrderById(User user, Pageable pageable);
-
+    Optional<Business> findByUser(User user);
 }

@@ -250,8 +250,9 @@ public class Business implements Serializable {
 
     //Creation business with getCurrentUser
     public Business createBusinessWithgetCurrentUser(User u,Business b) {
+        String name = (b.getName() == null || b.getName() == "") ? ("Business Default - " + u.getLogin()) : b.getName();
         Business business = new Business()
-            .name(b.getName())
+            .name(name)
             .description(b.getDescription())
             .logo(b.getLogo())
             .city(b.getCity())

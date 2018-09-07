@@ -28,20 +28,7 @@ export class BusinessAppResolve implements Resolve<IBusinessApp> {
 
 export const businessRoute: Routes = [
     {
-        path: 'business-app',
-        component: BusinessAppComponent,
-        resolve: {
-            pagingParams: JhiResolvePagingParams
-        },
-        data: {
-            authorities: ['ROLE_USER'],
-            defaultSort: 'id,asc',
-            pageTitle: 'prestigeApp.business.home.title'
-        },
-        canActivate: [UserRouteAccessService]
-    },
-    {
-        path: 'business-app/:id/view',
+        path: 'business-app/view',
         component: BusinessAppDetailComponent,
         resolve: {
             business: BusinessAppResolve
@@ -65,7 +52,7 @@ export const businessRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
-        path: 'business-app/:id/edit',
+        path: 'business-app/edit',
         component: BusinessAppUpdateComponent,
         resolve: {
             business: BusinessAppResolve

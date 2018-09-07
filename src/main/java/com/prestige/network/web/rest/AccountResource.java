@@ -2,10 +2,12 @@ package com.prestige.network.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 
+import com.prestige.network.domain.Business;
 import com.prestige.network.domain.User;
 import com.prestige.network.domain.Wallet;
 import com.prestige.network.repository.UserRepository;
 import com.prestige.network.repository.WalletRepository;
+import com.prestige.network.repository.BusinessRepository;
 import com.prestige.network.security.SecurityUtils;
 import com.prestige.network.service.MailService;
 import com.prestige.network.service.UserService;
@@ -43,6 +45,9 @@ public class AccountResource {
 
     @Autowired
     private WalletRepository walletRepository;
+
+    @Autowired
+    private BusinessRepository businessRepository;
 
     public AccountResource(UserRepository userRepository, UserService userService, MailService mailService) {
 
@@ -89,6 +94,10 @@ public class AccountResource {
         //Create wallet
         Wallet wallet = new Wallet();
         walletRepository.save(wallet.createWalletfromApi(user.get(),null));
+
+        //Create business
+        Business business = new Business();
+        businessRepository.save(business.createBusinessWithgetCurrentUser(user.get(),new Business()));
     }
 
     /**

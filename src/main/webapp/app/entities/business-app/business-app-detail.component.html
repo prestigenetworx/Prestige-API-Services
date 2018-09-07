@@ -69,11 +69,11 @@
                                 <div class="col-md-3 col-xs-6 b-r">
                                     <strong jhiTranslate="prestigeApp.business.logo">Logo</strong> <br>
                                     <p class="text-muted">
-                                        <div *ngIf="business.logo">
-                                            <a (click)="openFile(business.logoContentType, business.logo)">
-                                                <img [src]="'data:' + business.logoContentType + ';base64,' + business.logo" style="max-width: 100%;" alt="business image"/>
+                                        <div *ngIf="business?.logo">
+                                            <a (click)="openFile(business?.logoContentType, business?.logo)">
+                                                <img [src]="'data:' + business?.logoContentType + ';base64,' + business?.logo" style="max-width: 100%;" alt="business image"/>
                                             </a>
-                                            {{business.logoContentType}}, {{byteSize(business.logo)}}
+                                            {{business?.logoContentType}}, {{byteSize(business?.logo)}}
                                         </div>
                                     </p>
                                 </div>

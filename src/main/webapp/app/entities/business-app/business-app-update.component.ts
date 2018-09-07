@@ -31,9 +31,12 @@ export class BusinessAppUpdateComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
-        this.activatedRoute.data.subscribe(({ business }) => {
-            this.business = business;
-        });
+        this.businessService.findByCurrentUser().subscribe(
+            (res: HttpResponse<IBusinessApp>) => {
+                this.business = res.body;
+            },
+            (res: HttpErrorResponse) => this.jhiAlertService.error(res.message, null, null)
+        );
     }
 
     byteSize(field) {

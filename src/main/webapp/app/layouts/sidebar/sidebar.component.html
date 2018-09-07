@@ -9,7 +9,7 @@
                     <a class="dropdown-toggle u-dropdown link hide-menu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{account.login}} <span class="caret"></span></a>
                     <div class="dropdown-menu animated flipInY">
                         <!-- text-->
-                        <a routerLink="/settings" class="dropdown-item"><i class="ti-user"></i><span jhiTranslate="global.menu.account.settings2"> Settings</span></a>
+                        <a [routerLink]="['/business-app/view' ]" class="dropdown-item"><i class="ti-user"></i><span jhiTranslate="global.menu.account.settings2"> Settings</span></a>
                         <!-- text-->
                         <div class="dropdown-divider"></div>
                         <!-- text-->
@@ -31,7 +31,7 @@
                 </li>
                 <li class="nav-small-cap" jhiTranslate="global.menu.account.merchants-sidebar">--- Merchants</li>
                 <li *jhiHasAnyAuthority="'ROLE_USER'">
-                    <a class="waves-effect waves-dark" routerLink="business-app" routerLinkActive="active" aria-expanded="false">
+                    <a class="waves-effect waves-dark" routerLink="business-app/view" routerLinkActive="active" aria-expanded="false">
                         <i class="ti-user"></i>
                         <span jhiTranslate="global.menu.entities.businessApp" class="hide-menu">Business</span>
                     </a>

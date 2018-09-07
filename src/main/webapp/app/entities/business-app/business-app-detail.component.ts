@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { JhiDataUtils } from 'ng-jhipster';
+import { JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 
 import { IBusinessApp } from 'app/shared/model/business-app.model';
+import { BusinessAppService } from 'app/entities/business-app/business-app.service';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 
 @Component({
     selector: 'jhi-business-app-detail',
@@ -12,12 +14,20 @@ import { IBusinessApp } from 'app/shared/model/business-app.model';
 export class BusinessAppDetailComponent implements OnInit {
     business: IBusinessApp;
 
-    constructor(private dataUtils: JhiDataUtils, private activatedRoute: ActivatedRoute) {}
+    constructor(
+        private dataUtils: JhiDataUtils,
+        private activatedRoute: ActivatedRoute,
+        private businessAppService: BusinessAppService,
+        private jhiAlertService: JhiAlertService
+    ) {}
 
     ngOnInit() {
-        this.activatedRoute.data.subscribe(({ business }) => {
-            this.business = business;
-        });
+        this.businessAppService.findByCurrentUser().subscribe(
+            (res: HttpResponse<IBusinessApp>) => {
+                this.business = res.body;
+            },
+            (res: HttpErrorResponse) => this.jhiAlertService.error(res.message, null, null)
+        );
     }
 
     byteSize(field) {

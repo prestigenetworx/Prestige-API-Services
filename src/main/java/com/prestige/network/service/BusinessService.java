@@ -47,6 +47,14 @@ public interface BusinessService {
     Optional<BusinessDTO> findOne(Long id);
 
     /**
+     * Get the getcurrentuser for business.
+     *
+     * @param user
+     * @return the entity
+     */
+    Optional<BusinessDTO> findByUser(User user);
+
+    /**
      * Delete the "id" business.
      *
      * @param id the id of the entity

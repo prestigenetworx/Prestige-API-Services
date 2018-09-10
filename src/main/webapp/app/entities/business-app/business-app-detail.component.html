@@ -36,35 +36,35 @@
                             <div class="row">
                                 <div class="col-md-3 col-xs-6 b-r">
                                     <strong jhiTranslate="prestigeApp.business.name">Name</strong> <br>
-                                    <p class="text-muted">{{business.name}}</p>
+                                    <p class="text-muted">{{business?.name}}</p>
                                 </div>
                                 <div class="col-md-3 col-xs-6 b-r">
                                     <strong jhiTranslate="prestigeApp.business.description">Description</strong> <br>
-                                    <p class="text-muted">{{business.description}}</p>
+                                    <p class="text-muted">{{business?.description}}</p>
                                 </div>
                                 <div class="col-md-3 col-xs-6">
                                     <strong jhiTranslate="prestigeApp.business.street1">Street 1</strong> <br>
-                                    <p class="text-muted">{{business.street1}}</p>
+                                    <p class="text-muted">{{business?.street1}}</p>
                                 </div>
                                 <div class="col-md-3 col-xs-6">
                                     <strong jhiTranslate="prestigeApp.business.street2">Street 2</strong> <br>
-                                    <p class="text-muted">{{business.street2}}</p>
+                                    <p class="text-muted">{{business?.street2}}</p>
                                 </div>
                                 <div class="col-md-3 col-xs-6">
                                     <strong jhiTranslate="prestigeApp.business.zipcode">Zipcode</strong> <br>
-                                    <p class="text-muted">{{business.zipcode}}</p>
+                                    <p class="text-muted">{{business?.zipcode}}</p>
                                 </div>
                                 <div class="col-md-3 col-xs-6">
                                     <strong jhiTranslate="prestigeApp.business.city">City</strong> <br>
-                                    <p class="text-muted">{{business.city}}</p>
+                                    <p class="text-muted">{{business?.city}}</p>
                                 </div>
                                 <div class="col-md-3 col-xs-6">
                                     <strong jhiTranslate="prestigeApp.business.state">State</strong> <br>
-                                    <p class="text-muted">{{business.state}}</p>
+                                    <p class="text-muted">{{business?.state}}</p>
                                 </div>
                                 <div class="col-md-3 col-xs-6">
                                     <strong jhiTranslate="prestigeApp.business.country">Country</strong> <br>
-                                    <p class="text-muted">{{business.country}}</p>
+                                    <p class="text-muted">{{business?.country}}</p>
                                 </div>
                                 <div class="col-md-3 col-xs-6 b-r">
                                     <strong jhiTranslate="prestigeApp.business.logo">Logo</strong> <br>
@@ -77,14 +77,6 @@
                                         </div>
                                     </p>
                                 </div>
-                            </div>
-                            <hr>
-                            <div>
-                                <button type="button"
-                                        (click)="previousState()"
-                                        class="btn btn-inverse waves-effect waves-light">
-                                    <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
-                                </button>
                             </div>
                         </div>
                     </div>

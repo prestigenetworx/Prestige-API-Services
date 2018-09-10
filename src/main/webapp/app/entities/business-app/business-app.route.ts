@@ -42,18 +42,6 @@ export const businessRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
-        path: 'business-app/new',
-        component: BusinessAppUpdateComponent,
-        resolve: {
-            business: BusinessAppResolve
-        },
-        data: {
-            authorities: ['ROLE_USER'],
-            pageTitle: 'prestigeApp.business.home.title'
-        },
-        canActivate: [UserRouteAccessService]
-    },
-    {
         path: 'business-app/edit',
         component: BusinessAppUpdateComponent,
         resolve: {
@@ -67,19 +55,4 @@ export const businessRoute: Routes = [
     }
 ];
 
-export const businessPopupRoute: Routes = [
-    {
-        path: 'business-app/:id/delete',
-        component: BusinessAppDeletePopupComponent,
-        resolve: {
-            business: BusinessAppResolve
-        },
-        data: {
-            authorities: ['ROLE_USER'],
-            pageTitle: 'prestigeApp.business.home.title'
-        },
-        canActivate: [UserRouteAccessService],
-        outlet: 'popup'
-    },
-    { path: 'business-app/:id/delete', redirectTo: 'business-app/view', pathMatch: 'full' }
-];
+export const businessPopupRoute: Routes = [{ path: 'business-app/:id/delete', redirectTo: 'business-app/view', pathMatch: 'full' }];

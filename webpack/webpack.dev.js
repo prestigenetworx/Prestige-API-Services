@@ -38,7 +38,7 @@ module.exports = (options) => webpackMerge(commonConfig({ env: ENV }), {
     },
     entry: {
         polyfills: './src/main/webapp/app/polyfills',
-        global: './src/main/webapp/content/dist/css/style.css',
+        global: './src/main/webapp/content/scss/global.scss',
         main: './src/main/webapp/app/app.main'
     },
     output: {
@@ -53,47 +53,47 @@ module.exports = (options) => webpackMerge(commonConfig({ env: ENV }), {
             loaders: 'tslint-loader',
             exclude: ['node_modules', new RegExp('reflect-metadata\\' + path.sep + 'Reflect\\.ts')]
         },
-        {
-            test: /\.ts$/,
-            use: [
-                { loader: 'angular2-template-loader' },
-                { loader: 'cache-loader' },
-                {
-                    loader: 'thread-loader',
-                    options: {
-                        // there should be 1 cpu for the fork-ts-checker-webpack-plugin
-                        workers: require('os').cpus().length - 1
-                    }
-                },
-                {
-                    loader: 'ts-loader',
-                    options: {
-                        transpileOnly: true,
-                        happyPackMode: true
-                    }
-                },
-                { loader: 'angular-router-loader' }
-            ],
-            exclude: ['node_modules']
-        },
-        {
-            test: /\.scss$/,
-            loaders: ['to-string-loader', 'css-loader', 'sass-loader'],
-            exclude: /(vendor\.scss|style\.scss)/
-        },
-        {
-            test: /(vendor\.scss|style\.scss)/,
-            loaders: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
-        },
-        {
-            test: /\.css$/,
-            loaders: ['to-string-loader', 'css-loader'],
-            exclude: /(vendor\.css|style\.css)/
-        },
-        {
-            test: /(vendor\.css|style\.css)/,
-            loaders: ['style-loader', 'css-loader']
-        }]
+            {
+                test: /\.ts$/,
+                use: [
+                    { loader: 'angular2-template-loader' },
+                    { loader: 'cache-loader' },
+                    {
+                        loader: 'thread-loader',
+                        options: {
+                            // there should be 1 cpu for the fork-ts-checker-webpack-plugin
+                            workers: require('os').cpus().length - 1
+                        }
+                    },
+                    {
+                        loader: 'ts-loader',
+                        options: {
+                            transpileOnly: true,
+                            happyPackMode: true
+                        }
+                    },
+                    { loader: 'angular-router-loader' }
+                ],
+                exclude: ['node_modules']
+            },
+            {
+                test: /\.scss$/,
+                loaders: ['to-string-loader', 'css-loader', 'sass-loader'],
+                exclude: /(vendor\.scss|global\.scss)/
+            },
+            {
+                test: /(vendor\.scss|global\.scss)/,
+                loaders: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
+            },
+            {
+                test: /\.css$/,
+                loaders: ['to-string-loader', 'css-loader'],
+                exclude: /(vendor\.css|global\.css)/
+            },
+            {
+                test: /(vendor\.css|global\.css)/,
+                loaders: ['style-loader', 'css-loader']
+            }]
     },
     stats: options.stats,
     plugins: [

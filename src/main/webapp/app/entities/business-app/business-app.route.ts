@@ -27,6 +27,8 @@ export class BusinessAppResolve implements Resolve<IBusinessApp> {
 }
 
 export const businessRoute: Routes = [
+    { path: 'business-app', redirectTo: 'business-app/view', pathMatch: 'full' },
+    { path: 'business-app/new', redirectTo: 'business-app/view', pathMatch: 'full' },
     {
         path: 'business-app/view',
         component: BusinessAppDetailComponent,
@@ -78,5 +80,6 @@ export const businessPopupRoute: Routes = [
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
-    }
+    },
+    { path: 'business-app/:id/delete', redirectTo: 'business-app/view', pathMatch: 'full' }
 ];

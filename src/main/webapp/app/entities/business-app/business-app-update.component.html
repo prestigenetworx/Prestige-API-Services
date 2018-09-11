@@ -22,7 +22,7 @@
                 <div class="login-box card">
                     <div class="card-body">
                         <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
-                            <div>
+                            <div *ngIf="business">
                                 <jhi-alert-error></jhi-alert-error>
                                 <div class="form-group">
                                     <div class="example-container">

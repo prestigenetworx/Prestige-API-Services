@@ -21,6 +21,8 @@ import com.prestige.network.domain.User;
 import com.prestige.network.service.UserService;
 import com.prestige.network.domain.Business;
 import com.prestige.network.service.mapper.BusinessMapper;
+import com.prestige.network.security.AuthoritiesConstants;
+import com.prestige.network.repository.AuthorityRepository;
 
 import javax.validation.Valid;
 import java.net.URI;
@@ -47,6 +49,9 @@ public class BusinessResource {
 
     @Autowired
     private BusinessMapper businessMapper;
+
+    @Autowired
+    private AuthorityRepository authorityRepository;
 
     public BusinessResource(BusinessService businessService) {
         this.businessService = businessService;
@@ -134,9 +139,10 @@ public class BusinessResource {
      */
     @GetMapping("/businesses/getbusiness")
     @Timed
-    public ResponseEntity<BusinessDTO> getBusiness() {
+    public ResponseEntity<BusinessDTO> getBusiness(Pageable pageable) {
         User user = userService.getCurrentUser();
 
+        //businessService.findAll(pageable);
         Optional<BusinessDTO> businessDTOaux = businessService.findByUser(user);
 
         if (!businessDTOaux.isPresent()) {

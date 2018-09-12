@@ -5,7 +5,7 @@ import { JhiEventManager } from 'ng-jhipster';
 import { LoginService } from 'app/core/login/login.service';
 import { StateStorageService } from 'app/core/auth/state-storage.service';
 
-import { Principal } from 'app/core/auth/principal.service';
+import { Principal, Account } from 'app/core';
 
 @Component({
     selector: 'jhi-signin',
@@ -18,6 +18,7 @@ export class SigninComponent implements OnInit {
     rememberMe: boolean;
     username: string;
     credentials: any;
+    account: Account;
 
     constructor(
         private eventManager: JhiEventManager,
@@ -57,13 +58,14 @@ export class SigninComponent implements OnInit {
                     this.router.navigate([redirect]);
                 } else {
                     this.stateStorageService.storeUrl(null);
-                    if (this.principal.hasAuthority('ROLE_ADMIN')) {
-                        console.log('entróooooo admin');
+                    this.router.navigate(['/business-app/view']);
+                    /*if (this.principal.hasAuthority('ROLE_ADMIN')) {
+                        debugger;
                         this.router.navigate(['/business-app']);
                     } else if (this.principal.hasAuthority('ROLE_USER')) {
-                        console.log('entróooooo user');
+                        debugger;
                         this.router.navigate(['/business-app/view']);
-                    }
+                    }*/
                 }
             })
             .catch(() => {

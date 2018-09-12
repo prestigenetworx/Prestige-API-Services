@@ -15,9 +15,9 @@
 
 logging:
     level:
-        ROOT: INFO
-        com.prestige.network: INFO
-        io.github.jhipster: INFO
+        ROOT: ERROR
+        com.prestige.network: ERROR
+        io.github.jhipster: ERROR
 
 spring:
     devtools:

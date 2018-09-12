@@ -7,7 +7,7 @@
         Added the constraints for entity Business.
     -->
     <changeSet id="20180826001939-2" author="jhipster">
-        
+
         <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="business"
                                  constraintName="fk_business_user_id"

@@ -125,7 +125,8 @@ public class BusinessResource {
             throw new BadRequestAlertException("Current user doesn't exist", ENTITY_NAME, "noncurrentuser");
         }
 
-        Page<BusinessDTO> page = businessService.findAllById(user,pageable);
+        //Page<BusinessDTO> page = businessService.findAllById(user,pageable);
+        Page<BusinessDTO> page = businessService.findAll(pageable);
 
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/businesses");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
@@ -139,10 +140,9 @@ public class BusinessResource {
      */
     @GetMapping("/businesses/getbusiness")
     @Timed
-    public ResponseEntity<BusinessDTO> getBusiness(Pageable pageable) {
+    public ResponseEntity<BusinessDTO> getBusiness() {
         User user = userService.getCurrentUser();
 
-        //businessService.findAll(pageable);
         Optional<BusinessDTO> businessDTOaux = businessService.findByUser(user);
 
         if (!businessDTOaux.isPresent()) {

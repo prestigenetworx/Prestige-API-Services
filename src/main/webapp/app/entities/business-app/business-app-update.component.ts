@@ -56,7 +56,7 @@ export class BusinessAppUpdateComponent implements OnInit {
     }
 
     previousState() {
-        this.router.navigate(['/business-app']);
+        this.router.navigate(['/business-app/view']);
     }
 
     save() {

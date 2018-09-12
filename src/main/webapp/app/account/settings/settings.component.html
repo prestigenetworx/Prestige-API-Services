@@ -1,322 +1,86 @@
-<div class="page-wrapper">
-    <!-- ============================================================== -->
-    <!-- Container fluid  -->
-    <!-- ============================================================== -->
-    <div class="container-fluid">
-        <!-- ============================================================== -->
-        <!-- Bread crumb and right sidebar toggle -->
-        <!-- ============================================================== -->
-        <div class="row page-titles">
-            <div class="col-md-5 align-self-center">
-                <h4 class="text-themecolor">Profile</h4>
+<div>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h2 jhiTranslate="settings.title" translateValues="{username: '{{settingsAccount.login}}'}" *ngIf="settingsAccount">User settings for [<b>{{settingsAccount.login}}</b>]</h2>
+
+            <div class="alert alert-success" *ngIf="success" jhiTranslate="settings.messages.success">
+                <strong>Settings saved!</strong>
             </div>
-            <div class="col-md-7 align-self-center text-right">
-                <div class="d-flex justify-content-end align-items-center">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                        <li class="breadcrumb-item active">Profile</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-        <!-- ============================================================== -->
-        <!-- End Bread crumb and right sidebar toggle -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Start Page Content -->
-        <!-- ============================================================== -->
-        <!-- Row -->
-        <div class="row">
-            <!-- Column -->
-            <div class="col-lg-4 col-xlg-3 col-md-5">
-                <div class="card">
-                    <div class="card-body">
-                        <div align="center" class="m-t-30"> <img src="../../../assets/images/users/2.jpg" class="img-circle" width="150" />
-                            <h6 class="card-subtitle">Accoubts Manager Amix corp</h6>
-                            <div class="row text-center justify-content-md-center">
-                                <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-people"></i> <font class="font-medium">254</font></a></div>
-                                <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-picture"></i> <font class="font-medium">54</font></a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <hr> </div>
-                    <div class="card-body text-center"> <small class="text-muted">Email address </small>
-                        <small class="text-muted p-t-30 db">Social Profile</small>
-                        <br/>
-                        <button class="btn btn-circle btn-secondary"><i class="fab fa-facebook-f"></i></button>
-                        <button class="btn btn-circle btn-secondary"><i class="fab fa-twitter"></i></button>
-                        <button class="btn btn-circle btn-secondary"><i class="fab fa-youtube"></i></button>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <form name="form" role="form" (ngSubmit)="save()" #settingsForm="ngForm" *ngIf="settingsAccount" novalidate>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="firstName" jhiTranslate="settings.form.firstname">First Name</label>
+                    <input type="text" class="form-control" id="firstName" name="firstName" placeholder="{{'settings.form.firstname.placeholder' | translate}}"
+                           [(ngModel)]="settingsAccount.firstName" minlength=1 maxlength=50 #firstNameInput="ngModel" required>
+                    <div *ngIf="firstNameInput.dirty && firstNameInput.invalid">
+                        <small class="form-text text-danger"
+                               *ngIf="firstNameInput.errors.required" jhiTranslate="settings.messages.validate.firstname.required">
+                            Your first name is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="firstNameInput.errors.minlength" jhiTranslate="settings.messages.validate.firstname.minlength">
+                            Your first name is required to be at least 1 character.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="firstNameInput.errors.maxlength" jhiTranslate="settings.messages.validate.firstname.maxlength">
+                            Your first name cannot be longer than 50 characters.
+                        </small>
                     </div>
                 </div>
-            </div>
-            <!-- Column -->
-            <!-- Column -->
-            <div class="col-lg-8 col-xlg-9 col-md-7">
-                <div class="card">
-                    <!-- Nav tabs -->
-                    <ul class="nav nav-tabs profile-tab" role="tablist">
-                        <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#profile" role="tab">Profile <i class="fas fa-edit" data-toggle="modal" data-target="#myModalProfile"></i></a> </li>
-                        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#home" role="tab">Experience <i class="fas fa-plus-circle" data-toggle="modal" data-target="#myModalExperience"></i></a> </li>
-                        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#settings" role="tab">Education <i class="fas fa-plus-circle" data-toggle="modal" data-target="#myModalExperience"></i></a> </li>
-                    </ul>
-                    <!-- Tab panes -->
-                    <div class="tab-content">
-                        <div class="tab-pane" id="home" role="tabpanel">
-                            <div class="card-body">
-
-                            </div>
-                        </div>
-                        <!--second tab-->
-                        <div class="tab-pane active" id="profile" role="tabpanel">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-3 col-xs-6 b-r"> <strong>Full Name</strong>
-                                        <br>
-                                    </div>
-                                    <div class="col-md-3 col-xs-6 b-r"> <strong>Mobile</strong>
-                                        <br>
-                                    </div>
-                                    <div class="col-md-3 col-xs-6 b-r"> <strong>Email</strong>
-                                        <br>
-                                    </div>
-                                    <div class="col-md-3 col-xs-6"> <strong>Location</strong>
-                                        <br>
-                                        <p class="text-muted">London</p>
-                                    </div>
-                                </div>
-                                <hr>
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="settings" role="tabpanel">
-                            <div class="card-body">
-
-
-                            </div>
-                        </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="lastName" jhiTranslate="settings.form.lastname">Last Name</label>
+                    <input type="text" class="form-control" id="lastName" name="lastName" placeholder="{{'settings.form.lastname.placeholder' | translate}}"
+                           [(ngModel)]="settingsAccount.lastName" minlength=1 maxlength=50 #lastNameInput="ngModel" required>
+                    <div *ngIf="lastNameInput.dirty && lastNameInput.invalid">
+                        <small class="form-text text-danger"
+                               *ngIf="lastNameInput.errors.required" jhiTranslate="settings.messages.validate.lastname.required">
+                            Your last name is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="lastNameInput.errors.minlength" jhiTranslate="settings.messages.validate.lastname.minlength">
+                            Your last name is required to be at least 1 character.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="lastNameInput.errors.maxlength" jhiTranslate="settings.messages.validate.lastname.maxlength">
+                            Your last name cannot be longer than 50 characters.
+                        </small>
                     </div>
                 </div>
-            </div>
-            <!-- Column -->
-        </div>
-        <!-- Row -->
-        <!-- ============================================================== -->
-        <!-- End PAge Content -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Right sidebar -->
-        <!-- ============================================================== -->
-        <!-- .right-sidebar -->
-        <div class="right-sidebar">
-            <div class="slimscrollright">
-                <div class="rpanel-title"> Service Panel <span><i class="ti-close right-side-toggle"></i></span> </div>
-                <div class="r-panel-body">
-                    <ul id="themecolors" class="m-t-20">
-                        <li><b>With Light sidebar</b></li>
-                        <li><a href="javascript:void(0)" data-skin="skin-default" class="default-theme working">1</a></li>
-                        <li><a href="javascript:void(0)" data-skin="skin-green" class="green-theme">2</a></li>
-                        <li><a href="javascript:void(0)" data-skin="skin-red" class="red-theme">3</a></li>
-                        <li><a href="javascript:void(0)" data-skin="skin-blue" class="blue-theme">4</a></li>
-                        <li><a href="javascript:void(0)" data-skin="skin-purple" class="purple-theme">5</a></li>
-                        <li><a href="javascript:void(0)" data-skin="skin-megna" class="megna-theme">6</a></li>
-                        <li class="d-block m-t-30"><b>With Dark sidebar</b></li>
-                        <li><a href="javascript:void(0)" data-skin="skin-default-dark" class="default-dark-theme ">7</a></li>
-                        <li><a href="javascript:void(0)" data-skin="skin-green-dark" class="green-dark-theme">8</a></li>
-                        <li><a href="javascript:void(0)" data-skin="skin-red-dark" class="red-dark-theme">9</a></li>
-                        <li><a href="javascript:void(0)" data-skin="skin-blue-dark" class="blue-dark-theme">10</a></li>
-                        <li><a href="javascript:void(0)" data-skin="skin-purple-dark" class="purple-dark-theme">11</a></li>
-                        <li><a href="javascript:void(0)" data-skin="skin-megna-dark" class="megna-dark-theme ">12</a></li>
-                    </ul>
+                <div class="form-group">
+                    <label class="form-control-label" for="email" jhiTranslate="global.form.email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="{{'global.form.email.placeholder' | translate}}"
+                           [(ngModel)]="settingsAccount.email" minlength="5" maxlength="254" #emailInput="ngModel" email required>
+                    <div *ngIf="emailInput.dirty && emailInput.invalid">
+                        <small class="form-text text-danger"
+                               *ngIf="emailInput.errors.required" jhiTranslate="global.messages.validate.email.required">
+                            Your email is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="emailInput.errors.email" jhiTranslate="global.messages.validate.email.invalid">
+                            Your email is invalid.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="emailInput.errors.minlength" jhiTranslate="global.messages.validate.email.minlength">
+                            Your email is required to be at least 5 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="emailInput.errors.maxlength" jhiTranslate="global.messages.validate.email.maxlength">
+                            Your email cannot be longer than 100 characters.
+                        </small>
+                    </div>
                 </div>
-            </div>
+                <div class="form-group" *ngIf="languages && languages.length > 0">
+                    <label for="langKey" jhiTranslate="settings.form.language">Language</label>
+                    <select class="form-control" id="langKey" name="langKey" [(ngModel)]="settingsAccount.langKey">
+                        <option *ngFor="let language of languages" [value]="language">{{language | findLanguageFromKey}}</option>
+                    </select>
+                </div>
+                <button type="submit" [disabled]="settingsForm.form.invalid" class="btn btn-primary" jhiTranslate="settings.form.button">Save</button>
+            </form>
         </div>
-        <!-- ============================================================== -->
-        <!-- End Right sidebar -->
-        <!-- ============================================================== -->
     </div>
-    <!-- ============================================================== -->
-    <!-- End Container fluid  -->
-    <!-- ============================================================== -->
+
 </div>
-<!-- ============================================================== -->
-<!-- End Page wrapper  -->
-<!-- ============================================================== -->
-<!-- ============================================================== -->
-</div>
-<!-- ============================================================== -->
-<!-- End Wrapper -->
-
-<!--Modal experience-->
-<!-- sample modal content -->
-<div id="myModalExperience" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">Experience</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" #closeModalConfirmation>×</button>
-            </div>
-            <div class="modal-body">
-                <div class="example-container">
-                    <mat-form-field>
-                        <input matInput placeholder="Input">
-                    </mat-form-field>
-
-                    <mat-form-field>
-                        <textarea matInput placeholder="Textarea"></textarea>
-                    </mat-form-field>
-
-                    <mat-form-field>
-                        <mat-select placeholder="Select">
-                            <mat-option value="option">Option</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-info waves-effect" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-danger waves-effect">Save</button>
-            </div>
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
-<!-- /.modal -->
-
-<!--Modal experience-->
-<!-- sample modal content -->
-<div id="myModalProfile" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel1">Edit profile</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" #closeModalProfile>×</button>
-            </div>
-            <div class="modal-body">
-                <div class="alert alert-success" *ngIf="success" jhiTranslate="settings.messages.success">
-                    <strong>Settings saved!</strong>
-                </div>
-
-                <jhi-alert-error></jhi-alert-error>
-
-                <form name="form" role="form" (ngSubmit)="save()" #settingsForm="ngForm" *ngIf="settingsAccount" novalidate>
-
-                    <div class="form-group">
-                        <div class="example-container">
-                            <mat-form-field class="example-full-width">
-                                <input type="text" matInput="" id="firstName" name="firstName" placeholder="{{'settings.form.firstname.placeholder' | translate}}"
-                                       [(ngModel)]="settingsAccount.firstName" minlength=1 maxlength=50 #firstNameInput="ngModel" required>
-                            </mat-form-field>
-                        </div>
-                        <div *ngIf="firstNameInput.dirty && firstNameInput.invalid">
-                            <small class="form-text text-danger"
-                                   *ngIf="firstNameInput.errors.required" jhiTranslate="settings.messages.validate.firstname.required">
-                                Your first name is required.
-                            </small>
-                            <small class="form-text text-danger"
-                                   *ngIf="firstNameInput.errors.minlength" jhiTranslate="settings.messages.validate.firstname.minlength">
-                                Your first name is required to be at least 1 character.
-                            </small>
-                            <small class="form-text text-danger"
-                                   *ngIf="firstNameInput.errors.maxlength" jhiTranslate="settings.messages.validate.firstname.maxlength">
-                                Your first name cannot be longer than 50 characters.
-                            </small>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="example-container">
-                            <mat-form-field class="example-full-width">
-                                <input type="text" matInput="" id="lastName" name="lastName" placeholder="{{'settings.form.lastname.placeholder' | translate}}"
-                                       [(ngModel)]="settingsAccount.lastName" minlength=1 maxlength=50 #lastNameInput="ngModel" required>
-                            </mat-form-field>
-                        </div>
-                        <div *ngIf="lastNameInput.dirty && lastNameInput.invalid">
-                            <small class="form-text text-danger"
-                                   *ngIf="lastNameInput.errors.required" jhiTranslate="settings.messages.validate.lastname.required">
-                                Your last name is required.
-                            </small>
-                            <small class="form-text text-danger"
-                                   *ngIf="lastNameInput.errors.minlength" jhiTranslate="settings.messages.validate.lastname.minlength">
-                                Your last name is required to be at least 1 character.
-                            </small>
-                            <small class="form-text text-danger"
-                                   *ngIf="lastNameInput.errors.maxlength" jhiTranslate="settings.messages.validate.lastname.maxlength">
-                                Your last name cannot be longer than 50 characters.
-                            </small>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="example-container">
-                            <mat-form-field class="example-full-width">
-                                <input type="email" matInput="" id="email" name="email" placeholder="{{'global.form.email.placeholder' | translate}}"
-                                       [(ngModel)]="settingsAccount.email" minlength="5" maxlength="254" #emailInput="ngModel" email required>
-                            </mat-form-field>
-                        </div>
-                        <div *ngIf="emailInput.dirty && emailInput.invalid">
-                            <small class="form-text text-danger"
-                                   *ngIf="emailInput.errors.required" jhiTranslate="global.messages.validate.email.required">
-                                Your email is required.
-                            </small>
-                            <small class="form-text text-danger"
-                                   *ngIf="emailInput.errors.email" jhiTranslate="global.messages.validate.email.invalid">
-                                Your email is invalid.
-                            </small>
-                            <small class="form-text text-danger"
-                                   *ngIf="emailInput.errors.minlength" jhiTranslate="global.messages.validate.email.minlength">
-                                Your email is required to be at least 5 characters.
-                            </small>
-                            <small class="form-text text-danger"
-                                   *ngIf="emailInput.errors.maxlength" jhiTranslate="global.messages.validate.email.maxlength">
-                                Your email cannot be longer than 100 characters.
-                            </small>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="example-container">
-                            <mat-form-field class="example-full-width">
-                                <input type="text" matInput="" id="mobile" name="mobile" placeholder="{{'settings.form.mobile.placeholder' | translate}}"
-                                       [(ngModel)]="settingsAccount.mobile" maxlength="15" #mobileInput="ngModel" mobile>
-                            </mat-form-field>
-                        </div>
-                        <div *ngIf="mobileInput.dirty && mobileInput.invalid">
-                            <small class="form-text text-danger"
-                                   *ngIf="emailInput.errors.maxlength" jhiTranslate="settings.messages.validate.mobile.maxlength">
-                                Your mobile cannot be longer than 15 characters.
-                            </small>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="example-container">
-                            <mat-form-field class="example-full-width">
-                                <textarea type="text" matInput="" id="description" name="description" placeholder="{{'settings.form.description.placeholder' | translate}}"
-                                          [(ngModel)]="settingsAccount.description" maxlength="300" #mobileInput="ngModel" description></textarea>
-                            </mat-form-field>
-                        </div>
-                        <div *ngIf="mobileInput.dirty && mobileInput.invalid">
-                            <small class="form-text text-danger"
-                                   *ngIf="emailInput.errors.maxlength" jhiTranslate="settings.messages.validate.description.maxlength">
-                                Your description cannot be longer than 300 characters.
-                            </small>
-                        </div>
-                    </div>
-                    <div class="form-group" *ngIf="languages && languages.length > 0">
-                        <div class="example-container">
-                            <mat-form-field>
-                                <mat-select placeholder="{{'settings.form.language' | translate}}" id="langKey" name="langKey" [(ngModel)]="settingsAccount.langKey">
-                                    <mat-option  *ngFor="let language of languages" [value]="language">{{language | findLanguageFromKey}}</mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                        </div>
-                    </div>
-                    <div class="text-right">
-                        <button type="button" class="btn btn-info waves-effect" data-dismiss="modal">Cancel</button>
-                        <button type="submit" [disabled]="settingsForm.form.invalid" class="btn btn-success" jhiTranslate="settings.form.button">Save</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
-<!-- /.modal -->

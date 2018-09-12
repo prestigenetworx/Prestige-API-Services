@@ -27,12 +27,14 @@
                         <a class="nav-link active" data-toggle="tab" href="#businessinfo" role="tab"><span jhiTranslate="prestigeApp.business.businessinfo"> Business information</span> <i class="fas fa-edit" routerLink="/business-app/edit"></i></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#userinfo" role="tab"><span jhiTranslate="prestigeApp.business.userinfo"> User information</span><i class="fas fa-plus-circle" data-target="#myModalExperience" data-toggle="modal"></i></a>
+                        <a class="nav-link" data-toggle="tab" href="#userinfo" role="tab"><span jhiTranslate="prestigeApp.business.userinfo"> User information</span> <i class="fas fa-plus-circle"></i></a>
                     </li>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane" id="userinfo" role="tabpanel">
-                        <div class="card-body"> </div>
+                        <div class="card-body">
+                            <jhi-password></jhi-password>
+                        </div>
                     </div>
                     <div class="tab-pane active" id="businessinfo" role="tabpanel">
                         <div class="card-body">
